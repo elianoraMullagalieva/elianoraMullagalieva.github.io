@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Нейро-практикум — маршрут от исследования ниши до готового сайта." />
+    <title>Нейро-практикум — от исследования до сайта</title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Шрифты грузятся НЕ блокируя отрисовку: раньше браузер ждал их
+         1.2 с и всё это время держал пустой экран. Теперь текст появляется
+         сразу системным шрифтом и мгновенно подменяется на Manrope. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" /></noscript>
+    <script>
+      /* Страховка: если JS упал или anime.js не загрузился, маскировка
+         первого экрана всё равно снимется и контент будет виден. */
+      setTimeout(function () {
+        var s = document.querySelector('.intro-stage');
+        if (s) s.classList.add('is-ready');
+      }, 1200);
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cold.css" />
+  </head>
+  <body>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <header class="persistent-chrome" aria-label="Навигация по практикуму">
+      <a class="persistent-brand" href="#top" aria-label="Дерзай в дизайн, наверх"><img src="assets/hero/dd-logo.svg" alt="" /><span>практикум<br />AI-креаторов</span></a>
+      <p class="persistent-duration"><span>Длительность:</span><b>20+ лекций</b></p>
+      <a class="persistent-cta" href="#programme">Записаться</a>
+    </header>
+    <main id="top">
+      <div class="intro-shell">
+        <div class="intro-stage">
+        <header class="site-header container">
+          <a class="brand" href="#top" aria-label="Дерзай в дизайн, наверх">
+            <img src="assets/hero/dd-logo.svg" alt="Дерзай в дизайн" />
+            <span>практикум<br />AI-креаторов</span>
+          </a>
+          <div class="header-duration"><span>Длительность:</span><strong>20+ лекций</strong></div>
+          <nav id="primary-nav" aria-label="Главная навигация">
+            <a href="#audience">Для кого практикум</a>
+            <a href="#programme">Программа</a>
+            <a href="#student-works">Кейсы участников</a>
+            <a href="#pricing">Тарифы</a>
+            <a href="#reviews">Фидбек</a>
+          </nav>
+          <div class="header-side">
+            <a class="header-cta" href="#motion">Записаться <svg class="icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 17.5 17.5 6.5M9 6.5h8.5V15" /></svg></a>
+            <button class="menu-toggle" type="button" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="primary-nav"><svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true"><path class="menu-line menu-line-one" d="M5 9h14" /><path class="menu-line menu-line-two" d="M5 15h14" /></svg></button>
+          </div>
+        </header>
+
+        <aside class="mobile-hero-proof" aria-label="Результаты участников">
+          <p class="mobile-duration"><span>Длительность:</span><strong>20+ лекций</strong></p>
+          <div class="mobile-works-proof">
+            <div class="mobile-proof-avatars" aria-hidden="true">
+              <img src="assets/hero/av/figma-work-01-overlay.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-03.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-02.jpg" alt="" />
+            </div>
+            <p><strong>5 анимированных работ</strong><span>в портфолио</span></p>
+          </div>
+        </aside>
+
+        <section class="hero container" aria-labelledby="hero-title">
+          <div class="hero-copy reveal">
+            <p class="hero-kicker">Нейро Практикум</p>
+            <h1 id="hero-title">Собери 5 сайтов<br />с Claude Code уровня<br /><span>Awwwards</span> всего от&nbsp;4&nbsp;900&nbsp;₽</h1>
+            <a class="hero-cta action-pair" href="#pricing"><span class="hero-cta-label action-pair__label">Хочу на практикум</span><span class="hero-cta-icon action-pair__icon" aria-hidden="true"><img class="action-pair__icon-image" src="assets/icons/arrow.svg" alt="" /></span></a>
+          </div>
+
+          <aside class="hero-proof" aria-label="Результаты участников">
+            <p><strong>5 анимированных работ</strong><span>в портфолио</span></p>
+            <div class="proof-avatars" aria-hidden="true">
+              <img src="assets/hero/av/figma-work-01-overlay.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-03.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-02.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-01.jpg" alt="" />
+              <img src="assets/hero/av/figma-work-01-overlay.jpg" alt="" />
+            </div>
+          </aside>
+
+          <div class="hero-hint caption" aria-hidden="true"><span class="hero-hint-icon"><img src="assets/icons/finger.svg" alt="" /></span><span class="hero-hint-copy"><b>Наведи, чтобы</b><br />рассмотреть</span></div>
+          <p class="hero-gallery-note caption">Сайты, которые получают награды<br />и генерируют новых клиентов</p>
+        </section>
+
+        <section class="showcase-marquee" aria-label="Примеры сайтов, созданных в рамках практикума">
+          <div class="marquee-rail">
+            <div class="marquee-group"><figure class="work-card work-card-robot"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/varya.jpg" aria-label="Кейс участницы Вари"><source src="assets/video/varya@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/varya@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/varya.mp4" type="video/mp4" /></video></figure><figure class="work-card work-card-makeitpay"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/works.jpg" aria-label="Работы участников"><source src="assets/video/works@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/works@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/works.mp4" type="video/mp4" /></video></figure><figure class="work-card work-card-oasis"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/cleanshot-a.jpg" aria-label="Проект участника"><source src="assets/video/cleanshot-a@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/cleanshot-a@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/cleanshot-a.mp4" type="video/mp4" /></video></figure></div>
+            <div class="marquee-group" aria-hidden="true"><figure class="work-card work-card-robot" aria-hidden="true"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/varya.jpg" aria-label=""><source src="assets/video/varya@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/varya@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/varya.mp4" type="video/mp4" /></video></figure><figure class="work-card work-card-makeitpay" aria-hidden="true"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/works.jpg" aria-label=""><source src="assets/video/works@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/works@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/works.mp4" type="video/mp4" /></video></figure><figure class="work-card work-card-oasis" aria-hidden="true"><video class="work-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/cleanshot-a.jpg" aria-label=""><source src="assets/video/cleanshot-a@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/cleanshot-a@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/cleanshot-a.mp4" type="video/mp4" /></video></figure></div>
+          </div>
+        </section>
+        <div class="mobile-project-meta" aria-hidden="true">
+          <p><span class="mobile-project-icon"><img src="assets/icons/finger.svg" alt="" /></span><span>Проекты<br />участников</span></p>
+          <p>70% участников<br />новички</p>
+        </div>
+        </div>
+      </div>
+
+      <section class="motion-sequence" id="motion" data-chrome="none" aria-labelledby="motion-title">
+        <div class="motion-stage">
+          <div class="motion-curtain" aria-hidden="true"></div>
+          <div class="motion-chrome" aria-hidden="true">
+            <div class="motion-brand"><img src="assets/hero/dd-logo.svg" alt="" /><span>практикум<br />AI-креаторов</span></div>
+            <div class="motion-duration"><span>Длительность:</span><b>20+ лекций</b></div>
+            <a href="#top"><span>Записаться</span><svg class="icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 17.5 17.5 6.5M9 6.5h8.5V15" /></svg></a>
+          </div>
+
+          <h2 class="visually-hidden" id="motion-title">Нейропрактикум</h2>
+          <svg class="motion-tunnel" viewBox="0 0 1400 814" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <text class="motion-tunnel-text" x="700" y="442" text-anchor="middle">НейроПрактикум</text>
+          </svg>
+
+          <div class="motion-posters" aria-hidden="true">
+            <figure class="motion-poster motion-poster-blue"><img src="assets/motion/poster-strategy.jpg" alt="" /></figure>
+            <figure class="motion-poster motion-poster-red"><img src="assets/motion/poster-design.jpg" alt="" /></figure>
+          </div>
+
+          <div class="motion-words" aria-label="Ключевые навыки практикума">
+            <span data-skill="strategy">Стратегия</span>
+            <span data-skill="research">Исследование</span>
+            <span data-skill="marketing">Маркетинг</span>
+            <span data-skill="design">Дизайн</span>
+            <span data-skill="content">Контент</span>
+            <span data-skill="layout">Вёрстка</span>
+            <span data-skill="animation">Анимация</span>
+            <span data-skill="editing">Монтаж</span>
+          </div>
+
+          <div class="motion-destinations" aria-hidden="true">
+            <span data-skill="research">Исследование</span>
+            <span data-skill="strategy">Стратегия</span>
+            <span data-skill="marketing">Маркетинг</span>
+            <span data-skill="design">Дизайн</span>
+            <span data-skill="content">Контент</span>
+            <span data-skill="layout">Вёрстка</span>
+            <span data-skill="animation">Анимация</span>
+            <span data-skill="editing">Монтаж</span>
+          </div>
+          <div class="motion-flash" aria-hidden="true"><span></span></div>
+          <p class="motion-result" aria-label="Твои навыки после практикума">
+            <span><i>Твои навыки</i></span>
+            <span><i>после практикума</i></span>
+          </p>
+          <div class="motion-system-targets" aria-hidden="true">
+            <span data-skill="research">Исследование</span>
+            <span data-skill="strategy">Стратегия</span>
+            <span data-skill="marketing">Маркетинг</span>
+            <span data-skill="design">Дизайн</span>
+            <span data-skill="content">Контент</span>
+            <span data-skill="layout">Вёрстка</span>
+            <span data-skill="animation">Анимация</span>
+            <span data-skill="editing">Монтаж</span>
+          </div>
+          <div class="motion-system" aria-hidden="true">
+            <img class="motion-system-brace" src="assets/motion/skills-brace.svg" alt="" />
+            <p class="motion-system-title">Твои навыки после<br />практикума</p>
+          </div>
+          <p class="motion-scroll-hint" aria-hidden="true">Листай — и путь собирается</p>
+        </div>
+      </section>
+
+      <section class="audience-section is-below" id="audience" data-chrome="light" aria-labelledby="audience-title">
+        <div class="audience-stage">
+        <div class="audience-content container">
+          <div class="audience-intro">
+            <h2 id="audience-title"><span class="audience-title-line"><span class="audience-title-effect">Для кого я разработала</span></span><span class="audience-title-line audience-title-replace"><span class="audience-title-effect">этот практикум</span><svg class="audience-title-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18.9629 0C19.5354 0.000248588 19.9998 0.465312 20 1.03906V2.54004L18.7461 3.7959C18.7173 3.81763 18.6898 3.84138 18.6641 3.86719L15.8711 6.66602H19.998V20H14.998V7.54102L2.56641 20L0 17.4277L11.9893 5.41211C12.6421 4.75734 12.1795 3.63797 11.2559 3.6377H0.0859375V0H18.9629Z" fill="currentColor"/></svg></span></h2>
+            <div class="audience-author">
+              <img src="assets/audience/elianora.png" alt="Элианора Муллагалиева" />
+              <p><b>Элианора Муллагалиева</b><span>Дизайнер-маркетолог со стажем 10 лет. Сотрудничала с МТС, English Tochka и крупнейшими застройщиками в РФ и на Бали</span></p>
+            </div>
+          </div>
+
+          <div class="audience-grid">
+            <article class="audience-card audience-card--designers">
+              <div class="audience-card-inner">
+                <div class="audience-card-face audience-card-front"><img src="assets/audience/audience-designer.jpg" alt="Портрет дизайнера за стеклом" /><div class="audience-card-tags"><span>01</span><span>дизайнеры</span></div><div class="audience-card-copy"><h3>Дизайнеры,<br />которым страшно, что</h3><p>ИИ их заменит. А клиенты уйдут к тем, у кого более интересное портфолио и раскрученные профили</p></div></div>
+                <div class="audience-card-face audience-card-back"><img src="assets/audience/audience-designer.jpg" alt="" aria-hidden="true" /><div class="audience-card-tags"><span>01</span><span>дизайнеры</span></div><div class="audience-card-copy"><h3>Соберёте 5–7 проектов нового поколения</h3><p>Не картинки, а сайты с идеей, визуалом, кодом и motion — проекты, которые приводят клиентов и собирают охваты.</p></div></div>
+              </div>
+            </article>
+            <article class="audience-card audience-card--freelancers">
+              <div class="audience-card-inner">
+                <div class="audience-card-face audience-card-front"><img src="assets/audience/audience-freelancer.jpg" alt="Фрилансер на красном фоне за стеклом" /><div class="audience-card-tags"><span>02</span><span>фрилансеры</span></div><div class="audience-card-copy"><h3>Фрилансеры, которые<br />строят свое агентство</h3><p>Но не знают, как делать сайты, дизайн, монтаж, анимацию на достойном уровне, чтобы клиенты возвращались</p></div></div>
+                <div class="audience-card-face audience-card-back"><img src="assets/audience/audience-freelancer.jpg" alt="" aria-hidden="true" /><div class="audience-card-tags"><span>02</span><span>фрилансеры</span></div><div class="audience-card-copy"><h3>Сможете брать проекты уровня крутых агентств</h3><p>Научитесь собирать сайт под ключ: от стратегии до дизайна и motion. Сможете повышать чек и расширять команду.</p></div></div>
+              </div>
+            </article>
+            <article class="audience-card audience-card--newcomers">
+              <div class="audience-card-inner">
+                <div class="audience-card-face audience-card-front"><img src="assets/audience/audience-newcomer.jpg" alt="Новичок с ноутбуком за стеклом" /><div class="audience-card-tags"><span>03</span><span>новички</span></div><div class="audience-card-copy"><h3>Новички, которые хотят на удалёнку</h3><p>Но уже обжигались, покупая дорогие курсы, которые не дали практического результата</p></div></div>
+                <div class="audience-card-face audience-card-back"><img src="assets/audience/audience-newcomer.jpg" alt="" aria-hidden="true" /><div class="audience-card-tags"><span>03</span><span>новички</span></div><div class="audience-card-copy"><h3>На вопрос «а кейсы есть?» будет чем ответить</h3><p>Не один тренировочный экран, а 5–7 полноценных проектов с логикой, визуалом и живой реализацией.</p></div></div>
+              </div>
+            </article>
+            <article class="audience-card audience-card--business">
+              <div class="audience-card-inner">
+                <div class="audience-card-face audience-card-front"><img src="assets/audience/audience-business.jpg" alt="Предпринимательница за стеклом" /><div class="audience-card-tags"><span>04</span><span>бизнес</span></div><div class="audience-card-copy"><h3>Предприниматели,<br />которые хотят упаковаться</h3><p>Пробовали делать сайты с Claude Code, но получили однотипный и поверхностный результат.</p></div></div>
+                <div class="audience-card-face audience-card-back"><img src="assets/audience/audience-business.jpg" alt="" aria-hidden="true" /><div class="audience-card-tags"><span>04</span><span>бизнес</span></div><div class="audience-card-copy"><h3>Станете креативным директором своего бренда</h3><p>Вместо однотипного сайта — узнаваемая система, которую можно развивать вместе с командой.</p></div></div>
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section class="difference-section" id="difference" data-difference-scene data-chrome="dark" aria-labelledby="difference-title">
+        <div class="difference-sticky">
+          <div class="difference-content container">
+            <h2 class="difference-title" id="difference-title"><span>Чувствуешь</span><i>разницу?</i></h2>
+            <div class="difference-grid">
+              <article class="difference-card">
+                <figure><video class="difference-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/template-site.jpg" aria-label="Пример шаблонного сайта"><source src="assets/video/template-site@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/template-site@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/template-site.mp4" type="video/mp4" /></video></figure>
+                <div class="difference-copy">
+                  <h3>Шаблонные сайты</h3>
+                  <p>Таких проектов сотни и тысячи. Их делает ИИ и дизайнеры, у которых нет насмотренности и чит-кодов, которые будут у тебя.</p>
+                </div>
+              </article>
+              <article class="difference-card">
+                <figure><video class="difference-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/alexandra.jpg" aria-label="Авторский проект — кейс Александры"><source src="assets/video/alexandra@sm.mp4" media="(max-width:640px)" type="video/mp4" /><source src="assets/video/alexandra@2x.mp4" media="(min-width:1200px)" type="video/mp4" /><source src="assets/video/alexandra.mp4" type="video/mp4" /></video></figure>
+                <div class="difference-copy">
+                  <h3>Авторские проекты</h3>
+                  <p>Таких — единицы. Их невозможно повторить по шаблону: за ними стоит идея, вкус и рука автора. Именно такие приводят клиентов и собирают охваты.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="programme-section" id="programme" data-chrome="dark" aria-labelledby="programme-title">
+        <div class="programme-head container">
+          <h2 id="programme-title">Что внутри<br /><span>практикума</span></h2>
+          <dl class="programme-stats"><div><dt data-count="15" data-suffix="+">15+</dt><dd>часов теории</dd></div><div><dt data-count="30" data-suffix="+">30+</dt><dd>часов практики</dd></div><div><dt data-count="5" data-suffix="–7">5–7</dt><dd>проектов в портфолио</dd></div><div><dt data-count="2026">2026</dt><dd>обновлено в 2026 году</dd></div></dl>
+        </div>
+
+        <div class="programme-list" aria-label="Модули программы">
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">01</span><span class="programme-name">Настройка и знакомство с Claude Code</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 1</span>Рабочая среда: установка Claude Code и первый проект</p><p class="programme-lesson-desc">Установка, базовая настройка, структура папок, как открыть и запустить первый проект без страха перед терминалом.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 2</span>Скиллы: как расширять возможности Claude Code</p><p class="programme-lesson-desc">Где брать скиллы, как их устанавливать, вызывать и адаптировать под себя. Собираем свою рабочую библиотеку для сайтов, визуала, анимации и контента.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 3</span>Как правильно ставить задачи AI</p><p class="programme-lesson-desc">Как давать контекст, работать с файлами, проверять результат, не терять версии и не получать от AI хаос вместо проекта.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">02</span><span class="programme-name">Маркетинг и прототипирование</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 4</span>Каким должен быть продающий сайт</p><p class="programme-lesson-desc">Триггеры, логика принятия решения, пустые и убедительные формулировки, первостепенные и второстепенные критерии выбора.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 5</span>Добываем информацию о бизнесе</p><p class="programme-lesson-desc">Интервью с собственником, отделом продаж и клиентами. Бриф бизнеса, реальные материалы, карта критериев выбора, работа с AI без галлюцинаций.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 6</span>Анализируем нишу и конкурентов</p><p class="programme-lesson-desc">Каким обещаниям и условиям рынка привык клиент, что конкуренты уже сделали нормой, где рынок пустует и где бизнес может быть полезнее.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 7</span>Из исследований в продающий прототип</p><p class="programme-lesson-desc">Соединяем карту бизнеса и карту рынка. Выстраиваем порядок блоков, формулируем ответы на вопросы клиента, доказательства и CTA.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">03</span><span class="programme-name">Генерация фото и видео</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 8</span>Генерация изображений: модели, задачи и промты</p><p class="programme-lesson-desc">GPT Image, Nano Banana, Seedream и другие модели: что для чего использовать, как генерировать концепты, сцены, предметку, интерьеры и рекламные визуалы.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 9</span>Реализм, контроль и единый визуальный мир</p><p class="programme-lesson-desc">Как получать изображения без ощущения «нейросеточности»: свет, материалы, ракурс, люди, архитектура, детали, референсы, консистентность серии.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 10</span>Генерация видео</p><p class="programme-lesson-desc">Kling, Seedance и другие инструменты: как выбрать модель, придумать сцену, задать камеру, движение, атмосферу и собрать видеоматериал для сайта или Reels.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">04</span><span class="programme-name">Дизайн и разработка фирстиля</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 11</span>Арт-дирекшн и фирстиль для частной клиники</p><p class="programme-lesson-desc">Как собрать визуальный язык медицинского проекта: доверие, ясность, человечность, доказательность, работа с врачами, интерьером и медицинской темой без клише.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 12</span>Арт-дирекшн и фирстиль для ЖК</p><p class="programme-lesson-desc">Как строить мир девелоперского проекта: архитектура, среда, статус, сценарии жизни, рендеры, атмосфера и конкретика условий.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">05</span><span class="programme-name">Вёрстка, анимация и адаптация</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 13</span>Сайт частной клиники: вёрстка, адаптация и движение</p><p class="programme-lesson-desc">Собираем сайт из прототипа: компоненты, страницы услуг, врачи, запись, доказательства, мобильная версия и аккуратная анимация.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 14</span>Сайт ЖК: вёрстка, адаптация и движение</p><p class="programme-lesson-desc">Собираем сложный продающий сайт недвижимости: первый экран, планировки, карта, инфраструктура, условия, атмосфера, мобильная версия и анимация.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">06</span><span class="programme-name">Лидогенерация и поиск клиентов</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 15</span>Как находить клиентов на сайты</p><p class="programme-lesson-desc">Как выбирать ниши, искать бизнесы с плохой упаковкой, находить точки входа, предлагать мини-аудит и писать сообщения, на которые хочется ответить.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">07</span><span class="programme-name">Искусство продаж</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 16</span>Подготовка к продажам</p><p class="programme-lesson-desc">Позиционирование, стоимость, пакеты услуг, портфолио, подготовка к возражениям и понимание, кому мы вообще нужны.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 17</span>Сильное КП, которое помогает купить</p><p class="programme-lesson-desc">Как собрать коммерческое предложение не в стиле «вот цена», а как понятный путь: задача, решение, объём, процесс, доказательства, сроки и следующий шаг.</p></div>
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 18</span>Продающие созвоны</p><p class="programme-lesson-desc">Как проводить созвон: выявлять задачу, не превращаться в бесплатного консультанта, объяснять ценность, говорить о деньгах и уверенно закрывать на следующий шаг.</p></div>
+            </div></div>
+          </article>
+          <article class="programme-module">
+            <button class="programme-trigger" type="button" aria-expanded="false"><span class="programme-number">08</span><span class="programme-name">Монтаж Reels с Claude Code</span><span class="programme-plus" aria-hidden="true">+</span></button>
+            <div class="programme-panel"><div class="programme-lessons">
+              <div class="programme-lesson"><p class="programme-lesson-title"><span class="programme-lesson-num">Урок 19</span>Reels, которые помогают продавать экспертность</p><p class="programme-lesson-desc">Как собирать ролики с помощью Claude Code: сценарий, визуальная подача, генеративная графика, монтаж, субтитры и упаковка экспертных мыслей.</p></div>
+            </div></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Единая sticky-сцена: влетаем в туннель к слову «работы участников»,
+           слово остаётся заголовком, под ним бесшовно раскрываются работы. -->
+      <section class="works-scene" id="student-works" data-works-scene data-chrome="dark" aria-labelledby="works-scene-title">
+        <div class="works-sticky">
+          <div class="work-tunnel" data-work-tunnel aria-hidden="true">
+            <canvas class="work-tunnel-canvas"></canvas>
+            <div class="work-tunnel-fallback" aria-hidden="true"></div>
+          </div>
+
+          <div class="works-content">
+            <div class="works-head">
+              
+              <h2 class="works-title" id="works-scene-title" data-works-title>Работы<br />участников</h2>
+              <span class="participant-gallery-count" data-gallery-count aria-live="polite">01 / 10</span>
+            </div>
+
+            <div class="participant-gallery-stage" data-participant-gallery tabindex="0" role="region" aria-label="Слайдер работ участников">
+              <div class="participant-gallery-track" data-gallery-track></div>
+              <div class="participant-gallery-controls" aria-label="Управление слайдером">
+                <button type="button" data-gallery-prev aria-label="Предыдущая работа"><svg class="brand-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18.9629 0C19.5354 0.000248588 19.9998 0.465312 20 1.03906V2.54004L18.7461 3.7959C18.7173 3.81763 18.6898 3.84138 18.6641 3.86719L15.8711 6.66602H19.998V20H14.998V7.54102L2.56641 20L0 17.4277L11.9893 5.41211C12.6421 4.75734 12.1795 3.63797 11.2559 3.6377H0.0859375V0H18.9629Z" fill="currentColor"/></svg></button>
+                <button type="button" data-gallery-next aria-label="Следующая работа"><svg class="brand-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18.9629 0C19.5354 0.000248588 19.9998 0.465312 20 1.03906V2.54004L18.7461 3.7959C18.7173 3.81763 18.6898 3.84138 18.6641 3.86719L15.8711 6.66602H19.998V20H14.998V7.54102L2.56641 20L0 17.4277L11.9893 5.41211C12.6421 4.75734 12.1795 3.63797 11.2559 3.6377H0.0859375V0H18.9629Z" fill="currentColor"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-section" id="pricing" data-chrome="none" aria-labelledby="pricing-title">
+        <div class="pricing-head container">
+          <h2 id="pricing-title">Выбери<br /><span>свой темп</span></h2>
+          <p class="pricing-note">Три формата одной практики — с тем объёмом поддержки, который тебе сейчас нужен.</p>
+        </div>
+        <div class="plans container">
+          <article class="plan" data-tariff="start">
+            <div class="plan-head">
+              <div class="pricing-card-top"><span>01</span><p>Самостоятельный</p></div>
+              <p class="plan-price"><s class="plan-old">7 000 ₽</s><span class="plan-now">4 900 ₽<span class="pricing-per">/ месяц</span></span></p>
+              <p class="plan-lead">Для тех, кто хочет собрать портфолио самостоятельно.</p>
+            </div>
+            <div class="plan-rows">
+              <div class="plan-row"><span>20+ лекций</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Работ в портфолио</span><b>5</b></div>
+              <div class="plan-row"><span>Доступ</span><b>1 месяц</b></div>
+              <div class="plan-row"><span>Материалы и шаблоны</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Токены на генерации</span><b><span class="no" aria-label="нет">—</span></b></div>
+              <div class="plan-row"><span>Банк компонентов</span><b><span class="no" aria-label="нет">—</span></b></div>
+              <div class="plan-row"><span>Комьюнити и эфиры</span><b><span class="no" aria-label="нет">—</span></b></div>
+              <div class="plan-row"><span>Видеоразборы работ</span><b><span class="no" aria-label="нет">—</span></b></div>
+              <div class="plan-row"><span>От кого</span><b><span class="no" aria-label="нет">—</span></b></div>
+              <div class="plan-row plan-instal"><span>Рассрочка на 6 месяцев</span><b><span class="no" aria-label="нет">—</span></b></div>
+            </div>
+            <p class="plan-note">Продление доступа к лекциям и закрытому клубу — <span style="white-space:nowrap">1 300 ₽ / мес</span></p>
+            <a class="pricing-button" href="https://payform.ru/37ct2e6/" target="_blank" rel="noopener noreferrer" data-choice="Старт">Выбрать</a>
+          </article>
+          <article class="plan plan--focus" data-tariff="practice-plus">
+            <div class="plan-head">
+              <div class="pricing-card-top"><span>02</span><p>С поддержкой</p></div>
+              <p class="plan-price"><s class="plan-old">35 000 ₽</s><span class="plan-now">26 900 ₽<span class="pricing-per">/ единоразово</span></span></p>
+              <p class="plan-lead">Для тех, кому нужно комьюнити и подробные разборы проектов.</p>
+            </div>
+            <div class="plan-rows">
+              <div class="plan-row"><span>20+ лекций</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Работ в портфолио</span><b>5</b></div>
+              <div class="plan-row"><span>Доступ</span><b>6 месяцев</b></div>
+              <div class="plan-row"><span>Материалы и шаблоны</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Токены на генерации</span><b>300</b></div>
+              <div class="plan-row"><span>Банк компонентов</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Комьюнити и эфиры</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Видеоразборы работ</span><b>6 штук</b></div>
+              <div class="plan-row"><span>От кого</span><b>команда Эли</b></div>
+              <div class="plan-row plan-instal"><span>Рассрочка на 6 месяцев</span><b>4 484 ₽ / мес</b></div>
+            </div>
+            <p class="plan-note">Продление доступа к лекциям и закрытому клубу — <span style="white-space:nowrap">1 300 ₽ / мес</span></p>
+            <a class="pricing-button" href="https://payform.ru/ahcLFR9/" target="_blank" rel="noopener noreferrer" data-choice="Практика+">Выбрать</a>
+          </article>
+          <article class="plan" data-tariff="support">
+            <div class="plan-head">
+              <div class="pricing-card-top"><span>03</span><p>С Элианорой</p></div>
+              <p class="plan-price"><s class="plan-old">70 000 ₽</s><span class="plan-now">51 900 ₽<span class="pricing-per">/ единоразово</span></span></p>
+              <p class="plan-lead">Для тех, кому нужно личное сопровождение и безлимитная поддержка от Элианоры по всем вопросам, включая реальные проекты.</p>
+            </div>
+            <div class="plan-rows">
+              <div class="plan-row"><span>20+ лекций</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Работ в портфолио</span><b>5</b></div>
+              <div class="plan-row"><span>Доступ</span><b>1 год</b></div>
+              <div class="plan-row"><span>Материалы и шаблоны</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Токены на генерации</span><b>300</b></div>
+              <div class="plan-row"><span>Банк компонентов</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Комьюнити и эфиры</span><b><span class="yes" aria-label="да"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></b></div>
+              <div class="plan-row"><span>Видеоразборы работ</span><b>безлимит</b></div>
+              <div class="plan-row"><span>От кого</span><b>лично Элианора</b></div>
+              <div class="plan-row plan-instal"><span>Рассрочка на 6 месяцев</span><b>8 650 ₽ / мес</b></div>
+            </div>
+            <p class="plan-note plan-note--incl">Бесплатные обновления практикума включены</p>
+            <a class="pricing-button" href="https://payform.ru/5vct2fy/" target="_blank" rel="noopener noreferrer" data-choice="С Элианорой">Выбрать</a>
+          </article>
+        </div>
+      </section>
+
+
+      <section class="reviews-section" id="reviews" data-chrome="light" aria-labelledby="reviews-title">
+        <div class="reviews-content container">
+          <header class="reviews-head">
+            <h2 id="reviews-title">Отзывы участников</h2>
+            <p class="reviews-note">Что говорят те, кто уже прошёл<br />практикум и собрал портфолио.</p>
+            <p class="reviews-swipe" aria-hidden="true"><span class="reviews-swipe-icon"><img src="assets/icons/finger.svg" alt="" /></span><span>Листай вправо</span></p>
+                      <div class="reviews-controls">
+              <button type="button" data-reviews-prev aria-label="Предыдущий отзыв"><svg class="rev-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" data-reviews-next aria-label="Следующий отзыв"><svg class="rev-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            </header>
+
+          <div class="reviews-grid" tabindex="0" role="region" aria-label="Отзывы участников">
+            <article class="review-card">
+              <div class="review-top">
+                <img class="review-avatar" src="assets/reviews/anna.jpg" alt="Анна Оверчук" loading="lazy" decoding="async" />
+                <div class="review-who">
+                  <b>Анна Оверчук</b>
+                  <span class="review-stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg></span>
+                </div>
+              </div>
+              <p class="review-quote">2 проекта в портфолио и сайт, который откладывала 5 лет</p>
+              <div class="review-body" data-review-body>
+                <p>Эля, спасибо большое за возможность участвовать в нейрокэмпе. За время Кэмпа я сделала 2 классных проекта, которые не стыдно положить в портфолио и показать клиентам. Очень разные, продуманные, стильные и концептуальные. И даже! Почти собрала свой сайт-портфолио. Что откладывала лет 5.</p>
+                <p>Самое главное, что я поняла: нейронки — это не страшно))</p>
+                <p>Все лекции понятны, плюс текстовые шпаргалки и подборки ресурсов — мне всегда текст проще воспринимать, за это отдельный жирный плюс. Круто, что видео от первого лица и в моменте: видно, что все иногда тупят, тормозят, не могут правильно сформулировать. И что даже при большом опыте ИИ не выдаёт классный результат с одного промта за 5 минут — как это сейчас выгодно преподносят.</p>
+                <p>Обратная связь была полная, понятная и лично от тебя даже на минимальном тарифе. Это было выше ожиданий))</p>
+                <p>Намного быстрее пошла работа с изображениями и фото — не нужно часами искать или просить фотосессию в определённом стиле. Но главное другое: раньше я даже не откликалась на задачи, где нужны нейронки. Сейчас пишу всем, что сделаю — без внутреннего конфликта. Даже если что-то не получится, в чате всегда найдётся, кто подскажет и поможет.</p>
+                <p>С кодом пока сложно, дожимаю вёрстку. А вот для дизайна я теперь 100% буду использовать нейросети.</p>
+              </div>
+              <button type="button" class="review-more" data-review-more aria-expanded="false">Читать полностью</button>
+              <div class="review-works">
+                <button type="button" class="review-work" data-lightbox="assets/reviews/anna-work-1.jpg" aria-label="Открыть работу Анны — сайт Дизайн Кемп">
+                  <img src="assets/reviews/anna-work-1.jpg" alt="Работа Анны Оверчук — сайт Дизайн Кемп" loading="lazy" decoding="async" />
+                </button>
+                <button type="button" class="review-work" data-lightbox="assets/reviews/anna-work-2.jpg" aria-label="Открыть работу Анны — сайт-портфолио">
+                  <img src="assets/reviews/anna-work-2.jpg" alt="Работа Анны Оверчук — сайт-портфолио" loading="lazy" decoding="async" />
+                </button>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <img class="review-avatar" src="assets/reviews/anastasia.jpg" alt="Анастасия" loading="lazy" decoding="async" />
+                <div class="review-who">
+                  <b>Анастасия</b>
+                  <span class="review-stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg></span>
+                </div>
+              </div>
+              <p class="review-quote">Устроилась в холдинг дизайнером на удалёнку</p>
+              <div class="review-body" data-review-body>
+                <p>Подача и задания — топ. Задания зашли больше всего, но и обратная связь была очень подробная.</p>
+                <p>После кэмпа начала использовать генерацию видео. Нейронками для фото и всего остального в работе я и так пользовалась много, а к видео ещё не касалась — теперь это в работе.</p>
+                <p>Сейчас веду проект бренда фотокниг и делаю лендинг для салона керамогранита — посадочную под Яндекс.Рекламу.</p>
+                <p>А ещё буквально неделю назад устроилась в холдинг дизайнером на удалёнку. Совершенно случайно 😁 но очень этому рада.</p>
+              </div>
+              <button type="button" class="review-more" data-review-more aria-expanded="false">Читать полностью</button>
+              <div class="review-works">
+                <button type="button" class="review-work" data-lightbox="assets/reviews/anastasia-work-1.jpg" aria-label="Открыть работу Анастасии — Ботанический сад">
+                  <img src="assets/reviews/anastasia-work-1.jpg" alt="Работа Анастасии — Ботанический сад Петра Великого" loading="lazy" decoding="async" />
+                </button>
+                <button type="button" class="review-work" data-lightbox="assets/reviews/anastasia-work-2.jpg" aria-label="Открыть работу Анастасии — EONA">
+                  <img src="assets/reviews/anastasia-work-2.jpg" alt="Работа Анастасии — косметика EONA" loading="lazy" decoding="async" />
+                </button>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <img class="review-avatar" src="assets/reviews/varvara.jpg" alt="Варвара" loading="lazy" decoding="async" />
+                <div class="review-who">
+                  <b>Варвара</b>
+                  <span class="review-stars" aria-label="Оценка 4,5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="star-half"><defs><linearGradient id="halfStar"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z" fill="url(#halfStar)"/><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".45"/></svg></span>
+                </div>
+              </div>
+              <p class="review-quote">В сентябре закрыла проект для турагентства</p>
+              <div class="review-body" data-review-body>
+                <p>Подача материала понравилась, задания понятны — я уже начала их выполнять. Особенно ценна для меня обратная связь: когда глаз замыливается или не знаешь, что ещё придумать, важно услышать мнение и взгляд со стороны.</p>
+                <p>Проекты я и раньше нормально собирала, сложности были только с композицией — здесь кэмп как раз помог.</p>
+                <p>С клиентами пока не так хорошо, как хотелось бы, но в сентябре я закрыла проект для турагентства. Заказ пришёл через знакомую: её молодому человеку нужен был дизайнер, и я взяла проект. За работу — 10 000 рублей.</p>
+              </div>
+              <button type="button" class="review-more" data-review-more aria-expanded="false">Читать полностью</button>
+              <div class="review-works">
+                <button type="button" class="review-work" data-lightbox="assets/video/varya@2x.mp4" aria-label="Открыть работу Варвары">
+                  <img src="assets/video/varya.jpg" alt="Работа Варвары" loading="lazy" decoding="async" />
+                </button>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <img class="review-avatar" src="assets/reviews/sofya.jpg" alt="Софья" loading="lazy" decoding="async" />
+                <div class="review-who">
+                  <b>Софья</b>
+                  <span class="review-stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg></span>
+                </div>
+              </div>
+              <p class="review-quote">Первый платный заказ — ещё во время практикума</p>
+              <div class="review-body" data-review-body>
+                <p>Не знаю, как общаются другие, но мне нравится наш формат: это не «педагог — ученица», а с дружеским уклоном. Можно говорить что хочешь, задавать любые вопросы — где-то ты помогаешь, где-то специально скидываешь, чтобы я сама сделала. Мне такое очень подходит.</p>
+                <p>Ты упрощала мне работу там, где я просто не знала: где искать, где брать вдохновение, в какую сторону двигаться. И плавно направляла. Это было супер.</p>
+                <p>Стала ли работа быстрее — однозначно, прям максимально. Раньше я писала тебе «я не понимаю, как начать». Сейчас у меня уже в голове есть структура: я понимаю, как двигаться, куда я хочу, как это будет примерно выглядеть. Раньше этого не было совершенно — я шла вслепую, максимально опираясь на референсы. Сейчас я смотрю на референс и думаю: «так, а я бы вот так сделала». И сами референсы стала находить гораздо быстрее.</p>
+                <p>Отдельное — про нейронки. Раньше я вообще думала, что это что-то из другой вселенной и мне не подвластно. Сейчас с ними гораздо легче, работа движется быстрее. Плюс моменты в Фигме: там же есть нейронка, которая пишет текст — не приходится вручную набивать. Или автолэйаут — для меня это до сих пор тёмный лес, но я хотя бы понимаю, как с ним работать. Даже те же кнопки делать — вообще супер.</p>
+                <p>И самое неожиданное: мне стало нравиться то, что я делаю. Это меня даже друзья не сразу поймут — мне не нравятся мои работы. Абсолютно всегда. И чужие тоже. Чтобы мне что-то понравилось — это прям редкость. А сейчас есть работы, которые мне нравятся. И референсы я выбираю те, которые действительно нравятся. Раньше такого не было совсем.</p>
+                <p>И первый платный заказ пришёл ко мне ещё во время практикума — я даже не успела доделать портфолио. Раньше я шла вслепую, а теперь в голове есть структура: понимаю, как двигаться и что для этого нужно.</p>
+              </div>
+              <button type="button" class="review-more" data-review-more aria-expanded="false">Читать полностью</button>
+              <div class="review-works">
+                <button type="button" class="review-work" data-lightbox="assets/reviews/sofya-work-1.jpg" aria-label="Открыть работу Софьи — Lumen Arch">
+                  <img src="assets/reviews/sofya-work-1.jpg" alt="Работа Софьи — архитектурное бюро Lumen Arch" loading="lazy" decoding="async" />
+                </button>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <span class="review-avatar review-avatar--empty" aria-hidden="true">Л</span>
+                <div class="review-who">
+                  <b>Людмила, 62&nbsp;года</b>
+                  <span class="review-stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l3.2 7.1 7.7.7-5.8 5.1 1.7 7.6-6.8-4-6.8 4 1.7-7.6-5.8-5.1 7.7-.7z"/></svg></span>
+                </div>
+              </div>
+              <p class="review-quote">«Бабушка, ты&nbsp;у&nbsp;меня крутая!»&nbsp;— и&nbsp;это дороже денег</p>
+              <div class="review-body" data-review-body>
+                <p>Кэмп оказался очень интересным и&nbsp;познавательным&nbsp;— столько новых открытий я&nbsp;сделала для себя. Сначала ощущала себя вообще ничего не&nbsp;понимающей, но&nbsp;с&nbsp;каждым новым шагом понимала: всё не&nbsp;так страшно.</p>
+                <p>Самым сложным оказалось подключить программы и&nbsp;разобраться с&nbsp;оплатами&nbsp;— спасибо внуку. Со&nbsp;всеми лекциями и&nbsp;фидбеками вроде разобралась: не&nbsp;всё получалось и&nbsp;понималось с&nbsp;первого раза, но&nbsp;большое спасибо тебе, Эля, за&nbsp;терпение и&nbsp;объяснения.</p>
+                <p>Дошла до&nbsp;конца и&nbsp;увидела результат&nbsp;— и&nbsp;даже не&nbsp;один: очень уж&nbsp;хотелось применить свои силы и&nbsp;знания самостоятельно. Осталась довольна.</p>
+                <p>И&nbsp;результат не&nbsp;только в&nbsp;том, что научилась, а&nbsp;ещё и&nbsp;в&nbsp;том, что эти занятия сблизили меня с&nbsp;внуком. Я&nbsp;снова услышала от&nbsp;него: «Бабушка, ты&nbsp;у&nbsp;меня крутая!»&nbsp;— это выше всех похвал и&nbsp;дороже денег.</p>
+              </div>
+              <button type="button" class="review-more" data-review-more aria-expanded="false">Читать полностью</button>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="questions-section" id="questions" aria-labelledby="questions-title">
+        <div class="questions-head container">
+          <h2 id="questions-title">Отвечаю<br /><span>на ваши вопросы</span></h2>
+          <div class="questions-author audience-author">
+            <span class="questions-portrait"><img src="assets/questions/elianora.png" alt="Элианора Муллагалиева" /></span>
+            <p><b>Элианора Муллагалиева</b><span>Дизайнер-маркетолог со стажем 10 лет. Сотрудничала с МТС, English Tochka и крупнейшими застройщиками в РФ и на Бали</span></p>
+          </div>
+        </div>
+
+        <div class="questions-list" aria-label="Частые вопросы">
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">01</span><h3>Какие подписки нужны для работы?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>На тарифах «С поддержкой» и «С Элианорой» мы дарим до 300 000 AI-кредитов на генерацию фото и видео в сервисе Nali. Отдельно покупать генерации для практики не придётся.</p>
+              <p>Для кода подойдёт Claude Code или Codex, но я рекомендую Claude Code: на нём построены уроки. Базовой подписки примерно за $19 в месяц тебе хватит, чтобы пройти практику и собрать проекты.</p>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">02</span><h3>Сколько токенов даёте для практики?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>На тарифах «С поддержкой» и «С Элианорой» — до 300 000 AI-кредитов на фото и видео.</p>
+              <p>Точное число генераций зависит от сервиса, модели и выбранного качества. Внутри будет урок о том, как не сливать кредиты на проходные попытки и получать сильный визуал меньшим количеством генераций.</p>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">03</span><h3>Можно ли оплатить российской или зарубежной картой?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>Да, можно оплатить российской или зарубежной картой.</p>
+              <p>Если что-то не проходит, напиши в отдел заботы — найдём другой способ оплаты без квеста на три дня.</p>
+              <a class="questions-care" href="https://t.me/derzayvdesign_zabota" target="_blank" rel="noopener noreferrer">Написать в отдел заботы <svg class="brand-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18.9629 0C19.5354 0.000248588 19.9998 0.465312 20 1.03906V2.54004L18.7461 3.7959C18.7173 3.81763 18.6898 3.84138 18.6641 3.86719L15.8711 6.66602H19.998V20H14.998V7.54102L2.56641 20L0 17.4277L11.9893 5.41211C12.6421 4.75734 12.1795 3.63797 11.2559 3.6377H0.0859375V0H18.9629Z" fill="currentColor"/></svg></a>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">04</span><h3>Можно ли оплатить в рассрочку?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>Да. Можно выбрать рассрочку на 3, 4 или 6 месяцев.</p>
+              <p>К сумме добавится небольшая комиссия: 3%, 4% или 6% соответственно. До оформления увидишь итоговую сумму и весь график платежей.</p>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">05</span><h3>Что, если я не успею сделать 5 проектов?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>Не переживай. На тарифе «С Элианорой» доступ к урокам остаётся на целый год.</p>
+              <p>На тарифе «Самостоятельный» доступ даётся на месяц, на тарифе «С поддержкой» — на 6 месяцев. Если этого времени не хватит, его можно продлить за 1 300 ₽ в месяц.</p>
+              <p>И не надо гнаться за пятью работами ради цифры. Лучше собрать 2–3 сильных проекта, которые не стыдно показать клиенту, чем пять средних «лишь бы сдать».</p>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">06</span><h3>Какая именно поддержка на каждом тарифе?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <div class="questions-sub"><p class="questions-sub-title">Самостоятельный</p><p>Ты проходишь уроки в своём темпе, собираешь проекты и пользуешься методичками. Без чата и обратной связи.</p></div>
+              <div class="questions-sub"><p class="questions-sub-title">С поддержкой</p><p>Можно неограниченно писать Эле в личные сообщения по базовым вопросам плюс 6 полноценных разборов твоих работ. Закрытый чат и комьюнити на 6 месяцев, живые эфиры и обратная связь.</p></div>
+              <div class="questions-sub"><p class="questions-sub-title">С Элианорой</p><p>Формат для тех, кто хочет не просто пройти уроки, а собрать портфолио, с которым можно играть по-крупному. Внутри всё из тарифа «С поддержкой», плюс приоритетные разборы на живых эфирах, развёрнутый фидбэк от Эли в личных сообщениях, работа один на один над проектом, портфолио и позиционированием. Поможем, если ты застряла на вёрстке или анимации. Можно попасть в совместный кейс с Эли, а самые сильные работы возьмём на продвижение в её соцсетях.</p></div>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">07</span><h3>Могу ли я взять другие тематики или делать реальные проекты?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>Да. Можно взять свой бренд, проект друга, текущего клиента или любую тему, которая тебе реально интересна.</p>
+              <p>Внутри будут готовые брифы, чтобы ты не зависла на этапе «а что вообще делать». Реальный проект можно адаптировать под программу и собрать на нём полноценный кейс.</p>
+              <p>Только не бери срочный заказ с дедлайном «надо завтра» как единственную практику. Здесь важно не просто сдать страницу, а пройти весь путь и понять, как повторить его в следующем проекте.</p>
+            </div></div>
+          </article>
+          <article class="questions-item">
+            <button class="questions-trigger" type="button" aria-expanded="false"><span class="questions-number">08</span><h3>Как долго будет доступ к урокам? Можно ли его продлить?</h3><span class="questions-plus" aria-hidden="true">+</span></button>
+            <div class="questions-panel"><div class="questions-answer">
+              <p>На тарифе «С Элианорой» доступ к урокам даётся на целый год.</p>
+              <p>На тарифе «Самостоятельный» — на один месяц, на тарифе «С поддержкой» — на 6 месяцев. Продлить доступ к урокам, чату и комьюнити можно за 1 300 ₽ в месяц.</p>
+              <p>После продления ты остаёшься в комьюнити, ходишь на живые эфиры, получаешь разборы, обновления уроков и поддержку по своим проектам. Отменить продление можно в любой момент.</p>
+            </div></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-chrome="dark" aria-label="Подвал сайта">
+      <div class="site-footer__top container">
+        <p class="site-footer__eyebrow">Нейро-практикум</p>
+        <div class="site-footer__lead">
+          <h2>Делай проекты,<br /><span>которые помнят.</span></h2>
+          <a class="site-footer__cta" href="#programme">Выбрать <span class="btn-arrow" aria-hidden="true"><svg class="brand-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18.9629 0C19.5354 0.000248588 19.9998 0.465312 20 1.03906V2.54004L18.7461 3.7959C18.7173 3.81763 18.6898 3.84138 18.6641 3.86719L15.8711 6.66602H19.998V20H14.998V7.54102L2.56641 20L0 17.4277L11.9893 5.41211C12.6421 4.75734 12.1795 3.63797 11.2559 3.6377H0.0859375V0H18.9629Z" fill="currentColor"/></svg></span></a>
+        </div>
+      </div>
+
+      <div class="site-footer__grid container">
+        <div class="site-footer__brand">
+          <a href="#top" aria-label="Наверх"><img src="assets/hero/dd-logo.svg" alt="Дерзай в дизайн" /></a>
+          <p>практикум<br />AI-креаторов</p>
+        </div>
+
+        <nav class="site-footer__links" aria-label="Разделы сайта">
+          <p>Разделы</p>
+          <a href="#audience">Для кого</a>
+          <a href="#programme">Программа</a>
+          <a href="#student-works">Работы участников</a>
+          <a href="#pricing">Форматы</a>
+          <a href="#questions">Вопросы</a>
+        </nav>
+
+        <nav class="site-footer__links" aria-label="Документы">
+          <p>Документы</p>
+          <a href="https://derzayvdesign.com/politicaprivacy" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a>
+          <a href="https://derzayvdesign.com/soglasienaobraborku" target="_blank" rel="noopener noreferrer">Согласие на обработку данных</a>
+          <a href="https://derzayvdesign.com/soglasierassilka" target="_blank" rel="noopener noreferrer">Согласие на рассылку</a>
+          <a href="/oferta.html">Публичная оферта</a>
+        </nav>
+
+        <aside class="site-footer__care" aria-label="Отдел заботы">
+          <p>Остались вопросы?</p>
+          <a href="https://t.me/derzayvdesign_zabota" target="_blank" rel="noopener noreferrer">
+            <span>Написать<br />в отдел заботы</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-3.3 17.1a1 1 0 0 1-1.6.6l-5.2-4.1-2.8 2.7a1 1 0 0 1-1.7-.7l-.8-5.1L2.1 12a1 1 0 0 1 .1-1.9L20 2a1 1 0 0 1 1 1ZM7.2 12.1l7.6 2.8 2.1-8.2-9.7 5.4Z" /></svg>
+          </a>
+        </aside>
+      </div>
+
+      <div class="site-footer__bottom container">
+        <p>© 2026 Нейро-практикум</p>
+        <p>ИП Муллагалиева Элианора Тагировна<br />ИНН 166113484876 · ОГРНИП 320169000034780</p>
+      </div>
+    </footer>
+
+    <script src="assets/vendor/anime.min.js"></script>
+    <script src="assets/tunnel/gallery-manifest.js"></script>
+    <script src="assets/cases/cases-manifest.js"></script>
+    <div class="lightbox" data-lightbox-root hidden>
+      <button type="button" class="lightbox-close" data-lightbox-close aria-label="Закрыть">&times;</button>
+      <img class="lightbox-image" data-lightbox-image src="" alt="" />
+      <video class="lightbox-video" data-lightbox-video controls autoplay loop playsinline hidden></video>
+    </div>
+  
+    <!-- ── МОДАЛКА ЗАХВАТА ЛИДА ПЕРЕД ОПЛАТОЙ ── -->
+    <div class="lead-modal" data-lead-modal hidden>
+      <div class="lead-modal-overlay" data-lead-close></div>
+      <div class="lead-modal-box" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+        <button type="button" class="lead-modal-x" data-lead-close aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <p class="lead-modal-kicker" data-lead-tariff>Тариф</p>
+        <h3 id="lead-modal-title" class="lead-modal-title">Оставь телеграм<br />для связи</h3>
+        <p class="lead-modal-lead">Доступ откроется автоматически после оплаты. А&nbsp;я&nbsp;напишу тебе лично, чтобы ответить на&nbsp;все твои вопросы.</p>
+        <form class="lead-modal-form" data-lead-form novalidate>
+          <label class="lead-modal-field">
+            <span>Твой Telegram</span>
+            <input type="text" name="tg" placeholder="@username" autocomplete="off" inputmode="text" required />
+          </label>
+          <div class="lead-modal-consent">
+            <label><input type="checkbox" name="c1" required /><span>Соглашаюсь с&nbsp;<a href="https://derzayvdesign.com/politicaprivacy" target="_blank" rel="noopener">Политикой конфиденциальности</a></span></label>
+            <label><input type="checkbox" name="c2" required /><span>Соглашаюсь <a href="https://derzayvdesign.com/soglasierassilka" target="_blank" rel="noopener">получать информационные и&nbsp;рекламные сообщения</a> (рассылки в&nbsp;Telegram, email и&nbsp;других каналах)</span></label>
+            <label><input type="checkbox" name="c3" required /><span>Я&nbsp;согласен(а) на&nbsp;<a href="https://derzayvdesign.com/soglasienaobraborku" target="_blank" rel="noopener">обработку моих персональных данных</a>. С&nbsp;Политикой обработки персональных данных ознакомлен(а)</span></label>
+          </div>
+          <button type="submit" class="lead-modal-submit" data-lead-submit disabled>Перейти к оплате</button>
+          <p class="lead-modal-status" data-lead-status></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  <script src="/schetchik.js?v=3" defer></script>
+</body>
+</html>

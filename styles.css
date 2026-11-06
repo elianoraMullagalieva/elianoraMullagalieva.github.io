@@ -1,0 +1,1942 @@
+:root { --shell:1440px; --up:1; --ink:#070707; --lime:#c6f33a; --line:rgba(255,255,255,.3); --muted:#b9b9b4; --dark:#111; --font-display:"Anton", Impact, sans-serif; --font-body:"Manrope", sans-serif; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; background:var(--ink); overflow-x:hidden; }
+body { margin:0; background:var(--ink); color:#fff; font-family:var(--font-body); }
+body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.19; z-index:10; background-image:url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E"); background-repeat:repeat; background-size:160px 160px; mix-blend-mode:screen; }
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+.icon { display:block; width:1em; height:1em; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.container { width:min(var(--shell), calc(100vw - 64px)); margin-inline:auto; }
+.site-header { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:26px 0; border-bottom:1px solid var(--line); position:relative; z-index:2; }
+.brand { font:800 18px/.87 var(--font-body); letter-spacing:-.08em; text-transform:uppercase; width:max-content; }
+.brand span { color:var(--lime); margin-left:4px; }
+nav { display:flex; gap:28px; font-size:13px; font-weight:700; }
+nav a { transition:color .2s; } nav a:hover,.text-link:hover { color:var(--lime); }
+.header-cta { justify-self:end; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; } .header-cta span { color:var(--lime); font-size:18px; }
+.hero { min-height:calc(100vh - 93px); padding:clamp(34px,5vw,82px) 0 42px; display:grid; grid-template-columns:minmax(0, .93fr) minmax(440px, .87fr); gap:clamp(36px,6vw,100px); align-items:center; position:relative; }
+.hero::before,.hero::after { content:""; position:absolute; width:28px; height:28px; background:linear-gradient(#fff,#fff) 50%/1px 100% no-repeat,linear-gradient(90deg,#fff,#fff) 50%/100% 1px no-repeat; opacity:.75; } .hero::before{top:7%;left:-17px}.hero::after{right:-17px;bottom:7%}
+.eyebrow { margin:0 0 19px; color:var(--muted); font-size:11px; line-height:1.3; font-weight:800; letter-spacing:.075em; text-transform:uppercase; }
+.hero h1 { margin:0; font-family:var(--font-body); font-weight:800; letter-spacing:-.065em; text-transform:none; }
+.hero h1 { font-size:clamp(64px, 7.4vw, 116px); line-height:.88; max-width:650px; }
+em { color:var(--lime); font-style:normal; }
+
+.hero-actions { display:flex; align-items:center; gap:28px; flex-wrap:wrap; }
+.button { border:1px solid transparent; min-height:58px; padding:14px 19px; display:inline-flex; align-items:center; justify-content:space-between; gap:45px; font-size:14px; line-height:1; font-weight:800; } .button span{font-size:23px;font-weight:400}
+.button-primary { background:var(--lime); color:#070707; } .button-outline{background:transparent;border-color:#fff;color:#fff}.text-link{font-size:13px;font-weight:800;border-bottom:1px solid currentColor;padding-bottom:4px}.text-link span{color:var(--lime);font-size:18px}
+.source-note { max-width:370px; margin:20px 0 0; color:#999; font-size:11px; line-height:1.55; }
+@media (min-width:900px){.cursor-dot{display:block}}
+@media (max-width:820px){.container{width:min(calc(100vw - 36px),var(--shell))}.site-header{grid-template-columns:1fr auto;padding:18px 0}.site-header nav{display:none}.header-cta{font-size:10px}.hero{min-height:auto;grid-template-columns:1fr;padding-top:65px;gap:40px}.hero h1{font-size:clamp(60px,16vw,86px);line-height:.9}}
+@media (max-width:440px){.button{width:100%}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* First screen — Figma node 87:3106. The marquee accepts either img or video. */
+.cursor-dot { display:none !important; }
+.intro-shell { position:relative; z-index:1; height:100svh; min-height:0; }
+.intro-stage { position:fixed; z-index:1; inset:0; width:100%; height:100svh; min-height:0; background:#fff; color:#080808; overflow:hidden; transition:opacity .18s linear; }
+.intro-stage.is-complete { visibility:hidden; opacity:0; pointer-events:none; }
+.mobile-hero-proof, .mobile-project-meta { display:none; }
+.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.intro-stage .site-header { min-height:108px; display:grid; grid-template-columns:1fr auto 1fr; gap:34px; padding:27px 0 24px; border-bottom:0; color:#080808; }
+.intro-stage .brand { display:flex; flex-direction:column; gap:6px; font:400 12px/.9 var(--font-body); letter-spacing:-.06em; text-transform:none; }
+.intro-stage .brand img { display:block; width:55px; height:auto; }
+.intro-stage .brand > span { margin:0; color:#6c6c6c; }
+.mobile-brand-break, .mobile-only, .mobile-project-meta { display:none; }
+.intro-stage nav { display:flex; align-items:center; gap:23px; font-size:11px; font-weight:400; letter-spacing:-.03em; }
+.intro-stage nav a, .intro-stage nav span { opacity:.55; transition:opacity .2s ease, transform .2s ease; }
+.intro-stage nav a:hover, .intro-stage nav a:focus-visible { color:#080808; opacity:1; transform:translateY(-1px); }
+.header-side { justify-self:end; display:flex; align-items:center; gap:12px; }
+.intro-stage .header-cta { display:inline-flex; align-items:center; gap:24px; min-height:41px; padding:0 20px 0 22px; border-radius:999px; background:#080808; color:#fff; font-size:12px; font-weight:500; letter-spacing:-.03em; text-transform:none; transition:transform .25s cubic-bezier(.22,1,.36,1), background .25s ease; }
+.intro-stage .header-cta .icon { width:16px; height:16px; color:#fff; }
+.intro-stage .header-cta:hover { background:#353535; transform:translateY(-2px); }
+.menu-toggle { display:none; width:48px; height:48px; padding:0; border:0; border-radius:50%; background:#080808; color:#fff; place-content:center; gap:6px; }
+.menu-toggle .icon { width:18px; height:18px; }
+.menu-toggle .menu-line { transform-box:fill-box; transform-origin:center; transition:transform .2s ease; }
+.menu-toggle[aria-expanded="true"] .menu-line-one { transform:translateY(3px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-line-two { transform:translateY(-3px) rotate(-45deg); }
+
+.intro-stage .hero { min-height:520px; display:grid; grid-template-columns:minmax(0,1fr) minmax(180px, .28fr); gap:48px; align-items:start; padding:clamp(70px,9vw,120px) 0 44px; color:#080808; }
+.intro-stage .hero::before, .intro-stage .hero::after { display:none; }
+.intro-stage .hero-copy { grid-column:1 / -1; justify-self:center; max-width:1060px; text-align:center; }
+.hero-kicker { margin:0 0 18px; font-size:16px; font-weight:500; letter-spacing:-.04em; }
+.intro-stage .hero h1 { margin:0; font:500 clamp(48px,4.3vw,60px)/.95 var(--font-body); letter-spacing:-.075em; }
+.intro-stage .hero h1 span { color:#6c6c6c; font-weight:400; }
+.intro-stage .hero h1 b { white-space:nowrap; font-weight:400; }
+.action-pair { --action-height:43px; --action-label-width:175px; --action-icon-width:55px; --action-gap:0px; display:inline-flex; align-items:center; gap:var(--action-gap); color:#fff; font-size:13px; font-weight:500; letter-spacing:-.01em; line-height:1; }
+.action-pair__label { display:grid; width:var(--action-label-width); height:var(--action-height); padding:0 30px; place-items:center; border-radius:68.75px; background:#080808; white-space:nowrap; }
+.action-pair__icon { display:grid; width:var(--action-icon-width); height:var(--action-height); flex:none; place-items:center; border-radius:110px; background:#080808; }
+.action-pair__icon-image { display:block; width:12px; height:12px; }
+.hero-cta { margin-top:34px; transition:transform .25s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
+.hero-meta { display:flex; justify-content:space-between; gap:25px; width:min(100%,670px); margin:54px auto 0; text-align:left; }
+.hero-meta div { min-width:0; }
+.hero-meta div:last-child { text-align:right; }
+.hero-meta dt { margin-bottom:7px; color:#6c6c6c; font-size:12px; line-height:1; }
+.hero-meta dd { margin:0; font-size:20px; font-weight:500; letter-spacing:-.06em; }
+.hero-proof { position:absolute; top:32px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:16px; }
+.hero-proof p { display:flex; flex-direction:column; gap:1px; margin:0; font-size:12px; line-height:1.1; letter-spacing:-.03em; white-space:nowrap; }
+.hero-proof p span { color:#6c6c6c; }
+.proof-avatars { display:flex; padding-left:9px; }
+.proof-avatars img { width:42px; height:42px; margin-left:-9px; border:2px solid #fff; border-radius:50%; object-fit:cover; object-position:center; background:#e8e8e5; }
+.proof-avatars img:first-child { object-position:56% center; }
+.hero-hint { position:absolute; bottom:26px; left:calc((100% - min(var(--shell), calc(100vw - 64px))) / 2); display:flex; align-items:center; gap:10px; color:#6c6c6c; font-size:11px; }
+.hero-hint-icon { display:grid; width:25px; height:25px; place-items:center; border-radius:50%; background:#fff; box-shadow:0 7px 17px rgba(0,0,0,.09); }
+.hero-hint-icon img { display:block; width:9px; height:11px; }
+.caption,
+.hero-hint.caption,
+.hero-gallery-note.caption { color:#4a4a4a; letter-spacing:.01em; }
+
+.showcase-marquee { overflow:hidden; margin-inline:18px; padding:0 0 clamp(32px,4vw,56px); background:#fff; }
+.marquee-rail { display:flex; width:max-content; will-change:transform; animation:marquee-left 34s linear infinite; }
+.marquee-group { display:flex; flex:none; gap:20px; padding-right:20px; }
+.work-card { flex:none; width:clamp(310px,31vw,500px); height:clamp(180px,18.2vw,290px); margin:0; overflow:hidden; background:#e8e8e5; }
+.work-card > img, .work-card > video { display:block; width:100%; height:100%; object-fit:cover; }
+.work-card-vivid > img { object-position:center 44%; }
+.work-card-lavilla > img { object-position:center center; }
+.work-card-neo > img { object-position:57% 31%; }
+.showcase-marquee:hover .marquee-rail, .showcase-marquee:focus-within .marquee-rail { animation-play-state:paused; }
+@keyframes marquee-left { to { transform:translateX(-50%); } }
+
+@media (max-width:900px) {
+  .intro-stage .site-header { min-height:87px; grid-template-columns:1fr auto; padding:18px 0; }
+  .intro-stage .brand img { width:48px; }
+  .intro-stage nav { display:none; }
+  .intro-stage nav.is-open { position:absolute; z-index:20; top:75px; left:0; right:0; display:grid; gap:0; padding:12px 18px 18px; border-top:1px solid #e4e4e4; background:#fff; box-shadow:0 15px 22px rgba(0,0,0,.08); }
+  .intro-stage nav.is-open a { padding:13px 0; border-bottom:1px solid #ececec; opacity:1; font-size:14px; }
+  .intro-stage .header-cta { display:none; }
+  .menu-toggle { display:grid; }
+  .intro-stage .hero { min-height:0; padding:82px 0 31px; }
+  .hero-proof { top:21px; }
+  .intro-stage .hero h1 { font-size:clamp(44px,8.2vw,66px); }
+  .hero-hint { left:18px; bottom:18px; }
+}
+
+@media (max-width:560px) {
+  .intro-stage .site-header { padding:17px 0 14px; }
+  .intro-stage .brand > span { font-size:10px; }
+  .menu-toggle { width:48px; height:48px; }
+  .intro-stage .hero { display:block; padding:94px 0 29px; }
+  .intro-stage .hero-copy { max-width:none; }
+  .hero-kicker { margin-bottom:15px; font-size:14px; }
+  .intro-stage .hero h1 { font-size:clamp(39px,10.6vw,51px); line-height:.96; letter-spacing:-.078em; }
+  .hero-cta { width:100%; justify-content:space-between; margin-top:29px; padding-left:23px; font-size:14px; }
+  .hero-meta { margin-top:41px; }
+  .hero-meta dd { font-size:18px; }
+  .hero-proof { top:20px; }
+  .hero-proof p { font-size:11px; }
+  .proof-avatars img { width:35px; height:35px; }
+  .hero-hint { position:static; justify-content:center; margin-top:35px; font-size:10px; }
+  .showcase-marquee { padding-bottom:36px; }
+  .marquee-group { gap:12px; padding-right:12px; }
+  .work-card { width:80vw; height:50vw; max-height:220px; }
+  .marquee-rail { animation-duration:27s; }
+}
+
+/* Exact desktop composition from Figma 87:3106 (1400 × 814).
+   Desktop coordinates deliberately stay in px; responsive layouts start below 900px. */
+@media (min-width:901px) {
+  .intro-shell { height:100svh; min-height:0; overflow:hidden; }
+
+  .intro-stage .site-header.container {
+    position:absolute;
+    z-index:5;
+    inset:0;
+    width:100%;
+    max-width:none;
+    height:132px;
+    min-height:0;
+    margin:0;
+    padding:0;
+    display:block;
+  }
+
+  .intro-stage .brand { position:absolute; left:49px; top:34px; gap:6px; }
+  .intro-stage .brand img { width:53px; }
+  .intro-stage .brand > span { font-size:12px; line-height:1.08; }
+
+  .header-duration {
+    position:absolute;
+    left:137px;
+    top:35px;
+    display:grid;
+    gap:7px;
+    color:#080808;
+  }
+  .header-duration span { color:rgba(0,0,0,.5); font-size:12px; line-height:1; }
+  .header-duration strong { font-size:20px; font-weight:500; letter-spacing:-.06em; line-height:.9; white-space:nowrap; }
+
+  .intro-stage nav {
+    position:absolute;
+    left:calc(75% - 77.5px);
+    top:30px;
+    display:grid;
+    gap:1px;
+    align-items:start;
+    font-size:12px;
+    line-height:normal;
+  }
+  .intro-stage nav a { opacity:.5; white-space:nowrap; }
+
+  .header-side { position:absolute; right:40px; top:33px; }
+  .intro-stage .header-cta {
+    min-height:41px;
+    padding:0 30px;
+    gap:0;
+    font-size:12px;
+  }
+  .intro-stage .header-cta .icon { display:none; }
+
+  .intro-stage .hero.container {
+    position:absolute;
+    inset:0;
+    width:100%;
+    max-width:none;
+    min-height:0;
+    margin:0;
+    padding:0;
+    display:block;
+  }
+  .intro-stage .hero-copy {
+    position:absolute;
+    top:clamp(159px, 11.357vw, 198px);
+    left:50%;
+    width:clamp(760px, 63.571vw, 1095px);
+    max-width:none;
+    transform:translateX(-50%);
+    text-align:center;
+  }
+  .hero-kicker {
+    display:inline-grid;
+    min-height:clamp(34px, 2.429vw, 42px);
+    margin:0 0 clamp(21px, 1.5vw, 26px);
+    padding:0 clamp(18px, 1.286vw, 22px);
+    place-items:center;
+    border:1px solid #dedede;
+    border-radius:999px;
+    font-size:clamp(13px, .929vw, 16px);
+    line-height:1;
+  }
+  .intro-stage .hero h1 {
+    width:clamp(760px, 63.571vw, 1095px);
+    max-width:none;
+    margin:0;
+    /* rem в средней части — чтобы заголовок реагировал на увеличение
+       страницы и крупный системный шрифт. На 1440px размер тот же (61.7px). */
+    font-size:clamp(3rem, 1.25rem + 2.9vw, 4.625rem);
+    font-weight:500;
+    line-height:.95;
+    letter-spacing:-.06em;
+  }
+  .intro-stage .hero h1 span { font-weight:400; }
+  .intro-stage .hero h1 b { font-weight:400; }
+  .hero-cta {
+    position:absolute;
+    --action-gap:0px;
+    top:clamp(271px, 19.357vw, 332px);
+    left:50%;
+    transform:translateX(-50%);
+    width:auto;
+    margin:0;
+    padding:0;
+  }
+  .intro-stage .hero .hero-cta .hero-cta-label {
+    display:grid;
+    width:clamp(175px, 12.5vw, 214px);
+    min-width:0;
+    height:clamp(43px, 3.071vw, 53px);
+    padding:0 clamp(30px, 2.143vw, 37px);
+    place-items:center;
+    border-radius:68.75px;
+    background:#080808;
+    color:#fff;
+    font-size:clamp(13px, .929vw, 16px);
+    line-height:1;
+    white-space:nowrap;
+  }
+  .intro-stage .hero .hero-cta .hero-cta-icon {
+    display:grid !important;
+    width:clamp(55px, 3.929vw, 67px) !important;
+    height:clamp(43px, 3.071vw, 53px) !important;
+    margin-left:0;
+    place-items:center;
+    border:0;
+    border-radius:110px !important;
+    background:#080808 !important;
+    color:#fff !important;
+    line-height:1 !important;
+  }
+  .intro-stage .hero .hero-cta .hero-cta-icon .action-pair__icon-image { width:clamp(12px, .857vw, 15px); height:clamp(12px, .857vw, 15px); }
+
+  .hero-proof {
+    position:absolute;
+    z-index:6;
+    top:30px;
+    left:42.5%;
+    display:block;
+    transform:translateX(-50%);
+    text-align:left;
+  }
+  .hero-proof p { display:block; margin:0; font-size:12px; line-height:normal; letter-spacing:0; }
+  .hero-proof p strong { font-weight:500; }
+  .hero-proof p span::before { content:" "; }
+  .proof-avatars { justify-content:flex-start; padding:0; margin-top:7px; }
+  .proof-avatars img { width:40px; height:40px; margin-left:-8px; border:0; }
+  .proof-avatars img:first-child { margin-left:0; }
+
+  .hero-hint {
+    position:absolute;
+    left:clamp(60px, 4.286vw, 73px);
+    top:clamp(487px, 34.786vw, 595px);
+    bottom:auto;
+    display:grid;
+    grid-template-columns:clamp(36px, 2.571vw, 44px) clamp(115px, 8.214vw, 141px);
+    column-gap:clamp(21px, 1.5vw, 26px);
+    align-items:center;
+    color:#4a4a4a;
+    font-size:clamp(12px, .857vw, 15px);
+    line-height:1.2;
+  }
+  .hero-hint-icon {
+    width:clamp(36px, 2.571vw, 44px);
+    height:clamp(30px, 2.143vw, 37px);
+  }
+  .hero-hint-copy { display:block; line-height:1.2; }
+  .hero-hint-copy b { font-weight:400; }
+  .hero-gallery-note {
+    position:absolute;
+    right:clamp(41px, 2.929vw, 50px);
+    top:clamp(487px, 34.786vw, 595px);
+    bottom:auto;
+    width:clamp(206px, 14.714vw, 252px);
+    margin:0;
+    color:#4a4a4a;
+    font-size:clamp(12px, .857vw, 15px);
+    font-weight:400;
+    line-height:1.2;
+    text-align:right;
+  }
+
+  .showcase-marquee {
+    position:absolute;
+    right:clamp(40px, 2.857vw, 49px);
+    bottom:clamp(29px, 2.071vw, 35px);
+    left:clamp(49px, 3.5vw, 60px);
+    width:auto;
+    height:min(clamp(246px, 17.571vw, 302px), 30svh);
+    padding:0;
+    overflow:hidden;
+  }
+  .marquee-rail { height:100%; animation-duration:42s; }
+  .marquee-group {
+    --showcase-gap:clamp(20px, 1.429vw, 24px);
+    display:grid;
+    grid-template-columns:clamp(444px, 31.714vw, 546px) clamp(406px, 29vw, 499px) clamp(430px, 30.714vw, 529px);
+    gap:var(--showcase-gap);
+    width:max-content;
+    min-width:max-content;
+    padding-right:var(--showcase-gap);
+  }
+  .work-card { width:auto; height:100%; }
+  .work-card-robot { grid-column:1; }
+  .work-card-makeitpay { grid-column:2; }
+  .work-card-oasis { grid-column:3; }
+  .work-card > img { object-fit:cover; }
+  .work-card-robot > img { object-position:center 40%; }
+  .work-card-makeitpay > img { object-position:center 42%; }
+  .work-card-oasis > img { object-position:center center; }
+}
+
+@media (max-width:900px) {
+  .header-duration { display:none; }
+  .intro-stage .hero h1 br { display:block; }
+  .hero-cta { --action-height:63px; --action-icon-width:calc(var(--action-height) * 1.279); --action-gap:0; width:100%; padding:0; }
+  .intro-stage .hero .hero-cta .hero-cta-label { display:grid; flex:1; width:auto; min-width:0; height:var(--action-height); min-height:var(--action-height); padding:0 23px; place-items:center start; border-radius:999px; background:#080808 !important; color:#fff !important; font-size:14px; }
+  .intro-stage .hero .hero-cta .hero-cta-icon { display:grid !important; flex:none; width:var(--action-icon-width) !important; height:var(--action-height) !important; margin-left:0; place-items:center; border:0; border-radius:110px !important; background:#080808 !important; color:#fff !important; }
+  .intro-stage .hero .hero-cta .hero-cta-icon .action-pair__icon-image { width:16px; height:16px; }
+  .hero-gallery-note { display:none; }
+}
+
+/* Mobile hero — Figma node 166:8964. Its proportions flex with the viewport,
+   while the reading order stays fixed: header, proof, offer, project. */
+@media (max-width:600px), (hover:none) and (pointer:coarse) and (max-width:1200px) {
+  .container { width:calc(100vw - 32px); }
+  .intro-shell, .intro-stage { height:100dvh; min-height:0; }
+  .intro-stage { overflow:hidden; --hero-breath:clamp(12px, 3dvh, 28px); }
+  .header-duration, .intro-stage nav { display:none; }
+  .intro-stage .site-header {
+    position:relative;
+    z-index:5;
+    inset:auto;
+    width:calc(100vw - 32px);
+    margin:0 auto;
+    min-height:0;
+    height:76px;
+    padding:20px 0 0;
+    align-items:start;
+  }
+  .header-side { position:static; justify-self:end; }
+  .intro-stage .brand { flex-direction:row; align-items:center; gap:8px; font-size:12px; line-height:.97; letter-spacing:-.04em; }
+  .intro-stage .brand img { width:44px; }
+  .intro-stage .brand > span, .intro-stage .mobile-brand-break { color:#6c6c6c; }
+  .mobile-brand-break { display:inline; }
+  .intro-stage .header-cta { display:inline-flex; min-height:40px; padding:0 17px; font-size:12px; }
+  .intro-stage .header-cta .icon, .menu-toggle { display:none; }
+  .mobile-hero-proof {
+    position:absolute;
+    z-index:2;
+    top:76px;
+    right:16px;
+    left:16px;
+    display:flex;
+    min-height:61px;
+    padding:12px 16px;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:#f5f5f7;
+  }
+  .mobile-duration { display:grid; gap:2px; margin:0; line-height:1; white-space:nowrap; }
+  .mobile-duration span { color:#6c6c6c; font-size:11px; }
+  .mobile-duration strong { font-size:15px; font-weight:600; letter-spacing:-.05em; }
+  .mobile-works-proof { display:flex; min-width:0; align-items:center; gap:10px; }
+  .mobile-proof-avatars { display:flex; flex:none; padding-left:7px; }
+  .mobile-proof-avatars img { width:29px; height:29px; margin-left:-7px; border-radius:50%; object-fit:cover; }
+  .mobile-proof-avatars img:first-child { margin-left:0; }
+  .mobile-works-proof p { display:grid; gap:2px; min-width:0; margin:0; font-size:11px; line-height:1.05; letter-spacing:-.035em; white-space:nowrap; }
+  .mobile-works-proof strong { font-weight:500; }
+  .mobile-works-proof span { color:#6c6c6c; }
+  .intro-stage .hero { position:relative; inset:auto; display:block; width:calc(100vw - 32px); min-height:0; margin:0 auto; padding:95px 0 0; }
+  .intro-stage .hero-copy { position:relative; top:auto; left:auto; width:100%; max-width:none; transform:none; }
+  .hero-kicker { display:inline-flex; margin:0 0 16px; padding:8px 18px; border:1px solid #e5e5ea; border-radius:999px; font-size:13px; line-height:1; }
+  .intro-stage .hero h1 { width:auto; max-width:none; font-size:clamp(28px, 7.7vw, 34px); line-height:1.1; letter-spacing:-.055em; }
+  .intro-stage .hero h1 b { display:inline; font-weight:400; }
+  .mobile-only { display:block; }
+  .hero-cta { position:relative; top:auto; left:auto; transform:none; --action-height:40px; --action-label-width:164px; --action-icon-width:50px; width:auto; margin-top:16px; padding:0; }
+  .intro-stage .hero .hero-cta .hero-cta-label { display:grid; flex:none; width:var(--action-label-width); height:var(--action-height); min-height:0; padding:0; place-items:center; font-size:12px; }
+  .intro-stage .hero .hero-cta .hero-cta-icon { width:var(--action-icon-width) !important; height:var(--action-height) !important; }
+  .intro-stage .hero .hero-cta .hero-cta-icon .action-pair__icon-image { width:12px; height:12px; }
+  .hero-proof { display:none; }
+  .hero-gallery-note.caption {
+    position:absolute;
+    top:calc(400px + var(--hero-breath));
+    right:16px;
+    left:16px;
+    display:block;
+    margin:0;
+    color:#080808;
+    font-size:12px;
+    font-weight:500;
+    line-height:1.29;
+    text-align:center;
+  }
+  .showcase-marquee { position:absolute; top:calc(558px + var(--hero-breath)); right:clamp(12px, 4.6vw, 18px); left:clamp(12px, 4.6vw, 18px); aspect-ratio:16 / 9; height:auto; margin:0; padding:0; overflow:hidden; }
+  .marquee-rail { width:max-content; animation:marquee-left 24s linear infinite; }
+  .marquee-group { display:flex; width:max-content; gap:16px; padding-right:16px; }
+  .marquee-group[aria-hidden="true"] { display:flex; }
+  .work-card { display:block !important; width:calc(100vw - 36px); height:100%; max-height:none; aspect-ratio:16 / 9; }
+  .work-card-robot { order:1; }
+  .work-card-makeitpay { order:0; }
+  .work-card-oasis { order:2; }
+  .work-card-makeitpay > img { object-position:center; }
+  .hero-hint { display:none; }
+  .mobile-project-meta {
+    position:absolute;
+    top:calc(562px + 56.25vw + var(--hero-breath));
+    right:clamp(12px, 4.6vw, 18px);
+    left:clamp(12px, 4.6vw, 18px);
+    display:flex;
+    align-items:start;
+    justify-content:space-between;
+    color:#080808;
+    font-size:12px;
+    line-height:1.13;
+  }
+  .mobile-project-meta p { margin:0; }
+  .mobile-project-meta p:first-child { display:flex; align-items:start; gap:10px; }
+  .mobile-project-meta p:last-child { width:93px; }
+  .mobile-project-icon { display:grid; flex:none; width:25px; height:25px; place-items:center; border-radius:50%; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.12); }
+  .mobile-project-icon img { width:9px; height:11px; }
+}
+
+@media (max-width:360px) {
+  .mobile-hero-proof { padding-right:12px; padding-left:12px; }
+  .mobile-works-proof { gap:6px; }
+  .mobile-proof-avatars { padding-left:6px; }
+  .mobile-proof-avatars img { width:22px; height:22px; margin-left:-6px; }
+  .intro-stage .hero h1 { font-size:clamp(27px, 8.1vw, 30px); }
+  .showcase-marquee { top:calc(100dvh - 276px); aspect-ratio:16 / 9; height:auto; }
+  .work-card { height:100%; }
+  .mobile-project-meta { top:calc(100dvh - 69px); }
+}
+
+@media (max-width:600px) and (max-height:760px) {
+  .intro-stage { --hero-breath:0px; }
+  .intro-stage .site-header { height:60px; padding-top:14px; }
+  .intro-stage .header-cta { min-height:35px; padding:0 15px; }
+  .mobile-hero-proof { top:60px; min-height:56px; padding-top:10px; padding-bottom:10px; }
+  .intro-stage .hero { padding-top:75px; }
+  .hero-cta { margin-top:12px; }
+  .hero-gallery-note.caption { top:330px; }
+  .showcase-marquee { top:445px; aspect-ratio:16 / 9; height:auto; }
+  .work-card { height:100%; }
+  .mobile-project-meta { top:calc(450px + 56.25vw); }
+}
+
+/* One restrained interaction language for every actionable button. */
+.button,
+.final-button,
+.menu-toggle,
+.motion-chrome a {
+  transition:transform .25s cubic-bezier(.22,1,.36,1), background .25s ease, filter .25s ease, color .25s ease;
+}
+.button:hover,
+.final-button:hover,
+.menu-toggle:hover,
+.motion-chrome a:hover,
+.button-outline:hover { background:rgba(255,255,255,.12); color:#fff; }
+.hero-cta { transition:transform .25s cubic-bezier(.22,1,.36,1), filter .25s ease; }
+.hero-cta:hover { opacity:1; filter:brightness(1.13); }
+@media (min-width:901px) {
+  .intro-stage .hero .hero-cta:hover { transform:translateX(-50%) translateY(-2px); }
+}
+
+/* Scroll-driven transition: scattered skills become one programme sequence. */
+.motion-sequence { position:relative; z-index:0; height:480svh; margin-top:-100svh; background:transparent; color:#fff; }
+.motion-sequence.is-active { z-index:8; }
+.motion-stage { position:absolute; inset:0 0 auto; height:100vh; min-height:680px; overflow:hidden; background:transparent; isolation:isolate; }
+.motion-stage.is-pinned { position:fixed; z-index:8; top:0; right:0; bottom:auto; left:0; width:100%; }
+.motion-stage.is-ended { position:absolute; top:auto; right:0; bottom:0; left:0; width:100%; }
+.motion-stage::before { content:""; position:absolute; z-index:0; inset:0; background:radial-gradient(circle at 18% 78%, rgba(255,65,28,.13), transparent 20%), radial-gradient(circle at 78% 18%, rgba(255,255,255,.07), transparent 24%); opacity:0; }
+.motion-stage::after { content:""; position:absolute; z-index:3; inset:0; background:#efefed; opacity:var(--result-exit, 0); pointer-events:none; }
+.motion-sequence.is-active + .audience-section { visibility:hidden; pointer-events:none; }
+.audience-section.is-below { visibility:hidden; pointer-events:none; }
+.motion-curtain { position:absolute; z-index:1; inset:0; background:#050505; transform:translateY(100%); will-change:transform,opacity; }
+[data-transition="black"] .motion-stage::before { opacity:0; }
+[data-transition="fade"] .motion-stage { background:transparent; }
+.motion-chrome { position:absolute; z-index:5; inset:0; pointer-events:none; font-size:12px; }
+.motion-brand { position:absolute; top:34px; left:49px; display:grid; justify-items:start; gap:6px; color:#8b8b8b; line-height:.9; }
+.motion-brand img { width:53px; height:auto; filter:invert(1); }
+.motion-brand span { font-size:14px; text-align:center; white-space:nowrap; }
+.motion-duration { position:absolute; top:35px; left:137px; display:grid; gap:7px; }
+.motion-duration span { color:rgba(255,255,255,.5); line-height:1; }
+.motion-duration b { font-size:20px; font-weight:500; line-height:.9; letter-spacing:-.06em; }
+.motion-chrome > a { position:absolute; top:33px; right:40px; display:grid; width:128px; height:41px; place-items:center; border-radius:999px; background:#fff; color:#080808; pointer-events:auto; font-size:12px; }
+.motion-chrome > a .icon { display:none; }
+.motion-tunnel { position:absolute; z-index:3; inset:0; display:block; width:100%; height:100%; overflow:hidden; pointer-events:none; will-change:opacity; }
+.motion-tunnel-text { fill:#fff; font-family:var(--font-body); font-size:90px; font-weight:500; letter-spacing:-.07em; }
+.motion-caption { position:absolute; z-index:3; top:calc(50% + 48px); right:0; left:0; margin:0; color:rgba(255,255,255,.42); font-size:13px; text-align:center; white-space:nowrap; }
+.motion-words, .motion-destinations { position:absolute; inset:0; font-size:36px; font-weight:500; line-height:1.29; letter-spacing:-.04em; }
+.motion-words { z-index:3; will-change:transform; }
+.motion-words span { position:absolute; z-index:3; opacity:0; white-space:nowrap; will-change:transform, opacity, filter; }
+.motion-words span:nth-child(1) { left:30%; top:21.7%; }
+.motion-words span:nth-child(2) { left:56.1%; top:13.2%; }
+.motion-words span:nth-child(3) { left:19.5%; top:34.5%; }
+.motion-words span:nth-child(4) { left:60.8%; top:39.3%; }
+.motion-words span:nth-child(5) { left:21.4%; top:50.5%; }
+.motion-words span:nth-child(6) { left:46.9%; top:59.7%; }
+.motion-words span:nth-child(7) { left:53.3%; top:72.3%; }
+.motion-words span:nth-child(8) { left:74.9%; top:84.5%; }
+.motion-destinations { z-index:1; display:grid; align-content:center; justify-items:center; gap:0; opacity:0; pointer-events:none; font-size:60px; line-height:1.05; }
+.motion-destinations span { display:block; min-height:1.05em; color:transparent; white-space:nowrap; }
+.motion-flash { position:absolute; z-index:4; inset:0; display:grid; place-items:center; pointer-events:none; }
+.motion-flash span { display:block; width:min(36vw, 500px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, #fff 0 4%, rgba(255,255,255,.92) 8%, rgba(255,255,255,.44) 22%, rgba(255,255,255,.1) 43%, transparent 70%); opacity:0; transform:scale(.08); will-change:transform,opacity; }
+.motion-result { position:absolute; z-index:4; top:50%; right:18px; left:18px; display:grid; gap:.04em; margin:0; color:#fff; font-size:clamp(48px, 5.7vw, 80px); font-weight:500; line-height:.95; letter-spacing:-.04em; text-align:center; opacity:calc(1 - var(--result-exit, 0)); filter:blur(calc(var(--result-exit, 0) * 10px)); transform:translateY(-50%) scale(calc(1 - var(--result-exit, 0) * .02)); visibility:hidden; pointer-events:none; will-change:transform,opacity,filter; }
+.motion-result span { display:block; overflow:visible; white-space:nowrap; }
+.motion-result i { display:block; font-style:normal; transform:translateY(-110%); transition:transform .34s cubic-bezier(.16,1,.3,1); will-change:transform; }
+.motion-result span:nth-child(2) { visibility:hidden; }
+.motion-sequence.is-hand-off .motion-words { visibility:hidden; }
+.motion-sequence.is-result-visible .motion-result { visibility:visible; }
+.motion-sequence.is-result-line-one .motion-result span:first-child i,
+.motion-sequence.is-result-line-two .motion-result span:nth-child(2) i { transform:translateY(0); }
+.motion-sequence.is-result-line-two .motion-result span:nth-child(2) { visibility:visible; }
+.motion-system-targets { position:absolute; z-index:1; inset:0; opacity:0; pointer-events:none; font-size:21px; font-weight:500; line-height:1.29; letter-spacing:-.01em; }
+.motion-system-targets span { position:absolute; display:block; color:transparent; text-align:center; white-space:nowrap; transform:translateX(-50%); }
+.motion-system-targets span:nth-child(1) { left:60.8%; top:13.2%; }
+.motion-system-targets span:nth-child(2) { left:38.3%; top:17.2%; }
+.motion-system-targets span:nth-child(3) { left:62.5%; top:27.2%; }
+.motion-system-targets span:nth-child(4) { left:48.9%; top:22.9%; }
+.motion-system-targets span:nth-child(5) { left:37.3%; top:29.6%; }
+.motion-system-targets span:nth-child(6) { left:33.3%; top:39.2%; }
+.motion-system-targets span:nth-child(7) { left:50%; top:34.8%; }
+.motion-system-targets span:nth-child(8) { left:62.6%; top:40.8%; }
+.motion-system { display:none; }
+.motion-system-brace { display:block; width:min(62.4vw, 873px); height:auto; transform-origin:50% 0; will-change:transform,opacity; }
+.motion-system-title { margin:18px 0 0; color:#fff; font-size:clamp(40px,4.286vw,60px); font-weight:400; line-height:.95; letter-spacing:-.05em; text-align:center; will-change:transform,opacity; }
+.motion-system-line { display:block; white-space:nowrap; }
+.motion-title-glyph { display:inline-block; will-change:transform,opacity; }
+.motion-trails { position:absolute; z-index:2; inset:0; overflow:hidden; pointer-events:none; }
+.motion-trails span { position:absolute; top:43%; left:var(--trail-x); display:block; width:1.25em; color:#fff; font-size:15px; font-weight:400; line-height:1.08; letter-spacing:.06em; opacity:0; text-orientation:mixed; transform-origin:50% 0; white-space:pre-line; writing-mode:vertical-rl; will-change:transform,opacity; }
+.motion-posters { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.motion-poster { position:absolute; margin:0; overflow:hidden; opacity:0; background:#1a1a1a; box-shadow:0 25px 80px rgba(0,0,0,.45); will-change:transform, opacity; }
+.motion-poster img { display:block; width:100%; height:100%; object-fit:cover; }
+.motion-poster-blue { bottom:7%; left:3.5%; width:151px; height:190px; }
+.motion-poster-blue img { object-position:55% center; }
+.motion-poster-red { top:16.7%; right:2.9%; width:206px; height:295px; }
+.motion-scroll-hint { display:none; }
+
+@media (max-width:900px) {
+  .motion-sequence { height:440svh; margin-top:-100svh; }
+  .motion-stage { min-height:620px; }
+  .motion-brand { top:40px; left:20px; }
+  .motion-brand img { width:52px; }
+  .motion-brand span { font-size:11px; }
+  .motion-duration { display:none; }
+  .motion-chrome > a { top:40px; right:20px; width:44px; height:44px; font-size:0; }
+  .motion-chrome > a span { display:none; }
+  .motion-chrome > a .icon { display:block; width:22px; height:22px; }
+  .motion-caption { top:calc(44% + 52px); right:50%; left:auto; width:240px; margin-right:-120px; white-space:normal; line-height:1.4; }
+  .motion-words { font-size:clamp(28px, 7.7vw, 32px); }
+  .motion-destinations { font-size:clamp(44px, 8vw, 62px); }
+  .motion-result { right:12px; left:12px; font-size:clamp(40px, 10.4vw, 62px); line-height:.92; }
+  .motion-flash span { width:min(76vw, 400px); }
+  .motion-system-targets { font-size:clamp(15px, 3.2vw, 21px); }
+  .motion-system-targets span:nth-child(1) { left:67%; top:17%; }
+  .motion-system-targets span:nth-child(2) { left:35%; top:22%; }
+  .motion-system-targets span:nth-child(3) { left:67%; top:33%; }
+  .motion-system-targets span:nth-child(4) { left:52%; top:28%; }
+  .motion-system-targets span:nth-child(5) { left:34%; top:36%; }
+  .motion-system-targets span:nth-child(6) { left:31%; top:47%; }
+  .motion-system-targets span:nth-child(7) { left:52%; top:42%; }
+  .motion-system-targets span:nth-child(8) { left:68%; top:49%; }
+  .motion-system { top:51%; }
+  .motion-system-brace { width:88vw; }
+  .motion-system-title { margin-top:13px; font-size:clamp(34px,8vw,52px); }
+  .motion-trails span { top:44%; font-size:11px; }
+  .motion-words span:nth-child(1) { left:8.2%; top:27.7%; }
+  .motion-words span:nth-child(2) { right:34.6%; left:auto; top:16.7%; }
+  .motion-words span:nth-child(3) { left:14.6%; top:39.7%; }
+  .motion-words span:nth-child(4) { right:13.6%; left:auto; top:46.7%; }
+  .motion-words span:nth-child(5) { left:6.2%; top:53.4%; }
+  .motion-words span:nth-child(6) { right:6.9%; left:auto; top:61.1%; }
+  .motion-words span:nth-child(7) { left:15.4%; top:68%; }
+  .motion-words span:nth-child(8) { right:19.5%; left:auto; top:80.6%; }
+  .motion-poster-blue { bottom:7.2%; left:-10px; width:112px; height:141px; }
+  .motion-poster-red { top:14.8%; right:-5%; width:128px; height:183px; }
+  .motion-scroll-hint { bottom:20px; font-size:9px; }
+}
+
+@media (max-width:600px) {
+  .motion-sequence { height:440dvh; margin-top:-100dvh; }
+  .motion-stage { height:100dvh; }
+}
+
+/* Figma nodes 111:8092 / 178:9224 — audience section. */
+.audience-section { position:relative; z-index:9; height:260svh; min-height:0; margin-top:-100svh; overflow:visible; background:transparent; color:#080808; --audience-exit:0; }
+.audience-stage { position:absolute; z-index:1; inset:0 0 auto; height:100svh; }
+.audience-stage.is-pinned { position:fixed; z-index:9; top:0; right:0; bottom:auto; left:0; width:100%; }
+.audience-stage.is-ended { position:absolute; top:auto; right:0; bottom:0; left:0; width:100%; }
+.persistent-chrome { position:fixed; z-index:40; top:0; left:0; display:grid; width:100%; box-sizing:border-box; grid-template-columns:max-content 1fr auto; column-gap:22px; align-items:start; transform:translateY(-120%); padding-top:33px; padding-left:49px; padding-right:40px; color:#080808; opacity:0; pointer-events:none; transition:color .28s ease, opacity .3s ease, transform .45s cubic-bezier(.22,1,.36,1); }
+.persistent-chrome.is-visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+/* Ширина была жёстко 57px, а подпись «практикум / AI-креаторов» шире —
+   она вылезала на «20+ уроков» и буквы читались друг сквозь друга.
+   Отдаём блоку столько, сколько занимает текст. */
+.persistent-brand { display:grid; justify-items:start; gap:6px; width:max-content; color:#6c6c6c; font-size:14px; line-height:.89; }
+.persistent-brand img { display:block; width:53px; height:auto; }
+.persistent-duration { display:grid; gap:6px; margin:2px 0 0; line-height:1; }
+.persistent-duration span { color:rgba(8,8,8,.5); font-size:12px; }
+.persistent-duration b { font-size:18px; font-weight:500; letter-spacing:-.06em; }
+.persistent-cta { display:grid; width:128px; height:41px; place-items:center; border-radius:999px; background:#080808; color:#fff; font-size:12px; }
+.persistent-chrome.is-dark { color:#fff; }
+.persistent-chrome.is-dark .persistent-brand { color:#8b8b8b; }
+.persistent-chrome.is-dark .persistent-brand img { filter:invert(1); }
+.persistent-chrome.is-dark .persistent-duration span { color:rgba(255,255,255,.5); }
+.persistent-chrome.is-dark .persistent-cta { background:#fff; color:#080808; }
+.audience-content.container { position:relative; box-sizing:border-box; width:100%; height:100svh; margin:0; padding-top:126px; padding-right:32px; padding-bottom:clamp(48px,5.4vh,88px); padding-left:32px; background:#fff; opacity:calc(1 - var(--audience-exit)); filter:blur(calc(var(--audience-exit) * 9px)); transform:scale(calc(1 - var(--audience-exit) * .012)); transform-origin:50% 48%; transition:filter .08s linear; will-change:opacity,filter,transform; }
+.audience-content::after { content:""; position:absolute; z-index:4; inset:0; background:radial-gradient(120% 90% at 50% 46%, rgba(5,5,5,.65), #050505 78%); opacity:var(--audience-exit); pointer-events:none; }
+.audience-intro, .audience-grid { position:relative; z-index:1; }
+.audience-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.31fr); gap:40px; align-items:start; }
+.audience-intro h2 { max-width:680px; margin:0; font-size:clamp(40px,4vw,56px); font-weight:500; line-height:.95; letter-spacing:-.03em; }
+.audience-title-replace { color:#6c6c6c; font-weight:400; }
+.audience-title-arrow { display:inline-block; width:.5em; height:.5em; margin-left:.14em; vertical-align:baseline; fill:#6c6c6c; }
+.audience-title-line { display:block; }
+.audience-title-effect { display:inline; }
+.audience-title-word { display:inline-block; white-space:nowrap; }
+.audience-author { display:flex; gap:11px; align-items:center; padding-top:1px; }
+.audience-author img { width:91px; height:91px; flex:none; border-radius:50%; object-fit:cover; object-position:center 27%; }
+.audience-author p { display:grid; gap:4px; max-width:260px; margin:0; letter-spacing:0; }
+.audience-author b { font-size:19px; font-weight:500; line-height:1.12; letter-spacing:-.01em; white-space:nowrap; }
+.audience-author p span { font-size:14px; line-height:1.45; letter-spacing:0; color:#6c6c6c; text-wrap:pretty; }
+.audience-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(12px,1vw,15px); margin-top:clamp(40px,4.5vh,58px); }
+.audience-card { position:relative; min-width:0; aspect-ratio:315 / 483; border-radius:clamp(18px,1.79vw,25px); overflow:hidden; background:transparent; color:#fff; perspective:1500px; }
+.audience-card-inner { position:relative; width:100%; height:100%; }
+.audience-card-face { position:absolute; inset:0; overflow:hidden; border-radius:clamp(18px,1.79vw,25px); -webkit-backface-visibility:hidden; backface-visibility:hidden; -webkit-transform:rotateY(0deg); transform:rotateY(0deg); transition:transform .62s cubic-bezier(.22,1,.36,1), opacity .22s ease; will-change:transform,opacity; }
+.audience-card-face > img { position:absolute; z-index:-3; inset:0; width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+.audience-card-face::before { content:""; position:absolute; z-index:-2; pointer-events:none; }
+.audience-card-back { opacity:0; pointer-events:none; -webkit-transform:rotateY(-90deg); transform:rotateY(-90deg); }
+.audience-card-back > img { filter:blur(20px) saturate(.8) brightness(.75); transform:scale(1.1); }
+.audience-card-back::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(180deg, rgba(5,7,8,.1), rgba(5,7,8,.58) 58%, rgba(5,7,8,.82)); pointer-events:none; }
+/* The supplied exports already contain their glass treatment. These gradients
+   only hold the copy and never blur the photograph a second time. */
+.audience-card--designers .audience-card-front::before { top:38%; right:0; left:0; height:62%; background:linear-gradient(180deg, rgba(3,8,13,0), rgba(3,8,13,.42) 45%, rgba(3,8,13,.78) 100%); }
+.audience-card--freelancers .audience-card-front::before { inset:0; background:linear-gradient(180deg, rgba(42,0,0,.02), rgba(28,0,0,.28) 55%, rgba(10,0,0,.52) 100%); }
+.audience-card--newcomers .audience-card-front::before { top:34%; right:0; left:0; height:66%; background:linear-gradient(180deg, rgba(2,10,16,0), rgba(2,10,16,.38) 42%, rgba(2,10,16,.72) 100%); }
+.audience-card--business .audience-card-front::before { top:42%; right:0; left:0; height:58%; background:linear-gradient(180deg, rgba(2,8,13,0), rgba(2,8,13,.4) 44%, rgba(2,8,13,.76) 100%); }
+.audience-card-tags { position:absolute; top:20px; right:15px; left:20px; display:flex; align-items:center; justify-content:space-between; gap:8px; color:rgba(255,255,255,.6); font-size:8.5px; line-height:1; }
+.audience-card-tags span { padding:4px 10px; border:1px solid rgba(255,255,255,.48); border-radius:999px; }
+.audience-card-copy { position:absolute; right:clamp(22px,1.9vw,28px); left:clamp(22px,1.9vw,28px); display:grid; gap:9px; }
+.audience-card-copy h3 { margin:0; font-size:clamp(21px,1.6vw,24px); font-weight:600; line-height:1.1; letter-spacing:-.01em; text-wrap:balance; }
+.audience-card-copy p { margin:0; font-size:clamp(14px,1.05vw,15px); line-height:1.4; letter-spacing:0; text-wrap:balance; }
+/* Текст карточек всегда у низа — так он не наезжает на лицо
+   на высоких карточках больших экранов (4K). */
+.audience-card-copy { bottom:clamp(28px,3vh,56px); top:auto; }
+
+@media (min-width:901px) {
+  .audience-content { display:flex; flex-direction:column; justify-content:center; row-gap:clamp(30px,4.6vh,54px); }
+  .audience-grid { width:100%; margin-top:0; }
+}
+
+/* Four cards stay readable on compact desktop screens before the mobile grid takes over. */
+@media (min-width:901px) and (max-width:1180px) {
+  .audience-content { padding-top:88px; padding-bottom:42px; }
+  .audience-intro { grid-template-columns:minmax(0,1fr) minmax(220px,.34fr); gap:24px; }
+  .audience-intro h2 { max-width:610px; font-size:clamp(38px,4.15vw,48px); line-height:.9; }
+  .audience-author { gap:11px; }
+  .audience-author img { width:68px; height:68px; }
+  .audience-author b { font-size:clamp(14px,1.55vw,17px); }
+  .audience-author span { font-size:clamp(10px,1.08vw,12px); line-height:1.14; }
+  .audience-grid { gap:12px; margin-top:38px; }
+  .audience-card-copy { right:clamp(15px,1.8vw,22px); left:clamp(15px,1.8vw,22px); gap:7px; }
+  .audience-card-copy h3 { font-size:clamp(15px,1.45vw,17px); line-height:1.04; text-wrap:balance; }
+  .audience-card-copy p { font-size:clamp(10px,1.06vw,12px); line-height:1.22; }
+  .audience-card-copy br { display:none; }
+  .audience-card--designers .audience-card-copy, .audience-card--business .audience-card-copy { bottom:clamp(28px,4.4vw,45px); }
+  .audience-card--freelancers .audience-card-copy { top:clamp(52px,6.2vw,72px); }
+  .audience-card--newcomers .audience-card-copy { top:clamp(104px,13vw,142px); }
+}
+@media (hover:hover) and (pointer:fine) {
+  .audience-card:hover .audience-card-front { opacity:0; -webkit-transform:rotateY(90deg); transform:rotateY(90deg); }
+  .audience-card:hover .audience-card-back { opacity:1; pointer-events:auto; -webkit-transform:rotateY(0); transform:rotateY(0); }
+}
+
+/* Figma node 212:9761 — contrast between template and authored work. */
+.difference-section { position:relative; z-index:2; height:150vh; margin-top:-100svh; background:#000; color:#fff; }
+.difference-sticky { position:sticky; top:0; height:100vh; overflow:hidden; display:flex; }
+.difference-content { display:flex; width:100%; min-height:100vh; box-sizing:border-box; flex-direction:column; justify-content:center; padding-top:clamp(60px,9vh,110px); padding-bottom:clamp(60px,9vh,110px); }
+.difference-title { display:grid; justify-items:center; margin:0; font-size:clamp(48px,5.7vw,80px); font-weight:400; line-height:.92; letter-spacing:-.04em; }
+.difference-title span { transform:translateX(-42px); }
+.difference-title i { color:#6c6c6c; font-style:normal; transform:translateX(85px); }
+.difference-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(30px,4vw,64px); width:min(1320px,100%); margin:clamp(36px,5vh,64px) auto 0; }
+.difference-card { display:grid; gap:clamp(22px,2.4vw,38px); padding:0; }
+.difference-card figure { aspect-ratio:16 / 10; margin:0; overflow:hidden; background:#141414; border-radius:4px; }
+.difference-card figure img { display:block; width:100%; height:100%; object-fit:cover; }
+.difference-card:first-child figure img { width:101.14%; height:110.43%; margin-top:-8.53%; object-position:left top; }
+.difference-card:last-child figure img { object-position:center 38%; }
+.difference-copy { display:grid; gap:9px; }
+.difference-copy h3 { margin:0; font-size:clamp(22px,2vw,28px); font-weight:600; line-height:1.05; letter-spacing:-.01em; }
+.difference-card:last-child .difference-copy h3 { font-size:21px; }
+.difference-copy p { margin:0; max-width:520px; font-size:clamp(14px,1.05vw,16px); line-height:1.5; letter-spacing:0; color:rgba(255,255,255,.72); }
+
+/* Figma node 112:8566 — programme list. */
+.programme-section { position:relative; z-index:2; background:#000; color:#fff; transform-origin:50% 50%; will-change:transform,filter,opacity; }
+.programme-head { display:grid; grid-template-columns:minmax(320px,.8fr) 1.2fr; gap:32px; align-items:end; padding-top:150px; padding-bottom:67px; }
+.programme-head h2 { margin:0; font-size:clamp(48px,5.7vw,80px); font-weight:400; line-height:.88; letter-spacing:-.04em; }
+.programme-head h2 span { color:#777; }
+.programme-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:0; }
+.programme-stats div { min-width:0; }
+.programme-stats dt { font-size:clamp(46px,4.15vw,58px); font-weight:400; line-height:1; letter-spacing:-.04em; }
+.programme-stats dd { margin:8px 0 0; color:#9c9c9c; font-size:11px; line-height:1.2; letter-spacing:0; white-space:nowrap; }
+.programme-list { border-top:1px solid rgba(255,255,255,.4); }
+.programme-module { border-bottom:1px solid rgba(255,255,255,.28); }
+.programme-trigger { width:100%; min-height:89px; padding:0 max(32px, calc((100vw - var(--shell)) / 2)); border:0; display:grid; grid-template-columns:47px minmax(0,1fr) 39px; align-items:center; gap:20px; background:transparent; color:#fff; text-align:left; }
+.programme-number { display:grid; width:40px; height:25px; place-items:center; border:1px solid rgba(255,255,255,.7); border-radius:999px; font-size:11px; }
+.programme-name { font-size:23px; font-weight:500; line-height:1.12; letter-spacing:-.01em; }
+.programme-plus { display:grid; width:39px; height:39px; place-items:center; border:1px solid rgba(255,255,255,.58); border-radius:50%; font-size:24px; font-weight:300; line-height:1; transition:transform .28s cubic-bezier(.22,1,.36,1), background .2s ease; }
+.programme-trigger:hover .programme-plus { background:#fff; color:#080808; }
+.programme-module.is-open .programme-plus { transform:rotate(45deg); }
+.programme-panel { display:grid; grid-template-rows:0fr; padding:0 max(32px, calc((100vw - var(--shell)) / 2)); transition:grid-template-rows .52s cubic-bezier(.22,1,.36,1); }
+.programme-panel > div { min-height:0; overflow:hidden; margin-left:67px; opacity:0; transform:translateY(-7px); transition:opacity .24s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+.programme-lessons { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 48px; }
+.programme-lesson { display:grid; gap:7px; align-content:start; }
+.programme-lesson-title { margin:0; max-width:46ch; color:#fff; font-size:17px; font-weight:500; line-height:1.3; letter-spacing:-.01em; }
+.programme-lesson-num { display:block; margin-bottom:5px; color:#8a8a8a; font-size:11px; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+.programme-lesson-desc { margin:0; max-width:46ch; color:#9c9c9c; font-size:15px; line-height:1.5; letter-spacing:0; }
+.programme-module.is-open .programme-panel { grid-template-rows:1fr; }
+.programme-module.is-open .programme-panel > div { padding:0 0 28px; }
+.programme-module.is-open .programme-panel > div { opacity:1; transform:translateY(0); transition-delay:.08s; }
+
+/* Participant works — a true grid on all six faces of the WebGL tunnel. */
+/* ============ WORKS SCENE (туннель → работы, единая sticky-сцена) ============
+   Обёртка задаёт длину прокрутки, .works-sticky замирает во весь экран.
+   Фазы прогресса ведёт JS (data-works-scene): влёт в центр → слово-заголовок
+   остаётся, под ним раскрываются работы. Тёмная сцена, воздух по краям. */
+.works-scene { position:relative; z-index:3; height:270vh; background:#050505; color:#fff; }
+.works-sticky { position:sticky; top:0; height:100vh; overflow:hidden; isolation:isolate; }
+
+.work-tunnel { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; isolation:isolate; background:#000; opacity:0; will-change:opacity; }
+.work-tunnel::before { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 82%, #000 100%); }
+.work-tunnel-canvas { display:block; width:100%; height:100%; transform-origin:50% 50%; will-change:transform; }
+.work-tunnel-fallback { position:absolute; inset:0; overflow:hidden; perspective:900px; opacity:1; transition:opacity .2s ease; }
+.work-tunnel.has-webgl .work-tunnel-fallback { opacity:0; }
+.work-tunnel-fallback img { position:absolute; width:min(22vw,310px); height:auto; max-height:29vh; object-fit:contain; box-shadow:0 0 0 1px rgba(255,255,255,.12); transform-style:preserve-3d; }
+.work-tunnel-fallback img:nth-child(1) { top:7%; left:3%; transform:rotateY(54deg) rotateZ(-3deg); }
+.work-tunnel-fallback img:nth-child(2) { top:8%; right:3%; transform:rotateY(-54deg) rotateZ(3deg); }
+.work-tunnel-fallback img:nth-child(3) { bottom:5%; left:5%; transform:rotateY(50deg) rotateZ(3deg); }
+.work-tunnel-fallback img:nth-child(4) { right:4%; bottom:6%; transform:rotateY(-50deg) rotateZ(-3deg); }
+.work-tunnel-fallback img:nth-child(5) { top:12%; left:38%; width:min(14vw,195px); transform:rotateX(54deg); }
+.work-tunnel-fallback img:nth-child(6) { bottom:9%; left:43%; width:min(15vw,210px); transform:rotateX(-54deg); }
+
+/* Контент поверх туннеля: слово-заголовок + слайдер. Центрирован, с воздухом. */
+.works-content { position:absolute; inset:0; z-index:3; display:grid; grid-template-rows:17vh 1fr; align-content:stretch; justify-items:center; width:min(var(--shell), calc(100vw - 64px)); margin:0 auto; padding:0; box-sizing:border-box; text-align:center; pointer-events:none; }
+.works-head { align-self:start; padding-top:5vh; }
+.works-head { display:grid; justify-items:center; gap:14px; }
+.works-kicker { margin:0; color:rgba(255,255,255,.5); font-size:12px; letter-spacing:.04em; text-transform:uppercase; opacity:0; will-change:opacity,transform; }
+.works-title { position:absolute; left:50%; top:50%; margin:0; font-size:clamp(52px,7vw,106px); font-weight:500; line-height:.9; letter-spacing:-.04em; color:#fff; white-space:nowrap; transform-origin:50% 50%; will-change:transform,opacity; z-index:4; }
+.works-title-big { }
+.works-title-big span { color:#888; font-weight:400; }
+.participant-gallery-count { position:absolute; right:0; top:8px; color:rgba(255,255,255,.42); font-size:13px; letter-spacing:-.03em; opacity:0; }
+
+.participant-gallery-stage { position:relative; display:grid; align-self:center; width:100%; height:44vh; margin-top:2vh; place-items:center; perspective:1600px; overflow:visible; touch-action:pan-y; outline:0; opacity:0; will-change:opacity,transform; pointer-events:auto; }
+.participant-gallery-track { position:relative; width:min(55vw,720px); height:min(38vw,440px); transform-style:preserve-3d; }
+.participant-gallery-card { position:absolute; top:50%; left:50%; padding:0; overflow:hidden; border:0; border-radius:2px; background:transparent; backface-visibility:hidden; transform-style:preserve-3d; transition:transform .68s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease; will-change:transform,opacity,filter; cursor:pointer; }
+.participant-gallery-card:focus-visible { outline:2px solid #fff; outline-offset:5px; }
+.participant-gallery-card img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; box-shadow:0 30px 80px rgba(0,0,0,.55); user-select:none; -webkit-user-drag:none; }
+.participant-gallery-controls { position:absolute; z-index:7; left:50%; transform:translateX(-50%); bottom:-120px; display:flex; gap:14px; pointer-events:auto; }
+/* Фирменные стрелки: круг с тонкой обводкой, SVG-стрелка, дорогой hover. */
+.participant-gallery-controls button { display:grid; width:54px; height:54px; place-items:center; border:1px solid rgba(255,255,255,.24); border-radius:50%; background:rgba(255,255,255,.04); color:#fff; backdrop-filter:blur(8px); cursor:pointer; transition:background .3s cubic-bezier(.22,1,.36,1), border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1); }
+/* Фирменная стрелка вместо шевронов: заливная, не контурная.
+   Левая — зеркальное отражение правой. */
+.participant-gallery-controls button svg { width:16px; height:16px; fill:currentColor; stroke:none; transition:transform .3s cubic-bezier(.22,1,.36,1); }
+/* Фирменная стрелка смотрит вверх-вправо под 45°. Для листания
+   доворачиваем её ближе к горизонтали: вправо и влево. */
+.participant-gallery-controls [data-gallery-next] svg { transform:rotate(35deg); }
+.participant-gallery-controls [data-gallery-prev] svg { transform:scaleX(-1) rotate(35deg); }
+.participant-gallery-controls [data-gallery-next]:hover svg { transform:rotate(35deg) translate(2px,-2px); }
+.participant-gallery-controls [data-gallery-prev]:hover svg { transform:scaleX(-1) rotate(35deg) translate(2px,-2px); }
+.participant-gallery-controls button:hover { background:#fff; border-color:#fff; color:#080808; }
+.participant-gallery-controls button:hover[data-gallery-prev] svg { transform:translateX(-3px); }
+.participant-gallery-controls button:hover[data-gallery-next] svg { transform:translateX(3px); }
+.participant-gallery-controls button:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+
+/* Figma node 215:9790 — the final questions block. */
+.questions-section { position:relative; z-index:2; background:#fff; color:#080808; }
+.questions-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(295px,.31fr); gap:40px; align-items:center; min-height:300px; padding-top:130px; padding-bottom:47px; }
+.questions-head h2 { margin:0; font-size:clamp(48px,5.7vw,80px); font-weight:500; line-height:.88; letter-spacing:-.04em; }
+.questions-head h2 span { color:#999; font-weight:400; }
+.questions-author { justify-self:end; width:300px; padding-top:0; }
+.questions-portrait { position:relative; display:block; width:91px; height:91px; flex:none; overflow:hidden; border-radius:50%; }
+.questions-portrait img { position:absolute; top:-65px; left:-51px; display:block; width:258px; height:344px; max-width:none; border-radius:0; object-fit:cover; }
+.questions-author p { max-width:260px; }
+.questions-author b { font-size:19px; }
+.questions-list { border-top:1px solid rgba(8,8,8,.35); }
+.questions-item { border-bottom:1px solid rgba(8,8,8,.3); }
+.questions-trigger { width:100%; min-height:109px; padding:0 max(32px, calc((100vw - var(--shell)) / 2)); display:grid; grid-template-columns:39px minmax(0,1fr) 37px; align-items:center; gap:27px; border:0; background:transparent; color:#080808; text-align:left; cursor:pointer; }
+.questions-number { display:grid; width:39px; height:25px; place-items:center; border:1px solid #080808; border-radius:999px; font-size:12px; font-weight:500; line-height:.85; }
+.questions-item h3 { margin:0; font-size:23px; font-weight:500; line-height:1.1; letter-spacing:-.01em; }
+.questions-plus { display:grid; width:37px; height:37px; place-items:center; border:1px solid rgba(8,8,8,.55); border-radius:50%; font-size:23px; font-weight:400; line-height:1; transition:transform .28s cubic-bezier(.22,1,.36,1), background .2s ease; }
+.questions-trigger:hover .questions-plus { background:#080808; color:#fff; }
+.questions-item.is-open .questions-plus { transform:rotate(45deg); }
+.questions-panel { display:grid; grid-template-rows:0fr; padding:0 max(32px, calc((100vw - var(--shell)) / 2)); transition:grid-template-rows .5s cubic-bezier(.22,1,.36,1); }
+.questions-panel > div { min-height:0; overflow:hidden; margin-left:66px; max-width:820px; opacity:0; transform:translateY(-6px); transition:opacity .24s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+.questions-item.is-open .questions-panel { grid-template-rows:1fr; }
+.questions-item.is-open .questions-panel > div { padding:0 0 34px; opacity:1; transform:translateY(0); transition-delay:.08s; }
+.questions-answer p { margin:0 0 12px; color:#4a4a4a; font-size:15px; line-height:1.5; letter-spacing:0; }
+.questions-answer p:last-child { margin-bottom:0; }
+.questions-sub { margin:0 0 16px; }
+.questions-sub-title { margin:0 0 4px !important; color:#080808 !important; font-weight:600; }
+.questions-care { display:inline-flex; align-items:center; gap:6px; margin-top:8px; color:#080808; font-size:14px; font-weight:500; border-bottom:1px solid rgba(8,8,8,.35); padding-bottom:2px; transition:opacity .2s ease; }
+.questions-care:hover { opacity:.6; }
+
+@media (max-width:900px) {
+  /* Края шапки должны совпадать с первым блоком (эталон сетки): 16px по бокам. */
+  .persistent-chrome { display:grid; width:100%; grid-template-columns:48px minmax(0,1fr) auto; padding-top:17px; padding-left:16px; padding-right:16px; }
+  .persistent-brand { gap:3px; width:44px; font-size:10px; }
+  .persistent-brand img { width:42px; }
+  .persistent-duration { gap:3px; margin-top:1px; }
+  .persistent-duration span { font-size:9px; }
+  .persistent-duration b { font-size:14px; }
+  .persistent-cta { width:102px; height:36px; font-size:11px; }
+  .audience-content.container { padding:112px 16px 48px; }
+  .audience-intro { display:block; }
+  .audience-intro h2 { max-width:360px; font-size:clamp(29px,8.2vw,34px); line-height:.93; }
+  .audience-author { margin-top:22px; gap:12px; }
+  .audience-author img { width:70px; height:70px; object-position:center 30%; }
+  .audience-author p { gap:4px; max-width:255px; }
+  .audience-author b { font-size:16px; letter-spacing:-.05em; white-space:normal; }
+  .audience-author span { font-size:11px; line-height:1.2; }
+  .audience-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+  .audience-card { aspect-ratio:174 / 269; border-radius:15px; }
+  .audience-card-tags { top:9px; right:7px; left:9px; font-size:5.5px; }
+  .audience-card-tags span { padding:3px 7px; }
+  .audience-card-copy { right:10px; left:10px; gap:5px; }
+  .audience-card-copy h3 { font-size:clamp(14px,4vw,16px); line-height:1.02; }
+  .audience-card-copy p { font-size:clamp(9px,2.6vw,10.5px); line-height:1.18; }
+  .audience-card--designers .audience-card-copy, .audience-card--business .audience-card-copy { bottom:24px; }
+  .audience-card--freelancers .audience-card-copy { top:37px; }
+  .audience-card--newcomers .audience-card-copy { top:84px; }
+  .difference-content { padding-top:79px; padding-bottom:74px; }
+  .difference-title { font-size:clamp(46px,13vw,64px); line-height:.94; }
+  .difference-title span { transform:translateX(-15px); }
+  .difference-title i { transform:translateX(28px); }
+  .difference-grid { grid-template-columns:1fr; gap:40px; margin-top:30px; }
+  .difference-card { gap:21px; padding:0; }
+  .difference-card figure { aspect-ratio:467 / 276; }
+  .difference-copy { gap:7px; }
+  .difference-copy h3, .difference-card:last-child .difference-copy h3 { font-size:20px; line-height:1.02; }
+  .difference-copy p { font-size:13px; line-height:1.33; }
+  .difference-copy p br { display:none; }
+  .difference-title { margin-bottom:24px; }
+  .programme-head { display:block; padding-top:100px; padding-bottom:44px; }
+  .programme-head h2 { font-size:clamp(48px,13vw,58px); }
+  .programme-stats { grid-template-columns:repeat(2,1fr); gap:25px 18px; margin-top:46px; }
+  .programme-stats dt { font-size:clamp(42px,12vw,50px); }
+  .programme-stats dd { margin-top:5px; font-size:10px; white-space:normal; }
+  .programme-trigger { min-height:78px; padding-right:18px; padding-left:18px; grid-template-columns:37px minmax(0,1fr) 34px; gap:10px; }
+  .programme-number { width:32px; height:22px; font-size:9px; }
+  .programme-name { font-size:clamp(16px,4.7vw,19px); line-height:1.08; }
+  .programme-plus { width:34px; height:34px; font-size:21px; }
+  .programme-panel { padding-right:18px; padding-left:18px; }
+  .programme-panel > div { grid-template-columns:1fr 1fr; gap:8px; margin-left:47px; }
+  .programme-panel p { font-size:13px; }
+  .programme-module.is-open .programme-panel > div { padding-bottom:22px; }
+  .works-scene { height:300vh; }
+  .works-sticky { height:100svh; }
+  .works-content { width:calc(100vw - 40px); grid-template-rows:15vh 1fr; gap:clamp(20px,5vh,40px); padding:clamp(28px,5vh,60px) 0; }
+  .works-head { padding-top:9vh; }
+  .works-title-big { font-size:clamp(46px,15vw,72px); }
+  .participant-gallery-count { top:0; }
+  .participant-gallery-stage { height:var(--gallery-art-height, 42vh); }
+  .participant-gallery-track { width:calc(100vw - 46px); height:calc((100vw - 46px) * .66); }
+  .participant-gallery-controls { left:50%; right:auto; transform:translateX(-50%); bottom:-64px; }
+  .participant-gallery-controls button { width:46px; height:46px; }
+  .participant-gallery-controls button svg { width:18px; height:18px; }
+  .questions-head { display:block; min-height:0; padding-top:80px; padding-bottom:53px; }
+  .questions-head h2 { font-size:clamp(47px,13vw,58px); line-height:.86; }
+  .questions-author { width:auto; margin-top:31px; }
+  .questions-portrait { width:70px; height:70px; }
+  .questions-portrait img { top:-50px; left:-40px; width:199px; height:266px; }
+  .questions-author p { max-width:250px; }
+  .questions-item { min-height:82px; padding:0 18px; grid-template-columns:33px minmax(0,1fr) 32px; gap:13px; }
+  .questions-number { width:33px; height:22px; font-size:9px; }
+  .questions-item h3 { font-size:clamp(16px,4.6vw,19px); line-height:1.07; }
+  .questions-plus { width:32px; height:32px; font-size:20px; }
+}
+
+/* Tablet: the two-column audience grid has room for reading-size type. */
+@media (min-width:601px) and (max-width:900px) {
+  .audience-content.container { padding:64px 28px 36px; }
+  .audience-intro h2 { max-width:620px; font-size:clamp(36px,5.1vw,44px); line-height:.91; }
+  .audience-author { margin-top:20px; }
+  .audience-author img { width:76px; height:76px; }
+  .audience-author b { font-size:17px; }
+  .audience-author span { font-size:12px; }
+  .audience-grid { gap:14px; margin-top:30px; }
+  .audience-card { border-radius:18px; }
+  .audience-card-tags { top:14px; right:11px; left:14px; font-size:7px; }
+  .audience-card-tags span { padding:4px 8px; }
+  .audience-card-copy { right:18px; left:18px; gap:7px; }
+  .audience-card-copy h3 { font-size:clamp(17px,2.2vw,20px); line-height:1.04; letter-spacing:-.05em; text-wrap:balance; }
+  .audience-card-copy p { font-size:clamp(11.5px,1.45vw,13px); line-height:1.23; }
+  .audience-card--designers .audience-card-copy, .audience-card--business .audience-card-copy { bottom:34px; }
+  .audience-card--freelancers .audience-card-copy { top:58px; }
+  .audience-card--newcomers .audience-card-copy { top:122px; }
+}
+
+@media (min-width:901px) {
+  .site-header, .motion-chrome { display:none!important; }
+  /* The first screen owns this expanded header.  Keep its higher-specificity
+     instance visible while the generic desktop headers remain suppressed. */
+  .intro-stage .site-header.container { display:block!important; visibility:visible; opacity:1; }
+}
+
+/* Pricing: a quiet white system, with the middle format clearly selected. */
+.pricing-section { position:relative; z-index:2; padding:clamp(54px,6vw,92px) 0; overflow:hidden; background:#e8e8e5; color:#0a0a0a; }
+.pricing-section::before { content:""; position:absolute; inset:0; background:radial-gradient(circle at 50% 0%, rgba(255,255,255,.82), transparent 45%); pointer-events:none; }
+.pricing-head, .pricing-grid { width:min(calc(100% - 64px), 1240px); margin-right:auto; margin-left:auto; }
+.pricing-head { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(230px,.42fr); gap:23px 64px; align-items:end; margin-bottom:34px; }
+.pricing-kicker { grid-column:1 / -1; margin:0; color:#777; font-size:11px; letter-spacing:.03em; text-transform:uppercase; }
+.pricing-head h2 { margin:0; font-size:clamp(48px,5.7vw,80px); font-weight:500; line-height:.88; letter-spacing:-.04em; }
+.pricing-head h2 span { color:#747474; font-weight:400; }
+.pricing-note { max-width:none; margin:0 0 3px; color:#636363; font-size:14px; line-height:1.42; letter-spacing:0; }
+.pricing-grid { position:relative; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:stretch; gap:8px; }
+.pricing-card { position:relative; display:flex; flex-direction:column; min-height:530px; padding:26px 24px 23px; overflow:hidden; border:1px solid #dededb; border-radius:21px; background:#fff; color:#0a0a0a; }
+.pricing-card::before { content:none; }
+.pricing-card[data-tariff="colleagues"] { z-index:1; border-color:#0c0c0c; background:#0c0c0c; color:#fff; box-shadow:0 20px 50px rgba(0,0,0,.28); }
+.pricing-card[data-tariff="colleagues"] .pricing-card-top { color:rgba(255,255,255,.6); }
+.pricing-card[data-tariff="colleagues"] .pricing-card-top span { border-color:rgba(255,255,255,.32); }
+.pricing-card[data-tariff="colleagues"] .pricing-lead { color:rgba(255,255,255,.62); }
+.pricing-card[data-tariff="colleagues"] .pricing-per { color:rgba(255,255,255,.5); }
+.pricing-card[data-tariff="colleagues"] .pricing-renew { color:rgba(255,255,255,.5); border-top-color:rgba(255,255,255,.16); }
+.pricing-card[data-tariff="colleagues"] li::before { background:#fff; }
+.pricing-card[data-tariff="colleagues"] .pricing-button { background:#fff; color:#0c0c0c; }
+.pricing-card[data-tariff="colleagues"] .pricing-button:hover { background:#e8e8e5; color:#0c0c0c; }
+.pricing-card--focus { background:#fff; color:#0a0a0a; }
+.pricing-card-top { display:flex; align-items:center; justify-content:space-between; gap:10px; color:#676767; font-size:11px; line-height:1; text-transform:uppercase; }
+.pricing-card-top span { display:grid; width:31px; height:20px; place-items:center; border:1px solid #b7b7b4; border-radius:999px; font-size:9px; }
+.pricing-card-top p { margin:0; }
+.pricing-price { margin:38px 0 14px; font-size:clamp(34px,3.2vw,48px); font-weight:600; line-height:.9; letter-spacing:-.02em; }
+.pricing-per { margin-left:7px; font-size:14px; font-weight:500; letter-spacing:0; color:#8a8a88; }
+.pricing-renew { margin:16px 0 18px; padding-top:15px; border-top:1px solid #dededb; color:#8a8a88; font-size:12px; line-height:1.35; letter-spacing:0; }
+.pricing-renew--included { color:#2e7d32; }
+/* В третьем тарифе список длиннее, свободного места под строкой почти нет —
+   без этого отступа текст «Бесплатные обновления» прилипал к кнопке. */
+.pricing-card:last-child .pricing-renew { margin-bottom:27px; }
+.pricing-lead { min-height:57px; max-width:260px; margin:0; color:#60605e; font-size:13px; line-height:1.42; letter-spacing:0; }
+.pricing-card--focus .pricing-lead { color:#60605e; }
+.pricing-card ul { display:grid; gap:9px; margin:28px 0 25px; padding:0; border:0; list-style:none; }
+.pricing-card li { display:grid; grid-template-columns:6px minmax(0,1fr); gap:11px; font-size:13px; line-height:1.32; letter-spacing:0; }
+.pricing-card li::before { content:""; width:6px; height:6px; margin-top:5px; border-radius:50%; background:#0c0c0c; }
+
+.pricing-button { display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; min-height:50px; margin-top:auto; padding:0 18px; border:0; border-radius:11px; background:#0c0c0c; color:#fff; font-size:12.5px; font-weight:600; letter-spacing:-.03em; text-align:left; transition:transform .28s cubic-bezier(.16,1,.3,1), background .2s ease; }
+.pricing-button span { font-size:19px; line-height:1; }
+.pricing-card--focus .pricing-button { background:#0c0c0c; color:#fff; }
+.pricing-button:hover { transform:translateY(-2px); background:#c82525; color:#fff; }
+
+@media (max-width:900px) {
+  .pricing-section { padding:72px 0 82px; }
+  .pricing-head, .pricing-grid { width:min(calc(100% - 32px), 560px); }
+  .pricing-head { display:block; margin-bottom:35px; }
+  .pricing-kicker { margin-bottom:25px; }
+  .pricing-head h2 { font-size:clamp(54px,15vw,72px); }
+  .pricing-note { margin-top:26px; }
+  .pricing-grid { grid-template-columns:1fr; gap:10px; }
+  .pricing-card { min-height:0; padding:21px; border-radius:17px; }
+  .pricing-price { margin-top:34px; font-size:42px; }
+  .pricing-lead { min-height:0; }
+  .pricing-card ul { margin:25px 0; padding:19px 0; }
+}
+
+/* Footer: the final calm, practical point of the page. */
+.site-footer { --footer-accent:#e73b23; position:relative; z-index:2; overflow:hidden; background:#080808; color:#fff; }
+.site-footer::before { content:none; }
+.site-footer__top { position:relative; padding-top:clamp(76px,10vw,144px); padding-bottom:clamp(54px,7vw,94px); border-bottom:1px solid rgba(255,255,255,.23); }
+.site-footer__eyebrow { margin:0 0 clamp(16px,2vw,26px); color:#a6a6a1; font-size:11px; font-weight:700; letter-spacing:.055em; text-transform:uppercase; }
+.site-footer__lead { display:flex; align-items:end; justify-content:space-between; gap:40px; }
+.site-footer__lead h2 { max-width:890px; margin:0; font-size:clamp(48px,5.7vw,80px); font-weight:500; line-height:.9; letter-spacing:-.04em; }
+.site-footer__lead h2 span { color:#858582; }
+.site-footer__cta { display:inline-flex; align-items:center; justify-content:space-between; gap:31px; min-width:242px; min-height:58px; padding:0 20px 0 24px; border-radius:999px; border:1px solid rgba(255,255,255,.28); background:transparent; color:#fff; font-size:14px; font-weight:500; letter-spacing:-.02em; transition:transform .25s cubic-bezier(.16,1,.3,1), background .2s ease, color .2s ease; }
+.site-footer__cta span { font-size:25px; line-height:1; }
+.site-footer__cta:hover { background:#fff; color:#080808; transform:translateY(-3px); }
+.site-footer__grid { position:relative; display:grid; grid-template-columns:1.05fr .8fr 1.24fr 1.35fr; gap:clamp(25px,4.2vw,70px); padding-top:clamp(48px,6vw,84px); padding-bottom:clamp(52px,6vw,84px); }
+.site-footer__brand img { display:block; width:64px; height:auto; filter:brightness(0) invert(1); }
+.site-footer__brand p { margin:9px 0 0; color:#a6a6a1; font-size:12px; line-height:1.06; letter-spacing:-.045em; }
+.site-footer__links { display:grid; align-content:start; gap:10px; font-size:13px; line-height:1.2; letter-spacing:-.035em; }
+.site-footer__links p { margin:0 0 11px; color:#8e8e89; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.site-footer__links a { width:max-content; max-width:100%; color:#f4f4f2; transition:color .2s ease, transform .2s ease; }
+.site-footer__links a:hover { color:#fff; transform:translateX(3px); }
+.site-footer__care { align-self:start; padding:22px; border:1px solid rgba(255,255,255,.14); border-radius:18px; background:rgba(255,255,255,.03); }
+.site-footer__care > p { margin:0 0 17px; color:#b7b7b0; font-size:12px; letter-spacing:-.035em; }
+.site-footer__care a { display:flex; align-items:end; justify-content:space-between; gap:20px; font-size:clamp(19px,1.75vw,27px); font-weight:500; line-height:.9; letter-spacing:-.075em; }
+.site-footer__care svg { width:22px; height:22px; flex:none; padding:11px; box-sizing:content-box; border-radius:50%; background:#fff; fill:#080808; stroke:none; transition:transform .25s cubic-bezier(.16,1,.3,1); }
+.site-footer__care a:hover { color:#fff; }
+.site-footer__care a:hover svg { transform:scale(1.06); }
+.site-footer__bottom { position:relative; display:flex; justify-content:space-between; gap:30px; padding-top:19px; padding-bottom:22px; border-top:1px solid rgba(255,255,255,.23); color:#878783; font-size:11px; line-height:1.35; letter-spacing:0; }
+.site-footer__bottom p { margin:0; }
+.site-footer__bottom p:last-child { text-align:right; }
+
+@media (max-width:900px) {
+  .site-footer__top { padding-top:74px; padding-bottom:45px; }
+  .site-footer__lead { display:block; }
+  .site-footer__lead h2 { font-size:clamp(52px,14vw,74px); }
+  .site-footer__cta { width:100%; margin-top:36px; }
+  .site-footer__grid { grid-template-columns:1fr 1fr; gap:42px 22px; padding-top:46px; padding-bottom:48px; }
+  .site-footer__brand { grid-column:1 / -1; display:flex; align-items:end; gap:12px; }
+  .site-footer__brand p { margin:0; }
+  .site-footer__care { grid-column:1 / -1; padding:19px; }
+  .site-footer__bottom { display:grid; gap:10px; padding-top:17px; padding-bottom:20px; }
+  .site-footer__bottom p:last-child { text-align:left; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .motion-sequence { height:auto; }
+  .motion-stage { position:relative; height:auto; min-height:0; padding:130px 18px 64px; }
+  .motion-curtain, .motion-chrome, .motion-tunnel, .motion-posters, .motion-system, .motion-trails, .motion-scroll-hint, .motion-flash { display:none; }
+  .motion-words { position:relative; display:grid; gap:5px; font-size:clamp(32px, 7vw, 60px); text-align:center; }
+  .motion-words span { position:relative; inset:auto; opacity:1; transform:none!important; }
+  .motion-destinations, .motion-system-targets { display:none; }
+  .motion-result { position:relative; top:auto; right:auto; left:auto; margin:42px 0 0; transform:none; clip-path:none; font-size:clamp(40px,10vw,62px); }
+  .motion-result i { transform:none!important; }
+  .works-scene { height:auto; }
+  .works-sticky { position:relative; height:auto; min-height:100svh; padding:80px 0; }
+  .work-tunnel { position:absolute; opacity:.5; }
+  .work-tunnel-canvas { transform:none !important; }
+}
+
+/* ===== ПРОИЗВОДИТЕЛЬНОСТЬ НА МОБИЛКЕ =====
+   22 постоянных will-change переполняют GPU телефона и вызывают рывки при
+   скролле (особенно обратном). Оставляем слои только там, где идёт активная
+   анимация кадр-в-кадр: motion-слова, туннель, карточки коверфлоу. */
+@media (max-width:900px) {
+  .marquee-rail,
+  .motion-curtain, .motion-tunnel, .motion-flash span, .motion-result, .motion-result i,
+  .motion-system-brace, .motion-system-title, .motion-title-glyph, .motion-trails span,
+  .motion-poster,
+  .audience-content.container, .audience-card-face,
+  .programme-section,
+  .works-kicker, .works-title,
+  .participant-gallery-stage { will-change:auto; }
+}
+
+/* ===== МОБИЛЬНЫЕ ПРАВКИ ПО ФИДБЕКУ ===== */
+@media (max-width:900px) {
+  /* 1. Слова motion на 15% меньше — влезают свободнее */
+  .motion-words span { font-size:.85em; }
+
+  /* 2. Тарифы: воздух между списком, «Продление» и кнопкой */
+  .pricing-renew { margin-top:22px; padding-top:18px; margin-bottom:20px; }
+  .pricing-button { margin-top:0; min-height:56px; }
+
+  /* 3. «Чувствуешь разницу»: одинаковые отступы по краям, не прижимать к краю */
+  .difference-content { padding-left:16px; padding-right:16px; box-sizing:border-box; }
+  .difference-grid { width:100%; }
+
+  /* 4. Самый мелкий текст — чуть крупнее (читаемость на мелких экранах) */
+  .pricing-renew, .pricing-per { font-size:13px; }
+  .works-kicker, .participant-gallery-count { font-size:12px; }
+  .programme-lesson-desc { font-size:14px; }
+  .questions-answer p { font-size:15px; }
+
+  /* 5. Единый край контента на всех секциях = 16px (как шапка и первый блок) */
+  .programme-trigger, .programme-panel,
+  .questions-trigger, .questions-panel { padding-left:16px; padding-right:16px; }
+  .pricing-head, .pricing-grid { width:calc(100% - 32px); }
+}
+
+/* Фирменная стрелка вместо юникод-символа ↗ — единый дизайнерский элемент. */
+.brand-arrow { display:inline-block; width:1em; height:1em; vertical-align:-.08em; fill:currentColor; }
+.btn-arrow { display:inline-flex; align-items:center; justify-content:center; font-size:15px; line-height:1; }
+.pricing-button .btn-arrow { font-size:16px; }
+.site-footer__cta .btn-arrow { font-size:17px; }
+.questions-care .brand-arrow { width:.75em; height:.75em; margin-left:2px; }
+
+/* works на мобилке: контент по центру, клиренс под шапку, без дыры */
+@media (max-width:900px) {
+  .works-content { grid-template-rows:auto 1fr; align-content:center; row-gap:18px; padding-top:96px; }
+  .works-head { align-self:center; padding-top:0; gap:10px; }
+  .participant-gallery-stage { margin-top:0; }
+  .participant-gallery-count { top:74px; right:16px; }
+}
+
+/* ===== АДАПТАЦИЯ ПОД ВЫСОТУ ЭКРАНА =====
+   Первый экран был свёрстан только по ширине (top в vw), поэтому на низких
+   ноутбуках (640–780px) кнопка наезжала на ленту работ, а шапка — на заголовок.
+   Ниже контент пропорционально ужимается по высоте вместо наслаивания. */
+
+/* Ноутбуки ~700–800px высоты */
+@media (min-width:901px) and (max-height:800px) {
+  .intro-stage .hero-copy { top:clamp(128px, 18vh, 158px); width:clamp(700px, 60vw, 980px); }
+  .intro-stage .hero h1 { width:clamp(700px, 60vw, 980px); font-size:clamp(40px, 5.4vh, 60px); }
+  .hero-kicker { min-height:clamp(28px, 3.6vh, 36px); margin-bottom:clamp(14px, 1.9vh, 20px); font-size:clamp(12px, 1.7vh, 14px); }
+  .hero-cta { top:clamp(216px, 30vh, 278px); }
+  .showcase-marquee { padding-bottom:clamp(20px, 3vh, 36px); }
+}
+
+/* Низкие ноутбуки ~600–700px (случай ученицы: 1280x640) */
+@media (min-width:901px) and (max-height:700px) {
+  .intro-stage .site-header { min-height:76px; padding:14px 0 12px; }
+  .intro-stage .hero-copy { top:clamp(132px, 20vh, 148px); width:clamp(640px, 56vw, 900px); }
+  .intro-stage .hero h1 { width:clamp(640px, 56vw, 900px); font-size:clamp(34px, 5.2vh, 48px); line-height:.98; }
+  .hero-kicker { min-height:26px; margin-bottom:12px; font-size:12px; }
+  .hero-cta { top:clamp(210px, 31vh, 242px); }
+  .hero-hint, .hero-gallery-note { font-size:12px; }
+  .showcase-marquee { padding-bottom:16px; }
+  .work-card { max-height:38vh; }
+}
+
+/* Очень низкие экраны (<620px) — минимальная компоновка */
+@media (min-width:901px) and (max-height:620px) {
+  .intro-stage .hero-copy { top:104px; }
+  .intro-stage .hero h1 { font-size:clamp(30px, 5vh, 40px); }
+  .hero-cta { top:180px; }
+  .hero-hint { display:none; }
+}
+
+/* Блок «Для кого»: заголовок не должен наезжать на шапку при низком экране */
+@media (min-width:901px) and (max-height:800px) {
+  .audience-content.container { justify-content:flex-start; padding-top:110px; }
+  .audience-intro h2 { font-size:clamp(32px, 4.4vh, 44px); }
+  .audience-author img { width:72px; height:72px; }
+  .audience-grid { margin-top:clamp(24px, 3.4vh, 40px); }
+}
+@media (min-width:901px) and (max-height:700px) {
+  .audience-content.container { justify-content:flex-start; padding-top:100px; }
+  .audience-intro h2 { font-size:clamp(28px, 4.2vh, 38px); }
+  .audience-author img { width:62px; height:62px; }
+  .audience-author p span { font-size:12px; }
+}
+
+/* Кнопка тарифа — всегда у нижнего края карточки (карточки разной высоты). */
+.pricing-card { justify-content:flex-start; }
+.pricing-card .pricing-renew { margin-top:auto; }
+a.pricing-button { text-decoration:none; }
+
+/* ═══ ФИКСЫ ПО ФИНАЛЬНОМУ АУДИТУ ═══ */
+
+/* 1. КРИТИЧНО (мобилка): заголовок «Чувствуешь разницу?» наезжал на шапку.
+      difference-content центрировался по вертикали, при нехватке высоты
+      первая строка уходила под фиксированную шапку. */
+@media (max-width:900px) {
+  .difference-content { justify-content:flex-start; padding-top:124px; }
+}
+
+/* 2. КРИТИЧНО (низкие ноутбуки): карточки тарифов обрезались на ~91px,
+      кнопки покупки не были видны без доп. скролла. */
+@media (min-width:901px) and (max-height:820px) {
+  .pricing-section { padding-top:40px; padding-bottom:40px; }
+  .pricing-head { margin-bottom:22px; }
+  .pricing-head h2 { font-size:clamp(38px,5vh,52px); }
+  .pricing-card { min-height:0; padding:20px 20px 18px; }
+  .pricing-price { margin:20px 0 10px; font-size:clamp(28px,3.6vh,38px); }
+  .pricing-lead { min-height:0; margin-bottom:4px; }
+  .pricing-card ul { gap:6px; margin:14px 0 12px; }
+  .pricing-card li { font-size:12.5px; line-height:1.28; }
+  .pricing-renew { margin-top:10px; padding-top:10px; }
+  .pricing-button { min-height:44px; }
+}
+
+/* 3. Секция «Для кого» выпадала из общей сетки (на 1920 — почти 200px).
+      Приводим к тем же полям, что у остальных секций. */
+@media (min-width:901px) {
+  .audience-content.container {
+    padding-left:max(32px, calc((100vw - var(--shell)) / 2));
+    padding-right:max(32px, calc((100vw - var(--shell)) / 2));
+  }
+}
+
+/* 4. Мобилка: аккордеон «Вопросы» стоял на 34px вместо 16px —
+      18px паддинга на обёртке .questions-item суммировались с 16px триггера. */
+@media (max-width:900px) {
+  .questions-item { padding-left:0; padding-right:0; }
+}
+
+/* ============================================================
+   ШИРОКИЕ ЭКРАНЫ (1600px+, вплоть до 4K/5K)
+   Эталон вёрстки — 1440px. На больших мониторах сайт не должен
+   «висеть узкой колонкой в пустоте»: оболочка и типографика
+   растут ПРОПОРЦИОНАЛЬНО, сохраняя те же соотношения.
+   --shell — ширина контентной оболочки, --up — множитель размеров.
+   ============================================================ */
+@media (min-width:1600px) {
+  :root { --shell:1560px; --up:1.06; }
+}
+@media (min-width:1920px) {
+  :root { --shell:1760px; --up:1.18; }
+}
+@media (min-width:2400px) {
+  :root { --shell:2100px; --up:1.42; }
+}
+@media (min-width:3000px) {
+  :root { --shell:2500px; --up:1.7; }
+}
+@media (min-width:3600px) {
+  :root { --shell:2900px; --up:2; }
+}
+
+@media (min-width:1600px) {
+  /* --- Крупные заголовки: снимаем потолок clamp(), масштабируем --- */
+  .hero h1                { font-size:calc(116px * var(--up)); }
+  .intro-stage .hero h1   { font-size:calc(60px * var(--up)); }
+  .motion-result          { font-size:calc(80px * var(--up)); }
+  .motion-system-title    { font-size:calc(60px * var(--up)); }
+  .audience-intro h2      { max-width:calc(680px * var(--up)); font-size:calc(56px * var(--up)); }
+  .difference-title       { font-size:calc(80px * var(--up)); }
+  .programme-head h2      { font-size:calc(80px * var(--up)); }
+  .programme-stats dt     { font-size:calc(58px * var(--up)); }
+  .questions-head h2      { font-size:calc(80px * var(--up)); }
+  .pricing-head h2        { font-size:calc(80px * var(--up)); }
+  .site-footer__lead h2   { max-width:calc(890px * var(--up)); font-size:calc(80px * var(--up)); }
+  .works-title            { font-size:calc(106px * var(--up)); }
+
+  /* --- Основной текст и подписи --- */
+  body                    { font-size:calc(16px * var(--up)); }
+  .eyebrow                { font-size:calc(11px * var(--up)); margin-bottom:calc(19px * var(--up)); }
+  .source-note            { max-width:calc(370px * var(--up)); font-size:calc(11px * var(--up)); }
+  .difference-copy p      { max-width:calc(520px * var(--up)); font-size:calc(16px * var(--up)); }
+  .programme-lesson-title { max-width:46ch; font-size:calc(17px * var(--up)); }
+  .programme-lesson-desc  { max-width:46ch; font-size:calc(15px * var(--up)); }
+  .pricing-note           { max-width:none; font-size:calc(14px * var(--up)); }
+  .pricing-lead           { max-width:calc(260px * var(--up)); font-size:calc(13px * var(--up)); min-height:calc(57px * var(--up)); }
+  .audience-author p,
+  .questions-author p     { max-width:calc(260px * var(--up)); }
+
+  /* --- Шапка --- */
+  .brand                  { font-size:calc(18px * var(--up)); }
+  nav                     { font-size:calc(13px * var(--up)); gap:calc(28px * var(--up)); }
+  .header-cta             { font-size:calc(12px * var(--up)); }
+  .header-cta span        { font-size:calc(18px * var(--up)); }
+  .site-header            { padding:calc(26px * var(--up)) 0; }
+
+  /* --- Кнопки --- */
+  .button                 { min-height:calc(58px * var(--up)); padding:calc(14px * var(--up)) calc(19px * var(--up)); gap:calc(45px * var(--up)); font-size:calc(14px * var(--up)); }
+  .button span            { font-size:calc(23px * var(--up)); }
+  .text-link              { font-size:calc(13px * var(--up)); }
+  .text-link span         { font-size:calc(18px * var(--up)); }
+
+  /* --- Аккордеоны: строки не должны быть тонкой полоской --- */
+  .programme-trigger      { min-height:calc(89px * var(--up)); grid-template-columns:calc(47px * var(--up)) minmax(0,1fr) calc(39px * var(--up)); gap:calc(20px * var(--up)); }
+  .questions-trigger      { min-height:calc(109px * var(--up)); grid-template-columns:calc(39px * var(--up)) minmax(0,1fr) calc(37px * var(--up)); gap:calc(27px * var(--up)); }
+  .hero-hint              { font-size:calc(11px * var(--up)); bottom:calc(26px * var(--up)); }
+}
+
+/* ============================================================
+   ПЕРВЫЙ ЭКРАН НА ШИРОКИХ МОНИТОРАХ
+   Композиция первого экрана абсолютная и считается от vw, но все
+   значения упирались в потолок clamp() на 1440px. Из-за этого на 4K
+   заголовок и шапка оставались размером «как на ноутбуке», а вокруг
+   зияла пустота. Здесь потолки сняты: композиция продолжает расти
+   от ширины экрана, сохраняя те же пропорции, что и на 1440px.
+   Коэффициенты подобраны так, чтобы 4K не выглядел раздутым.
+   ============================================================ */
+@media (min-width:1600px) {
+  /* Заголовок и копия. top задан в svh: композиция опускается вместе
+     с ростом высоты экрана, поэтому дыры между кнопкой и лентой нет. */
+  /* Свободная зона = экран минус шапка (7.8vw) минус лента (26svh) минус
+     полоса подписей. Группа «кикер + заголовок + кнопка» центрируется в ней. */
+  /* --wide-band должен совпадать с реальной высотой ленты (см. .showcase-marquee),
+     иначе подписи и заголовок считают свободную зону неверно и лента уезжает
+     за нижнюю границу экрана. */
+  .intro-stage { --wide-top:7.8vw; --wide-band:min(302px, 30svh); --wide-free:calc(100svh - var(--wide-top) - var(--wide-band)); }
+  .intro-stage .hero-copy { top:calc(var(--wide-top) + var(--wide-free) * .40); transform:translate(-50%,-50%); width:52.5vw; }
+  .intro-stage .hero h1   { width:52.5vw; font-size:3.55vw; }
+  .hero-kicker            { min-height:2.0vw; margin-bottom:1.24vw; padding:0 1.06vw; font-size:.77vw; }
+
+  /* Кнопка — привязана к той же сетке, поэтому не наезжает на заголовок */
+  /* Кнопка идёт сразу под копией — в потоке внутри неё, а не абсолютом,
+     иначе она разъезжается с заголовком при смене пропорций экрана. */
+  .intro-stage .hero-copy .hero-cta { position:static; transform:none; display:inline-flex; margin-top:2.1vw; }
+  .intro-stage .hero .hero-cta .hero-cta-label { width:10.35vw; height:2.54vw; padding:0 1.77vw; font-size:.77vw; }
+  .intro-stage .hero .hero-cta .hero-cta-icon  { width:3.25vw !important; height:2.54vw !important; }
+  .intro-stage .hero .hero-cta .hero-cta-icon .action-pair__icon-image { width:.71vw; height:.71vw; }
+
+  /* Подписи слева/справа */
+  .hero-hint { left:3.55vw; top:auto; bottom:calc(var(--wide-band) + 3.1vw); grid-template-columns:2.13vw 6.8vw; column-gap:1.24vw; font-size:.71vw; align-items:center; }
+  .hero-hint-icon { width:2.13vw; height:1.77vw; }
+  .hero-gallery-note { right:2.42vw; top:auto; bottom:calc(var(--wide-band) + 3.1vw); width:12.2vw; font-size:.71vw; }
+
+  /* Шапка первого экрана — вся сетка переводится в vw, чтобы логотип,
+     «20+ уроков», меню и кнопка держали те же интервалы, что на 1440px. */
+  .intro-stage .site-header.container { height:7.8vw; }
+  .intro-stage .brand { left:2.9vw; top:2.0vw; gap:.35vw; }
+  .intro-stage .brand img { width:3.13vw; }
+  .intro-stage .brand > span { font-size:.83vw; }
+  .header-duration { left:8.1vw; top:2.07vw; gap:.41vw; }
+  .header-duration span { font-size:.71vw; }
+  .header-duration strong { font-size:1.18vw; }
+  .intro-stage nav { left:calc(75% - 4.58vw); top:1.77vw; gap:.06vw; font-size:.71vw; }
+  .header-side { right:2.36vw; top:1.95vw; }
+  .intro-stage .header-cta { min-height:2.42vw; padding:0 1.77vw; font-size:.71vw; }
+
+  /* Плашка соцдоказательства сверху */
+  .hero-proof { top:1.77vw; }
+  .hero-proof p { font-size:.71vw; }
+  .proof-avatars img { width:2.36vw; height:2.36vw; margin-left:-.47vw; }
+
+  /* Лента снизу масштабируется своей grid-раскладкой — трогаем только высоту,
+     чтобы на низком 4K (16:9) она не съедала композицию. */
+  /* Ширина колонок упирается в потолок (546/499/529px), поэтому и высота
+     ленты должна остановиться на той же отметке — иначе слоты становятся
+     квадратными и широкие работы режет по бокам. 302px держит пропорцию
+     ~1.65, при которой картинки входят целиком, как на эталонных 1440px. */
+  .showcase-marquee { height:min(302px, 30svh); }
+}
+
+/* ============================================================
+   БЛОК СЛОВ-НАВЫКОВ И ЛЕТЯЩИХ ОБЛОЖЕК НА ШИРОКИХ ЭКРАНАХ
+   Слова и постеры были прибиты к пикселям (36px / 151px), поэтому
+   на 4K превращались в мелкие крошки посреди пустоты. Позиции
+   заданы в процентах, так что достаточно масштабировать размеры.
+   ============================================================ */
+@media (min-width:1600px) {
+  .motion-words        { font-size:calc(36px * var(--up)); }
+  .motion-destinations { font-size:calc(60px * var(--up)); }
+  .motion-poster-blue  { width:calc(151px * var(--up)); height:calc(190px * var(--up)); }
+  .motion-poster-red   { width:calc(206px * var(--up)); height:calc(295px * var(--up)); }
+}
+
+/* Остальные блоки, где ширина или размеры были прибиты к пикселям. */
+@media (min-width:1600px) {
+  .difference-grid          { width:min(calc(1320px * var(--up)), 100%); }
+  .difference-copy h3       { font-size:calc(28px * var(--up)); }
+  .difference-card:last-child .difference-copy h3 { font-size:calc(21px * var(--up)); }
+  .programme-head           { grid-template-columns:minmax(calc(320px * var(--up)), .8fr) 1.2fr; padding-top:calc(150px * var(--up)); padding-bottom:calc(67px * var(--up)); }
+  .programme-stats dd       { font-size:calc(13px * var(--up)); }
+}
+
+/* Слайдер работ, тарифы, вопросы и футер на широких экранах. */
+@media (min-width:1600px) {
+  .participant-gallery-track { width:min(55vw, calc(720px * var(--up))); height:min(38vw, calc(440px * var(--up))); }
+  .pricing-head, .pricing-grid { width:min(calc(100% - 64px), calc(1240px * var(--up))); }
+  .pricing-head { grid-template-columns:minmax(0,1fr) minmax(calc(230px * var(--up)), .42fr); gap:calc(23px * var(--up)) calc(64px * var(--up)); margin-bottom:calc(34px * var(--up)); }
+  .pricing-card  { min-height:calc(530px * var(--up)); padding:calc(26px * var(--up)) calc(24px * var(--up)) calc(23px * var(--up)); border-radius:calc(21px * var(--up)); }
+  .pricing-price { margin:calc(38px * var(--up)) 0 calc(14px * var(--up)); font-size:calc(48px * var(--up)); }
+  .pricing-grid  { gap:calc(8px * var(--up)); }
+  .questions-portrait img { width:calc(258px * var(--up)); height:calc(344px * var(--up)); top:calc(-65px * var(--up)); left:calc(-51px * var(--up)); }
+  .questions-panel > div  { margin-left:calc(66px * var(--up)); max-width:calc(820px * var(--up)); }
+}
+
+/* Внутренности карточек тарифов и мелкие подписи — тоже были в пикселях. */
+@media (min-width:1600px) {
+  .pricing-kicker  { font-size:calc(11px * var(--up)); }
+  .pricing-card ul { gap:calc(9px * var(--up)); margin:calc(28px * var(--up)) 0 calc(25px * var(--up)); }
+  .pricing-card li { grid-template-columns:calc(6px * var(--up)) minmax(0,1fr); gap:calc(11px * var(--up)); font-size:calc(13px * var(--up)); }
+  .pricing-card li::before { width:calc(6px * var(--up)); height:calc(6px * var(--up)); margin-top:calc(5px * var(--up)); }
+  .pricing-renew   { margin-top:calc(16px * var(--up)); padding-top:calc(15px * var(--up)); font-size:calc(12px * var(--up)); }
+  .pricing-button  { min-height:calc(50px * var(--up)); padding:0 calc(18px * var(--up)); gap:calc(14px * var(--up)); border-radius:calc(11px * var(--up)); font-size:calc(12.5px * var(--up)); }
+  .pricing-button span { font-size:calc(19px * var(--up)); }
+}
+
+/* Аккордеоны, блок автора и подписи тарифов — последние пиксельные размеры. */
+@media (min-width:1600px) {
+  .programme-number  { width:calc(40px * var(--up)); height:calc(25px * var(--up)); font-size:calc(11px * var(--up)); }
+  .programme-name    { font-size:calc(23px * var(--up)); }
+  .programme-plus    { width:calc(39px * var(--up)); height:calc(39px * var(--up)); font-size:calc(24px * var(--up)); }
+  .programme-panel > div { margin-left:calc(67px * var(--up)); }
+  .programme-lessons { gap:calc(26px * var(--up)) calc(48px * var(--up)); }
+  .programme-lesson  { gap:calc(7px * var(--up)); }
+  .questions-number  { width:calc(39px * var(--up)); height:calc(25px * var(--up)); font-size:calc(12px * var(--up)); }
+  .questions-item h3 { font-size:calc(23px * var(--up)); }
+  .questions-plus    { width:calc(37px * var(--up)); height:calc(37px * var(--up)); font-size:calc(23px * var(--up)); }
+  .questions-author  { width:calc(300px * var(--up)); }
+  .questions-portrait { width:calc(91px * var(--up)); height:calc(91px * var(--up)); }
+  .questions-author b { font-size:calc(19px * var(--up)); }
+}
+
+/* Кнопка первого экрана на широких экранах стоит в потоке (не абсолютом),
+   поэтому hover'у не нужен translateX(-50%) — из-за него кнопка «убегала»
+   вбок на пол-своей ширины. И размер держим не меньше эталонного 1440px. */
+@media (min-width:1600px) {
+  .intro-stage .hero .hero-cta:hover { transform:translateY(-2px); }
+  .intro-stage .hero .hero-cta .hero-cta-label { width:max(214px, 10.35vw); height:max(53px, 2.54vw); padding:0 max(37px, 1.77vw); font-size:max(16px, .77vw); }
+  .intro-stage .hero .hero-cta .hero-cta-icon  { width:max(67px, 3.25vw) !important; height:max(53px, 2.54vw) !important; }
+  .intro-stage .hero .hero-cta .hero-cta-icon .action-pair__icon-image { width:max(15px, .71vw); height:max(15px, .71vw); }
+}
+
+/* ============================================================
+   МОБИЛКА: ПЛОСКАЯ РАСКЛАДКА ПОСЛЕ БЛОКА «ДЛЯ КОГО»
+   ------------------------------------------------------------
+   До «Для кого» (первый экран, motion, audience) всё остаётся
+   как было — там хореография работает.
+
+   Дальше четыре секции подряд наезжали друг на друга через
+   margin-top:-100svh, и у каждой внутри был свой sticky. Телефон
+   пересчитывал эту стопку на каждом кадре — отсюда «шатание»
+   между тарифами и туннелем и дёрганье при обратном скролле.
+   Плюс svh на iOS плавает вместе с адресной строкой Safari,
+   из-за чего высоты скакали прямо во время скролла.
+
+   Здесь секции difference / programme / works / pricing идут
+   обычным потоком, друг за другом. Анимации внутри остаются.
+   ============================================================ */
+@media (max-width:900px) {
+  /* 1. «Чувствуешь разницу» — обычный блок, без наезда и sticky. */
+  .difference-section { height:auto; margin-top:0; }
+  .difference-sticky  { position:static; height:auto; display:block; }
+  .difference-content { min-height:0; padding-top:72px; padding-bottom:72px; }
+
+  /* 2. Туннель работ. 180vh оказалось слишком мало: сцена пролетала
+        рывком, а при скролле ВВЕРХ не успевала отрабатывать кадры и
+        лагала. 260vh дают спокойный ход в обе стороны, оставаясь
+        заметно короче исходных 300vh. */
+  .works-scene  { height:260vh; }
+  .works-sticky { height:100dvh; }
+
+  /* 3. Тарифы — гарантированно в потоке, ничем не перекрыты. */
+  .pricing-section { position:relative; z-index:4; margin-top:0; }
+}
+
+/* iOS Safari: svh меняется вместе с показом/скрытием адресной строки,
+   из-за чего высота секций скачет прямо во время скролла. Для секций
+   после «Для кого» фиксируем высоту в dvh — она стабильна. */
+@media (max-width:900px) {
+  .works-sticky, .participant-gallery-stage { height:100dvh; }
+  .participant-gallery-stage { height:var(--gallery-art-height, 42dvh); }
+}
+
+/* ============================================================
+   «ДЛЯ КОГО» НА МОБИЛКЕ: БОЛЬШЕ ПУТИ ПРОКРУТКИ
+   ------------------------------------------------------------
+   Секция 260svh при наезде -100svh давала всего ~1350px чистого
+   пути, а один свайп пальцем — ~717px. Блок проходился за два
+   свайпа: первый — стоит, второй — уже растворился, промежутка
+   не было вовсе. Колесо мыши на десктопе двигает меньше, поэтому
+   там та же высота работала, а на телефоне — нет.
+   380svh дают ~2500px: свайп 1 — блок встал и читается,
+   свайп 2 — карточки растворяются, свайп 3 — уходим дальше.
+   ============================================================ */
+@media (max-width:900px) {
+  /* «Для кого» на мобилке — обычный блок в потоке, без шторы и наезда.
+     Раньше секция была высотой 380svh с margin-top:-100svh и sticky-сценой
+     внутри: контент жил в контейнере height:100svh и не помещался
+     (переполнение 15-27px на разных айфонах, а в Safari ещё и панель
+     браузера съедала низ). Плюс после растворения оставался пустой
+     чёрный экран — «дыра» на остаток высоты секции. */
+  .audience-section { height:auto; min-height:0; margin-top:0; }
+  /* JS вешает на сцену is-pinned/is-ended — эти классы перебивали static
+     и уводили блок за экран (секция схлопывалась в высоту 0, оставалась
+     чёрная дыра). Гасим все три состояния. */
+  .audience-stage,
+  .audience-stage.is-pinned,
+  .audience-stage.is-ended {
+    position:static; inset:auto; width:auto; height:auto; z-index:auto;
+  }
+  .audience-content.container {
+    height:auto; min-height:0;
+    padding:96px 16px 72px;
+    /* Шторы больше нет: блок не растворяется, а просто уходит вверх. */
+    opacity:1; filter:none; transform:none;
+  }
+  .audience-grid { margin-top:20px; }
+}
+
+/* ============================================================
+   SAFARI: ЛЕНТА РАБОТ НА ПЕРВОМ ЭКРАНЕ
+   ------------------------------------------------------------
+   Лента и подпись под ней были прибиты к фиксированным 558/562px
+   ОТ ВЕРХА экрана. В Safari нижняя панель браузера съедает часть
+   вьюпорта, и низ ленты вместе с подписью уходил за границу —
+   работы обрезались. На iPhone Pro Max подпись вылезала на 37px,
+   на iPhone 14 стояла впритык без запаса.
+
+   Привязываем блок к НИЗУ: сначала подпись, над ней лента.
+   Тогда что бы ни делала панель браузера, низ всегда виден.
+   ============================================================ */
+@media (max-width:900px) {
+  .mobile-project-meta {
+    top:auto;
+    bottom:max(14px, env(safe-area-inset-bottom, 0px));
+  }
+  .showcase-marquee {
+    top:auto;
+    /* над подписью: её высота ~30px + отступ */
+    bottom:calc(max(14px, env(safe-area-inset-bottom, 0px)) + 46px);
+  }
+}
+
+/* Низкие экраны: существующие правила (max-height:760px) уже поджимают
+   верхнюю группу. Здесь только подстраховываем низ, чтобы лента с
+   подписью не упирались в край на совсем коротких экранах. */
+@media (max-width:900px) and (max-height:680px) {
+  .showcase-marquee   { bottom:calc(max(10px, env(safe-area-inset-bottom, 0px)) + 40px); }
+  .mobile-project-meta { bottom:max(10px, env(safe-area-inset-bottom, 0px)); font-size:11px; }
+}
+
+/* ============================================================
+   ПЕРВЫЙ ЭКРАН: БЕЗ ДВОЙНОЙ ЗАГРУЗКИ
+   ------------------------------------------------------------
+   Раньше браузер успевал отрисовать контент, и только потом
+   скрипт ставил opacity:0 и запускал анимацию — получалось
+   «показался, пропал, поехал». Прячем элементы сразу в CSS,
+   до первой отрисовки. Класс is-ready снимает маскировку,
+   когда скрипт готов; если JS не отработал — через 1.2s
+   срабатывает страховка на самой странице.
+   ============================================================ */
+.intro-stage:not(.is-ready) .site-header .brand,
+.intro-stage:not(.is-ready) .site-header .header-duration,
+.intro-stage:not(.is-ready) .site-header nav,
+.intro-stage:not(.is-ready) .site-header .header-side,
+.intro-stage:not(.is-ready) .mobile-hero-proof,
+.intro-stage:not(.is-ready) .hero-kicker,
+.intro-stage:not(.is-ready) #hero-title,
+.intro-stage:not(.is-ready) .hero-cta,
+.intro-stage:not(.is-ready) .hero-proof,
+.intro-stage:not(.is-ready) .hero-hint,
+.intro-stage:not(.is-ready) .hero-gallery-note,
+.intro-stage:not(.is-ready) .mobile-project-meta,
+.intro-stage:not(.is-ready) .showcase-marquee { opacity:0; }
+
+@media (prefers-reduced-motion:reduce) {
+  .intro-stage:not(.is-ready) * { opacity:1 !important; }
+}
+
+/* ============================================================
+   ДЕСКТОП: ВЫХОД ИЗ «ДЛЯ КОГО» — БЕЗ ШТОРКИ
+   ------------------------------------------------------------
+   ВХОД в блок не трогаем: наезд -100svh на motion и sticky-сцена
+   остаются как были — переход «Твои навыки» → «Для кого» работал.
+   Меняем только ВЫХОД: раньше блок держался экран, а потом
+   растворялся через blur и чёрный градиент, и на этой растяжке
+   читалась пустая «дыра». Теперь высота ровно под контент,
+   растворения нет — блок просто уходит вверх, а следующая
+   секция идёт сразу за ним.
+   ============================================================ */
+@media (min-width:901px) {
+  /* Наезд на motion сохраняем — иначе перед блоком появляется дыра.
+     Высота 135svh — золотая середина: при 100svh блок улетал с первого
+     же скролла, при 175svh требовалось три. Теперь один скролл держит
+     блок на экране, второй уводит дальше. */
+  .audience-section { height:135svh; min-height:0; }
+  .audience-content.container {
+    /* Шторки нет: без blur, затемнения и масштабирования. */
+    opacity:1; filter:none; transform:none;
+  }
+  .audience-content::after { display:none; }
+
+  /* Следующая секция идёт СРАЗУ за «Для кого». Её наезд -100svh был
+     рассчитан на растянутый выход со шторкой; без шторки он съедал
+     весь блок целиком. */
+  .difference-section { margin-top:0; }
+}
+
+/* Скидка: старая цена зачёркнута, стоит перед текущей. */
+.pricing-old {
+  display:block;
+  margin-bottom:2px;
+  color:#a3a3a0;
+  font-size:.42em;
+  font-weight:500;
+  letter-spacing:0;
+  text-decoration:line-through;
+  text-decoration-thickness:1px;
+}
+.pricing-card[data-tariff="colleagues"] .pricing-old { color:rgba(255,255,255,.45); }
+@media (min-width:1600px) {
+  .pricing-old { font-size:.42em; }
+}
+
+/* ============================================================
+   ВИДЕО-КЕЙСЫ
+   Слайдер после туннеля и лента первого экрана показывают видео.
+   Ведут себя как картинки: те же пропорции, тот же кадр.
+   ============================================================ */
+.participant-gallery-video {
+  position:absolute; inset:0;
+  display:block; width:100%; height:100%;
+  object-fit:contain;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+  user-select:none; -webkit-user-drag:none;
+  background:#0a0a0a;
+}
+/* Лента первого экрана: видео заполняет карточку как фото. */
+.work-card > .work-video { display:block; width:100%; height:100%; object-fit:cover; }
+
+/* ============================================================
+   ТИПОГРАФИКА НА CLAMP С REM — ПО ОПОРНЫМ ТОЧКАМ
+   ------------------------------------------------------------
+   Раньше все clamp были на чистом vw: clamp(64px, 7.4vw, 116px).
+   Такие размеры не реагируют на увеличение страницы (Cmd +) и
+   на крупный системный шрифт — это ломает доступность.
+   Теперь в средней части формулы есть rem, поэтому масштаб
+   браузера работает.
+
+   Опорные точки (375 / 1440 / максимум):
+     заголовок     34 / 60 / 85
+     подзаголовок  20 / 28 / 36
+     текст         16 / 18 / 20
+   ============================================================ */
+:root {
+  --fs-h1:  clamp(2.125rem, 1.553rem + 2.44vw,  5.3125rem);
+  --fs-h2:  clamp(1.75rem,  1.33rem  + 1.79vw,  4rem);
+  --fs-sub: clamp(1.25rem,  1.074rem + 0.751vw, 2.25rem);
+  --fs-body:clamp(1rem,     0.956rem + 0.188vw, 1.25rem);
+}
+
+/* Крупные заголовки секций */
+.difference-title,
+.programme-head h2,
+.questions-head h2,
+.pricing-head h2,
+.site-footer__lead h2 { font-size:var(--fs-h1); }
+
+/* .audience-intro h2 не трогаем: у него 7 тонко подогнанных правил
+   под разные высоты экрана (см. выше), общий размер их ломает. */
+.motion-system-title { font-size:var(--fs-h2); }
+
+/* Основной текст */
+.difference-copy p,
+.programme-lesson-desc,
+.questions-panel > div p { font-size:var(--fs-body); }
+
+/* Кейс Александры в блоке «Чувствуешь разницу» — видео вместо картинки. */
+.difference-card figure .difference-video {
+  display:block; width:100%; height:100%;
+  object-fit:cover; background:#141414;
+}
+
+/* ============================================================
+   ТИПОГРАФИКА: БЕЗ ВИСЯЧИХ СЛОВ И ПРЕДЛОГОВ
+   ------------------------------------------------------------
+   Два правила браузера, ноль веса и ноль скриптов:
+
+   balance — выравнивает строки заголовка по длине, чтобы не
+             получалось «длинная строка + одно слово снизу».
+             Работает для блоков до ~6 строк, то есть ровно
+             для заголовков.
+
+   pretty  — следит, чтобы в последней строке абзаца не
+             оставалось одинокого слова.
+
+   Неразрывные пробелы после предлогов расставлены в разметке —
+   они не дают «в», «на», «и» повиснуть в конце строки.
+   ============================================================ */
+h1, h2, h3, h4,
+.hero-kicker,
+.works-title,
+.difference-title,
+.difference-copy h3,
+.audience-card-copy h3,
+.programme-name,
+.programme-lesson-title,
+.questions-item h3,
+.pricing-card h3,
+.motion-result,
+.motion-system-title,
+.site-footer__lead h2 { text-wrap:balance; }
+
+p, li,
+.difference-copy p,
+.audience-card-copy p,
+.programme-lesson-desc,
+.pricing-lead,
+.pricing-note,
+.questions-panel > div p,
+.source-note { text-wrap:pretty; }
+
+/* ============================================================
+   ОТЗЫВЫ ПЕРВОГО ПОТОКА
+   Карточка: аватар, имя, звёзды, текст, превью работ.
+   Работы открываются в лайтбоксе по клику.
+   ============================================================ */
+/* Тот же серый, что у блока тарифов. */
+.reviews-section { position:relative; z-index:2; background:#e8e8e5; color:#080808; }
+.reviews-content { padding:clamp(72px,8vh,120px) 0 clamp(72px,8vh,120px); }
+
+.reviews-head { display:grid; gap:14px; justify-items:center; margin-bottom:clamp(32px,4vh,56px); text-align:center; }
+.reviews-head h2 { margin:0; font-size:var(--fs-h1); font-weight:500; line-height:.9; letter-spacing:-.04em; }
+/* Заголовок отзывов — целиком тёмный, без светлой половины. */
+.reviews-note { margin:0; max-width:46ch; color:#60605e; font-size:var(--fs-body); line-height:1.5; }
+
+/* auto-fit растягивал единственную карточку на всю ширину — строка
+   выходила в 1400px, читать неудобно. Колонки фиксированной ширины
+   с выравниванием влево: карточки набираются рядами по мере появления. */
+/* auto-fill создаёт пустые колонки и прижимает единственную карточку
+   влево. Флекс с переносом центрирует любое их количество. */
+/* Сетка с центрированным содержимым: ряды заполняются слева направо,
+   а весь блок карточек стоит по центру секции. При нечётном числе
+   последняя карточка не повисает одна посреди ряда. */
+.reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(16px,2vw,28px); align-items:start; max-width:1320px; margin-inline:auto; }
+/* При чётном числе отзывов раскладываем 2x2 — иначе последняя карточка
+   висит одна во втором ряду. */
+.reviews-grid:has(.review-card:nth-child(4):last-child) { grid-template-columns:repeat(2,minmax(320px,1fr)); max-width:900px; }
+.review-card { max-width:none; }
+
+.review-card { display:grid; gap:18px; padding:clamp(22px,2vw,30px); border:1px solid #e2dfd6; border-radius:20px; background:#fff; }
+.review-top { display:flex; align-items:center; gap:14px; }
+.review-avatar { width:54px; height:54px; flex:none; border-radius:50%; object-fit:cover; background:#e8e8e5; }
+.review-who { display:grid; gap:3px; min-width:0; }
+.review-who b { font-size:clamp(15px,1.15vw,17px); font-weight:600; letter-spacing:-.01em; }
+/* Звёзды — SVG вместо символа ★: широкие лучи и светлый песочный
+   оттенок вместо насыщенно-жёлтого. */
+.review-stars { display:inline-flex; gap:2px; align-items:center; line-height:1; }
+.review-stars svg { width:13px; height:13px; display:block; fill:#e3cf94; }
+/* Половина звезды: заливка по половине ширины плюс тонкий контур
+   у пустой части — оценка читается как 4,5 без лишних элементов. */
+.review-stars .star-half { color:#e3cf94; fill:none; }
+
+.review-body { display:grid; gap:11px; }
+.review-body p { margin:0; color:#3d3d3b; font-size:clamp(14px,1.05vw,15px); line-height:1.4; letter-spacing:0; }
+
+.review-works { display:flex; flex-wrap:wrap; gap:10px; }
+.review-work { display:block; flex:none; width:104px; height:78px; padding:0; overflow:hidden; border:0; border-radius:10px; background:#e8e8e5; cursor:zoom-in; transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease; }
+/* height:100% на картинке не работает, когда пропорции заданы
+   через aspect-ratio у кнопки — растягиваем через inset. */
+.review-work { position:relative; }
+.review-work img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }
+.review-work:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.14); }
+.review-work:focus-visible { outline:2px solid #080808; outline-offset:3px; }
+
+/* Лайтбокс. display:grid перебивает атрибут hidden, поэтому скрытый
+   слой продолжал перехватывать клики по превью — гасим явно. */
+.lightbox[hidden] { display:none !important; }
+.lightbox { position:fixed; z-index:200; inset:0; display:grid; place-items:center; padding:clamp(20px,4vw,56px); background:rgba(6,6,6,.92); cursor:zoom-out; }
+.lightbox-image { max-width:100%; max-height:100%; border-radius:6px; box-shadow:0 30px 90px rgba(0,0,0,.6); }
+.lightbox-close { position:absolute; top:clamp(14px,2vw,26px); right:clamp(14px,2vw,26px); width:44px; height:44px; display:grid; place-items:center; border:0; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; font-size:28px; line-height:1; cursor:pointer; transition:background .2s ease; }
+.lightbox-close:hover { background:rgba(255,255,255,.22); }
+
+@media (max-width:900px) {
+  .reviews-grid { grid-template-columns:1fr; }
+  .review-card { padding:20px; border-radius:16px; }
+  .review-avatar { width:46px; height:46px; }
+  .review-who b { font-size:15px; }
+  .review-body p { font-size:14px; line-height:1.4; }
+  .review-work { width:92px; height:69px; }
+}
+
+/* Длинный отзыв сворачивается: видно начало, остальное по кнопке.
+   Так карточки в ряду остаются одной высоты и блок не растягивается. */
+.review-body { position:relative; max-height:190px; overflow:hidden; transition:max-height .45s cubic-bezier(.22,1,.36,1); }
+.review-body::after { content:""; position:absolute; right:0; bottom:0; left:0; height:56px; background:linear-gradient(rgba(255,255,255,0), #fff); pointer-events:none; transition:opacity .3s ease; }
+.review-card.is-open .review-body { max-height:none; }
+.review-card.is-open .review-body::after { opacity:0; }
+.review-more { justify-self:start; padding:0; border:0; background:transparent; color:#080808; font-size:14px; font-weight:500; letter-spacing:-.01em; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.review-more:hover { color:#8c1d1a; }
+
+/* Ключевая фраза отзыва — вынесена крупно, стиль как у .difference-copy h3. */
+/* Те же размеры, что на карточках «Для кого» (.audience-card-copy). */
+.review-quote {
+  margin:0;
+  font-size:clamp(21px,1.6vw,24px);
+  font-weight:600;
+  line-height:1.1;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+}
+/* Аватарка-буква для тех, кто не прислал фото. */
+.review-avatar--letter {
+  display:grid; place-items:center;
+  color:#6c6c6c; font-size:22px; font-weight:500; line-height:1;
+}
+@media (max-width:900px) {
+  .review-quote { font-size:clamp(18px,4.8vw,21px); }
+  .review-avatar--letter { font-size:19px; }
+}
+
+/* Лайтбокс умеет показывать и видео — превью при этом остаётся картинкой. */
+.lightbox-video { max-width:100%; max-height:100%; border-radius:6px; box-shadow:0 30px 90px rgba(0,0,0,.6); background:#000; }
+.lightbox-video[hidden], .lightbox-image[hidden] { display:none !important; }
+
+/* У левого видео белый фон, он сливается с чёрным фоном секции — граница
+   карточки не читается, и кажется, что она выше соседней. Тонкая рамка
+   обозначает край; замер показывает, что высоты давно идентичны (395px). */
+.difference-card figure {
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+}
+
+/* Левое видео визуально выше правого: у него светлый фон с полями,
+   верхний край читается выше, нижний ниже. Опускаем ролик на 3px
+   внутри рамки и столько же подрезаем снизу — края встают вровень.
+   Двигаем само видео, а не figure: у неё высота от aspect-ratio,
+   и max-height на ней не работает. */
+.difference-card:first-child figure video {
+  position:relative;
+  top:3px;
+  height:calc(100% - 3px);
+}
+@media (max-width:900px) {
+  .difference-card:first-child figure video { top:0; height:100%; }
+}
+}
+
+/* ============================================================
+   ПРОИЗВОДИТЕЛЬНОСТЬ НА МОБИЛКЕ И ПЛАНШЕТЕ
+   ------------------------------------------------------------
+   Замер показал: 6 видео ленты декодировались одновременно,
+   включая уехавшие за экран. Плюс блюры и тени — каждый
+   заставляет телефон перерисовывать слой на каждом кадре.
+   Скрипт гасит видео вне экрана, здесь убираем дорогие эффекты.
+   ============================================================ */
+@media (max-width:1200px) {
+  /* Тени под видео и карточками — самый дорогой эффект при прокрутке. */
+  .participant-gallery-video,
+  .participant-gallery-card img { box-shadow:none; }
+
+  /* backdrop-filter на телефоне перерисовывает всё под собой. */
+  .persistent-chrome { backdrop-filter:none; }
+
+  /* Зернистая плёнка поверх всей страницы: на слабом железе
+     добавляет лишний композитный слой на каждый кадр. */
+  body::before { display:none; }
+}
+
+@media (max-width:900px) {
+  /* Слои под анимацию держим только там, где она реально идёт. */
+  .work-card, .review-card, .pricing-card,
+  .difference-card, .audience-card { will-change:auto; }
+
+  /* Скругление у .work-card НЕ трогаем: на мобилке оно участвует
+     в раскладке ленты, без него карточки разъезжаются по ширине. */
+}
+
+/* Содержимое обоих видео в блоке «Чувствуешь разницу» на 2% крупнее —
+   плотнее заполняет рамку, поля по краям не читаются как пустота. */
+.difference-card figure .difference-video { transform:scale(1.02); }
+
+/* ============================================================
+   МОБИЛКА: ЗАПРЕТ ГОРИЗОНТАЛЬНОГО УХОДА
+   ------------------------------------------------------------
+   Лента работ (.marquee-rail) шире экрана по своей природе —
+   она бесконечно едет. Но без явного запрета страница уезжала
+   вбок, и справа открывался пустой чёрный экран.
+   ============================================================ */
+@media (max-width:900px) {
+  html, body { max-width:100%; overflow-x:clip; }
+  .intro-stage, .showcase-marquee { overflow-x:clip; }
+}
+
+/* Логотип в шапке разъезжался на три строки: контейнер сжимался
+   до 50px и ломал слова. Даём строкам не переноситься. */
+@media (max-width:900px) {
+  .brand > span,
+  .persistent-brand span,
+  .motion-brand span { white-space:nowrap; }
+  .brand > span br,
+  .persistent-brand span br { display:inline; }
+}
+
+/* На мобилке «Для кого» — обычный блок в потоке, без шторы-растворения.
+   Тёмный градиент поверх него оставался включённым и накрывал карточки
+   чёрной пеленой при скролле. Гасим, как и на десктопе. */
+@media (max-width:900px) {
+  .audience-content::after { display:none; }
+  .audience-content.container { opacity:1 !important; filter:none !important; transform:none !important; }
+}
+
+/* Подпись под логотипом выравнивается по левому краю знака,
+   а не по центру — иначе строки «плавают» относительно него. */
+.brand, .persistent-brand, .motion-brand { justify-items:start; text-align:left; }
+.brand > span, .persistent-brand span, .motion-brand span { text-align:left; }
+
+/* ============================================================
+   ОТЗЫВЫ НА МОБИЛКЕ: ГОРИЗОНТАЛЬНАЯ ЛЕНТА
+   Карточки шли в столбик — блок растягивался на четыре экрана.
+   Теперь листаются вбок, следующая выглядывает краем, под
+   заголовком подсказка с пальчиком.
+   ============================================================ */
+.reviews-swipe { display:none; }
+
+@media (max-width:900px) {
+  .reviews-swipe {
+    display:flex; align-items:center; gap:9px;
+    margin:14px 0 0; color:#6c6c6c; font-size:12px;
+  }
+  .reviews-swipe-icon {
+    display:grid; width:25px; height:25px; flex:none; place-items:center;
+    border-radius:50%; background:#fff; box-shadow:0 7px 17px rgba(0,0,0,.09);
+  }
+  .reviews-swipe-icon img { display:block; width:9px; height:11px; }
+
+  .reviews-grid {
+    display:flex; gap:12px;
+    /* Выходим за поля секции, чтобы лента шла от края до края. */
+    margin-inline:-16px; padding:2px 16px 14px;
+    max-width:none;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .reviews-grid::-webkit-scrollbar { display:none; }
+
+  .review-card {
+    flex:0 0 86%;            /* следующая карточка выглядывает краем */
+    scroll-snap-align:center;
+  }
+}
+
+/* ============================================================
+   ПЛАВАЮЩАЯ ШАПКА: ЧИТАЕМОСТЬ НА СВЕТЛЫХ БЛОКАХ
+   Шапка прозрачная, и на «Для кого» и заголовке «Работы
+   участников» её текст ложился прямо на контент. Подложка
+   в цвет секции решает это, не закрывая композицию.
+   ============================================================ */
+.persistent-chrome::before {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,0));
+  opacity:0; pointer-events:none;
+  transition:opacity .3s ease;
+  z-index:-1;
+}
+.persistent-chrome:not(.is-dark)::before { opacity:1; }
+.persistent-chrome.is-dark::before {
+  background:linear-gradient(rgba(8,8,8,.88), rgba(8,8,8,0));
+  opacity:1;
+}
+
+/* Метки в карточках «Для кого» — декоративный элемент, не текст для
+   чтения. Держим мелкими: 6px, чуть крупнее исходных 5.5. */
+@media (max-width:900px) {
+  .audience-card-tags { font-size:6px; }
+}
+
+/* Стрелки карусели: 35° читались как диагональ. Доворачиваем
+   почти до горизонтали — жест «влево/вправо» должен быть однозначным. */
+.participant-gallery-controls [data-gallery-next] svg { transform:rotate(45deg); }
+.participant-gallery-controls [data-gallery-prev] svg { transform:scaleX(-1) rotate(45deg); }
+.participant-gallery-controls [data-gallery-next]:hover svg { transform:rotate(45deg) translate(2px,-2px); }
+.participant-gallery-controls [data-gallery-prev]:hover svg { transform:scaleX(-1) rotate(45deg) translate(2px,-2px); }

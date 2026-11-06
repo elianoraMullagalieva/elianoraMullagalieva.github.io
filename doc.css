@@ -1,0 +1,116 @@
+/* ============================================================
+   СТРАНИЦА ДОКУМЕНТА (оферта, политика и т.п.)
+   Отдельный файл: юридический текст не нуждается в анимациях
+   и WebGL с главной — грузится мгновенно и читается спокойно.
+   ============================================================ */
+:root {
+  --ink:#080808;
+  --muted:#6c6c6c;
+  --line:#e2dfd6;
+  --bg:#f4f3f0;
+  --font:"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
+body { overflow-x:hidden; }
+body {
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; }
+
+/* Шапка */
+.doc-header {
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; padding:18px clamp(20px,4vw,56px);
+  background:rgba(244,243,240,.92); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.doc-back { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.doc-back img { width:44px; height:auto; }
+.doc-back span { color:var(--muted); font-size:13px; line-height:1.05; }
+.doc-home {
+  padding:9px 18px; border-radius:999px; background:var(--ink); color:#fff;
+  font-size:13px; font-weight:500; text-decoration:none; white-space:nowrap;
+  transition:transform .25s cubic-bezier(.22,1,.36,1), background .2s ease;
+}
+.doc-home:hover { transform:translateY(-1px); background:#2a2a2a; }
+
+/* Раскладка: содержание слева, текст справа */
+.doc-layout {
+  display:grid; grid-template-columns:260px minmax(0,1fr);
+  gap:clamp(28px,4vw,64px);
+  width:min(1180px, calc(100vw - 40px));
+  margin:clamp(32px,5vh,64px) auto clamp(48px,7vh,96px);
+}
+.doc-nav {
+  position:sticky; top:96px; align-self:start;
+  display:grid; gap:2px; max-height:calc(100vh - 140px); overflow-y:auto;
+  padding-right:8px;
+}
+.doc-nav-title {
+  margin:0 0 10px; color:var(--muted);
+  font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+}
+.doc-nav a {
+  display:block; padding:6px 10px; border-radius:8px;
+  color:var(--muted); font-size:13px; line-height:1.3; text-decoration:none;
+  /* Длинные названия разделов переносятся внутри колонки, а не уезжают за край. */
+  white-space:normal; overflow-wrap:anywhere; hyphens:auto;
+  transition:background .18s ease, color .18s ease;
+}
+.doc-nav a:hover { background:rgba(0,0,0,.05); color:var(--ink); }
+
+/* Текст документа */
+.doc-body {
+  padding:clamp(28px,4vw,52px);
+  border:1px solid var(--line); border-radius:18px; background:#fff;
+}
+.doc-body > *:first-child { margin-top:0; }
+.doc-body h2 {
+  margin:44px 0 16px; font-size:clamp(21px,2.1vw,26px); font-weight:600;
+  line-height:1.2; letter-spacing:-.02em; scroll-margin-top:96px; text-wrap:balance;
+}
+.doc-body h2:first-of-type { margin-top:0; }
+.doc-body h3 { margin:30px 0 12px; font-size:clamp(17px,1.6vw,19px); font-weight:600; line-height:1.3; text-wrap:balance; }
+.doc-body h4 { margin:22px 0 8px; font-size:16px; font-weight:600; color:#3d3d3b; }
+.doc-body p { margin:0 0 13px; max-width:78ch; text-wrap:pretty; }
+.doc-body ul { margin:0 0 16px; padding-left:22px; max-width:78ch; }
+.doc-body li { margin-bottom:6px; text-wrap:pretty; }
+.doc-body strong { font-weight:600; }
+.doc-body hr { margin:32px 0; border:0; border-top:1px solid var(--line); }
+.doc-body a { color:#8c1d1a; text-underline-offset:3px; }
+
+/* Таблицы */
+/* Широкие таблицы прокручиваются внутри своей рамки, а не распирают
+   страницу: без min-width:0 grid-колонка растягивается по содержимому. */
+.doc-table-wrap { margin:0 0 20px; max-width:100%; overflow-x:auto; border:1px solid var(--line); border-radius:12px; -webkit-overflow-scrolling:touch; }
+.doc-body, .doc-layout, .doc-nav { min-width:0; }
+.doc-table { width:100%; border-collapse:collapse; font-size:14px; }
+.doc-table th, .doc-table td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+.doc-table th { background:#faf9f7; font-weight:600; white-space:nowrap; }
+.doc-table tr:last-child td { border-bottom:0; }
+
+/* Подвал */
+.doc-footer {
+  padding:28px clamp(20px,4vw,56px) 44px;
+  border-top:1px solid var(--line);
+  color:var(--muted); font-size:13px;
+  display:grid; gap:6px;
+}
+.doc-footer a { color:var(--muted); }
+
+@media (max-width:900px) {
+  .doc-layout { grid-template-columns:1fr; width:calc(100vw - 32px); }
+  .doc-nav {
+    position:static; max-height:none; padding:16px;
+    border:1px solid var(--line); border-radius:14px; background:#fff;
+  }
+  /* Длинные названия разделов на мобилке переносятся, а не уезжают за край. */
+  .doc-nav a { white-space:normal; padding:8px 10px; }
+  .doc-body { padding:22px 18px; border-radius:14px; }
+  .doc-body p, .doc-body ul { max-width:none; }
+  body { font-size:15px; }
+}

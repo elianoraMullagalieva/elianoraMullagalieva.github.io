@@ -1,0 +1,625 @@
+/* ============================================================
+   ХОЛОДНАЯ СТРАНИЦА — отличия от основной
+   Подключается ПОСЛЕ styles.css и только дополняет её.
+   ============================================================ */
+
+/* Тёмный акцент на выделенном тарифе. В основном файле он привязан
+   к data-tariff="colleagues"; здесь выделяем по классу, чтобы можно
+   было подсветить любой тариф. */
+.pricing-card.pricing-card--focus {
+  z-index:1;
+  border-color:#0c0c0c; background:#0c0c0c; color:#fff;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+.pricing-card--focus .pricing-card-top { color:rgba(255,255,255,.6); }
+.pricing-card--focus .pricing-card-top span { border-color:rgba(255,255,255,.32); }
+.pricing-card--focus .pricing-lead { color:rgba(255,255,255,.62); }
+.pricing-card--focus .pricing-per  { color:rgba(255,255,255,.5); }
+.pricing-card--focus .pricing-renew {
+  color:rgba(255,255,255,.5); border-top-color:rgba(255,255,255,.16);
+}
+.pricing-card--focus li::before { background:#fff; }
+.pricing-card--focus .pricing-button { background:#fff; color:#0c0c0c; }
+.pricing-card--focus .pricing-button:hover { background:#e8e8e5; color:#0c0c0c; }
+
+/* ============================================================
+   ТАБЛИЦА СРАВНЕНИЯ ТАРИФОВ
+   Под карточками: что входит в каждый формат построчно.
+   Средний столбец выделен — он же выделен в карточках.
+   ============================================================ */
+.compare { margin-top:clamp(40px,5vh,72px); }
+.compare-note {
+  margin:0 0 16px;
+  color:#8a8a88;
+  font-size:11px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.compare-wrap {
+  overflow-x:auto;
+  border:1px solid #dededb; border-radius:18px;
+  background:#fff;
+  -webkit-overflow-scrolling:touch;
+}
+.compare-table {
+  width:100%; border-collapse:collapse;
+  font-size:15px; line-height:1.35;
+}
+.compare-table th,
+.compare-table td {
+  padding:14px 18px;
+  text-align:center;
+  border-bottom:1px solid #eeecE8;
+  vertical-align:middle;
+}
+.compare-table thead th {
+  padding-top:18px; padding-bottom:18px;
+  font-size:14px; font-weight:600;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+/* Первый столбец — названия строк, прижат влево */
+.compare-table th[scope="row"] {
+  text-align:left;
+  font-weight:400;
+  color:#3d3d3b;
+  white-space:normal;
+  min-width:180px;
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td { border-bottom:0; }
+
+/* Выделенный столбец — тот же тариф, что подсвечен в карточках */
+.compare-table .is-focus { background:#f6f5f2; }
+.compare-table thead .is-focus { background:#0c0c0c; color:#fff; border-radius:12px 12px 0 0; }
+
+/* Строка со стоимостью — крупнее остальных */
+.compare-price th,
+.compare-price td {
+  padding-top:16px; padding-bottom:16px;
+  font-size:19px; font-weight:600;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.compare-price th[scope="row"] { font-size:15px; font-weight:400; }
+
+.compare-table .yes { color:#2f6b4a; font-size:17px; font-weight:600; }
+.compare-table .no  { color:#c4c2bd; }
+.compare-table b { font-weight:600; }
+
+.visually-hidden {
+  position:absolute; width:1px; height:1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+}
+
+@media (max-width:900px) {
+  .compare-wrap { border-radius:14px; }
+  .compare-table { font-size:14px; }
+  .compare-table th, .compare-table td { padding:11px 13px; }
+  .compare-table th[scope="row"] { min-width:150px; }
+  .compare-price th, .compare-price td { font-size:17px; }
+}
+
+/* Первый столбец уже — названия строк короткие, место нужно тарифам. */
+.compare-table th[scope="row"] { min-width:0; width:1%; white-space:nowrap; padding-right:26px; }
+
+/* Разделители между тарифами — чтобы столбцы читались как отдельные. */
+.compare-table thead th:not(:first-child) { border-left:1px solid #eeece8; }
+.compare-table tbody td { border-left:1px solid #f4f2ef; }
+.compare-table thead .is-focus { border-left-color:#0c0c0c; }
+
+/* Зачёркнутая цена в таблице — мелко, как в карточках. */
+.compare-price s {
+  display:block; margin-bottom:2px;
+  color:#a3a3a0; font-size:.58em; font-weight:500;
+  text-decoration:line-through; text-decoration-thickness:1px;
+}
+
+/* ── МОБИЛКА: вместо таблицы — карточки по тарифам ──────────
+   Раньше таблица ломалась построчно, и было непонятно, какая
+   цифра к какому тарифу. Теперь одна карточка = один тариф
+   со всеми своими строками. */
+.compare-cards { display:none; }
+
+@media (max-width:760px) {
+  .compare-wrap { display:none; }
+  .compare-cards { display:grid; gap:14px; }
+
+  .cmp-card {
+    padding:22px 20px 18px;
+    border:1px solid #dededb; border-radius:20px; background:#fff;
+  }
+  .cmp-card.is-focus {
+    border-color:#0c0c0c; background:#0c0c0c; color:#fff;
+  }
+
+  .cmp-name {
+    margin:0 0 6px;
+    font-size:12px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase;
+    color:#8a8a88;
+  }
+  .cmp-card.is-focus .cmp-name { color:rgba(255,255,255,.55); }
+
+  .cmp-price {
+    margin:0 0 16px;
+    font-size:28px; font-weight:600; line-height:1;
+    letter-spacing:-.03em;
+    font-variant-numeric:tabular-nums;
+  }
+  .cmp-price s {
+    display:block; margin-bottom:4px;
+    color:#a3a3a0; font-size:.46em; font-weight:500;
+    text-decoration:line-through; text-decoration-thickness:1px;
+  }
+  .cmp-card.is-focus .cmp-price s { color:rgba(255,255,255,.4); }
+
+  .cmp-row {
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:16px; padding:9px 0;
+    border-top:1px solid #f0eeea;
+    font-size:14px; line-height:1.3;
+  }
+  .cmp-card.is-focus .cmp-row { border-top-color:rgba(255,255,255,.12); }
+  .cmp-row span { color:#6c6c6c; }
+  .cmp-card.is-focus .cmp-row span { color:rgba(255,255,255,.55); }
+  .cmp-row b { font-weight:500; text-align:right; }
+  .cmp-row .yes { color:#2f6b4a; }
+  .cmp-card.is-focus .cmp-row .yes { color:#6fbf92; }
+  .cmp-row .no { color:#c4c2bd; }
+  .cmp-card.is-focus .cmp-row .no { color:rgba(255,255,255,.3); }
+}
+
+/* ============================================================
+   ОТЗЫВЫ: КАРУСЕЛЬ ВМЕСТО СЕТКИ
+   На десктопе была сетка 2×2 — блок растягивался на два экрана,
+   а сравнивать отзывы приходилось прокруткой страницы. Теперь
+   лента со стрелками: карточки одной высоты, следующая
+   выглядывает краем.
+   ============================================================ */
+.reviews-head { position: relative; }
+
+.reviews-controls {
+  display: flex; gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 18px;
+}
+/* Листать нечего — прячем кнопки целиком, а не показываем
+   два серых нерабочих кружка. */
+.reviews-controls[hidden] { display: none; }
+.reviews-controls button {
+  display: grid; width: 46px; height: 46px; place-items: center;
+  border: 1px solid #dededb; border-radius: 50%;
+  background: transparent; color: #080808;
+  cursor: pointer;
+  transition: background .22s ease, border-color .22s ease, color .22s ease;
+}
+.reviews-controls button:hover { background: #080808; border-color: #080808; color: #fff; }
+.reviews-controls button:disabled { opacity: .3; cursor: default; }
+.reviews-controls button:disabled:hover { background: transparent; border-color: #dededb; color: #080808; }
+/* Простой шеврон-стрелка: next смотрит вправо, prev — влево. */
+.reviews-controls svg { width: 18px; height: 18px; transition: transform .22s ease; }
+.reviews-controls [data-reviews-prev] svg { transform: scaleX(-1); }
+.reviews-controls [data-reviews-next]:hover svg { transform: translateX(2px); }
+.reviews-controls [data-reviews-prev]:hover svg { transform: scaleX(-1) translateX(2px); }
+.reviews-controls button:focus-visible { outline: 2px solid #080808; outline-offset: 3px; }
+
+
+/* Дыра между подзаголовком отзывов и лентой: у шапки был крупный
+   margin-bottom, а снизу ещё добавились стрелки со своим отступом.
+   На десктопе гасим нижний отступ шапки — расстояние держат стрелки. */
+@media (min-width: 901px) {
+  .reviews-head { margin-bottom: 8px; }
+  .reviews-controls { margin-top: 22px; }
+}
+
+@media (min-width: 901px) {
+  .reviews-grid,
+  .reviews-grid:has(.review-card:nth-child(4):last-child) {
+    display: flex; gap: 20px;
+    grid-template-columns: none;
+    max-width: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Поля по краям — чтобы крайние карточки не липли к границам */
+    margin-inline: -4px;
+    padding: 2px 4px 8px;
+  }
+  .reviews-grid:focus-visible { outline: 2px solid #080808; outline-offset: 4px; }
+  .reviews-grid::-webkit-scrollbar { display: none; }
+  .review-card {
+    flex: 0 0 clamp(340px, 30%, 420px);
+    scroll-snap-align: start;
+  }
+}
+
+/* На мобилке стрелок нет: там свайп и подсказка «Листай вправо».
+   Лента для ≤900px приходит из styles.css — здесь ничего не нужно. */
+@media (max-width: 900px) {
+  .reviews-controls { display: none !important; }
+}
+
+/* Аватарка-заглушка: пока нет фото, кружок держит инициал,
+   чтобы шапка карточки не разъезжалась. */
+.review-avatar--empty {
+  display: grid; place-items: center;
+  background: #eceae5; color: #6b6a66;
+  font-size: 18px; font-weight: 600;
+  letter-spacing: .01em;
+}
+
+/* Аватарка-заглушка: пока нет фото, кружок держит инициал,
+   чтобы шапка карточки не разъезжалась. */
+.review-avatar--empty {
+  display: grid; place-items: center;
+  background: #eceae5; color: #6b6a66;
+  font-size: 18px; font-weight: 600;
+  letter-spacing: .01em;
+}
+
+/* ============================================================
+   ТАБЛИЦА СРАВНЕНИЯ — ПОД ВИД КАРТОЧЕК
+   Раньше это была обычная таблица в рамке: столбцы сливались,
+   зелёные галочки выбивались из чёрно-белой палитры сайта,
+   а первый столбец липнул к краю.
+   Теперь столбцы тарифов читаются как продолжение карточек
+   сверху — со скруглением, своим фоном и общей рамкой.
+   ============================================================ */
+
+/* Рамку снимаем с таблицы: её теперь держат сами столбцы. */
+.compare-wrap {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding-top: 4px;
+}
+.compare-table { border-spacing: 10px 0; border-collapse: separate; }
+.compare-table th,
+.compare-table td { border-bottom: 0; }
+
+/* Столбцы тарифов — карточки: свой фон, скругление, рамка. */
+.compare-table thead th:not(:first-child) {
+  background: #fff;
+  border: 1px solid #dededb; border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  border-left: 1px solid #dededb;
+  padding-top: 22px; padding-bottom: 18px;
+  font-size: 15px;
+}
+.compare-table tbody td {
+  background: #fff;
+  border-left: 1px solid #dededb;
+  border-right: 1px solid #dededb;
+}
+.compare-table tbody tr:last-child td {
+  border-bottom: 1px solid #dededb;
+  border-radius: 0 0 18px 18px;
+  padding-bottom: 20px;
+}
+/* Разделители строк — внутри карточки, светлее рамки. */
+.compare-table tbody tr:not(:last-child) td { box-shadow: inset 0 -1px 0 #f0eeea; }
+
+/* Выделенный тариф — тёмный, как карточка сверху. */
+.compare-table thead .is-focus {
+  background: #0c0c0c; color: #fff;
+  border-color: #0c0c0c;
+  border-radius: 18px 18px 0 0;
+}
+.compare-table tbody .is-focus {
+  background: #0c0c0c; color: #fff;
+  border-color: #0c0c0c;
+}
+.compare-table tbody tr:not(:last-child) .is-focus { box-shadow: inset 0 -1px 0 #232323; }
+.compare-table tbody .is-focus b { color: #fff; }
+
+/* Первый столбец — шире и с воздухом, чтобы не липнул к краю. */
+.compare-table th[scope="row"] {
+  width: auto; min-width: clamp(150px, 14rem, 220px);
+  white-space: normal;
+  padding-left: 0; padding-right: clamp(16px, 1.5rem, 28px);
+  color: #55534f;
+}
+
+/* Галочки — в цвете текста, без зелёного. */
+.compare-table .yes { color: #0c0c0c; font-size: 16px; font-weight: 600; }
+.compare-table .is-focus .yes { color: #fff; }
+.compare-table .no { color: #c4c2bd; }
+
+/* Рассрочка — главная строка для решения, читается заметнее. */
+.compare-table .compare-instal th[scope="row"] { color: #0c0c0c; font-weight: 600; }
+.compare-table .compare-instal td {
+  font-size: clamp(15px, 1.05rem, 19px); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Цена в шапке таблицы — на тёмном фоне остаётся белой. */
+.compare-price .is-focus { color: #fff; }
+.compare-price .is-focus s { color: #8e8e8a; }
+
+@media (max-width: 900px) {
+  .compare-table { border-spacing: 6px 0; }
+  .compare-table thead th:not(:first-child),
+  .compare-table tbody tr:last-child td { border-radius: 14px 14px 0 0; }
+  .compare-table tbody tr:last-child td { border-radius: 0 0 14px 14px; }
+}
+
+/* Шапка выделенного столбца: название тарифа белым по тёмному.
+   Из-за border-spacing шапка и тело разошлись, и белый текст
+   оказывался на белом фоне — название пропадало. */
+.compare-table thead th.is-focus {
+  background: #0c0c0c !important;
+  color: #fff !important;
+  border-color: #0c0c0c !important;
+}
+
+/* Зелёная строка в карточке тарифа — в общую палитру. */
+.pricing-renew--included { color: #55534f; }
+
+/* ============================================================
+   ЕДИНЫЙ БЛОК ТАРИФОВ «.plans» — КАРТОЧКА = ТАБЛИЦА
+   Раньше в секции шли ДВЕ сущности: карточки .pricing-grid
+   (верх с ценой) и отдельная таблица сравнения .compare —
+   цена и названия дублировались. Теперь одна конструкция:
+   три колонки-карточки, у каждой сверху шапка (номер, название,
+   цена, лид), в середине — строки «что входит» как таблица,
+   снизу — кнопка. Строки выровнены по горизонтали между тремя
+   карточками за счёт одинаковой минимальной высоты строки и
+   одинаковой минимальной высоты шапки (лид бывает в 1–2 строки).
+   ============================================================ */
+.plans {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  align-items:stretch;
+  gap:18px;
+  width:min(calc(100% - 64px), 1320px);
+  margin-inline:auto;
+}
+
+/* Карточка тарифа: флекс-колонка, чтобы кнопка легла вниз. */
+.plan {
+  position:relative;
+  display:flex; flex-direction:column;
+  padding:34px 32px 30px;
+  border:1px solid #dededb; border-radius:28px;
+  background:#fff; color:#0a0a0a;
+}
+
+/* Выделенный (средний) тариф — тёмный, как в макете заказчицы. */
+.plan--focus {
+  z-index:1;
+  border-color:#0c0c0c; background:#0c0c0c; color:#fff;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+.plan--focus .pricing-card-top { color:rgba(255,255,255,.6); }
+.plan--focus .pricing-card-top span { border-color:rgba(255,255,255,.32); }
+.plan--focus .pricing-per { color:rgba(255,255,255,.5); }
+.plan--focus .plan-lead { color:rgba(255,255,255,.62); }
+.plan--focus .plan-old  { color:rgba(255,255,255,.4); }
+
+/* Шапка карточки: номер/название, цена, лид. Одинаковая
+   минимальная высота — чтобы строки-таблицы во всех трёх
+   карточках стартовали с одной линии, даже если лид разной длины. */
+.plan-head { min-height:236px; }
+
+/* Название тарифа чуть крупнее прежнего (было 11px). */
+.plan-head .pricing-card-top { font-size:12px; }
+.plan-head .pricing-card-top p { font-size:14px; letter-spacing:.02em; }
+
+/* Цена: мелкая зачёркнутая старая + крупная новая + период.
+   Пятизначные цены («24 900 ₽») широкие — уменьшаем кегль на
+   выделенной карточке и разрешаем период уходить на свою строку,
+   но саму цену с «₽» держим вместе через nowrap-обёртку в HTML. */
+.plan-price {
+  margin:40px 0 14px;
+  display:flex; flex-direction:column; gap:6px;
+}
+/* Зачёркнутая старая цена — мелкой строкой НАД крупной ценой. */
+.plan-old {
+  color:#9a9a97; font-size:18px; font-weight:500; line-height:1;
+  text-decoration:line-through; text-decoration-thickness:1.5px;
+}
+.plan--focus .plan-old { color:rgba(255,255,255,.42); }
+/* Крупная цена и период «/ месяц» — на одной строке. */
+.plan-now {
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  font-size:clamp(38px,3.3vw,52px); font-weight:600; line-height:1;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+}
+.plan-now .pricing-per {
+  font-size:15px; font-weight:500; letter-spacing:0; color:#8a8a88;
+}
+.plan--focus .plan-now .pricing-per { color:rgba(255,255,255,.5); }
+.plan-lead {
+  max-width:300px; margin:0;
+  color:#60605e; font-size:14px; line-height:1.45; letter-spacing:0;
+  text-wrap:pretty;
+}
+
+/* Середина — таблица: строки «подпись — значение». Фиксированная
+   минимальная высота строки держит их на одной линии между
+   карточками. */
+.plan-rows { margin:26px 0 24px; }
+.plan-row {
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:16px;
+  min-height:46px; padding:11px 0;
+  border-top:1px solid #f0eeea;
+  font-size:14px; line-height:1.3;
+}
+.plan-row:first-child { border-top:0; }
+.plan-row span { color:#6c6c6c; }
+.plan-row b { font-weight:500; text-align:right; }
+
+/* Галочки и прочерки — в цвете текста, без зелёного. */
+.plan-row .yes {
+  display:inline-flex; width:15px; height:15px; color:#0c0c0c;
+}
+.plan-row .yes svg { width:100%; height:100%; }
+.plan-row .no  { color:#c4c2bd; }
+
+/* Сноска над кнопкой (продление / обновления) — как в прежних
+   карточках: приглушённый текст на одном уровне у всех тарифов. */
+.plan-note {
+  margin:14px 0 18px;
+  padding-top:16px;
+  border-top:1px solid #f0eeea;
+  color:#8a8a88; font-size:12.5px; line-height:1.42;
+}
+.plan-note--incl { color:#0c0c0c; font-weight:500; }
+.plan--focus .plan-note { border-top-color:rgba(255,255,255,.12); color:rgba(255,255,255,.55); }
+.plan--focus .plan-note--incl { color:#fff; }
+
+/* Строка рассрочки — главная для решения, читается заметнее. */
+.plan-instal span { color:#0c0c0c; font-weight:600; }
+.plan-instal b {
+  font-weight:700; font-variant-numeric:tabular-nums;
+}
+
+/* Тёмная карточка: свои цвета разделителей, подписей, галочек. */
+.plan--focus .plan-row { border-top-color:rgba(255,255,255,.12); }
+.plan--focus .plan-row span { color:rgba(255,255,255,.55); }
+.plan--focus .plan-row b { color:#fff; }
+.plan--focus .plan-row .yes { color:#fff; }
+.plan--focus .plan-row .no { color:rgba(255,255,255,.3); }
+.plan--focus .plan-instal span { color:#fff; }
+
+/* Кнопка «Выбрать» прижата вниз (margin-top:auto из styles.css). */
+.plan--focus .pricing-button { background:#fff; color:#0c0c0c; }
+.plan--focus .pricing-button:hover { background:#c82525; color:#fff; }
+
+/* ── Мобилка: карточки в столбик, каждая — полноценная ── */
+@media (max-width:760px) {
+  .plans { grid-template-columns:1fr; gap:12px; width:min(calc(100% - 32px), 560px); }
+  .plan { padding:22px 20px 20px; border-radius:18px; }
+  .plan-head { min-height:0; }
+  .plan-price { margin-top:26px; font-size:40px; }
+  .plan-rows { margin:18px 0; }
+  .plan-row { min-height:0; }
+}
+
+/* ============================================================
+   МОДАЛКА ЗАХВАТА ЛИДА ПЕРЕД ОПЛАТОЙ
+   Клик по «Выбрать» открывает окно с одним полем (телеграм) и
+   согласиями. Заявка уходит в Telegram-бота, затем — редирект
+   на оплату. Так ловим контакт даже тех, кто не оплатит сразу.
+   ============================================================ */
+.lead-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  padding: 20px;
+}
+.lead-modal[hidden] { display: none; }
+.lead-modal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,10,10,.55);
+  backdrop-filter: blur(3px);
+  animation: leadFade .2s ease;
+}
+.lead-modal-box {
+  position: relative; z-index: 1;
+  color: #0c0c0c;
+  width: min(100%, 440px);
+  max-height: 92vh; overflow-y: auto;
+  padding: 34px 32px 30px;
+  background: #fff; border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.32);
+  animation: leadPop .26s cubic-bezier(.22,1,.36,1);
+}
+@keyframes leadFade { from { opacity: 0; } }
+@keyframes leadPop { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+
+.lead-modal-x {
+  position: absolute; top: 16px; right: 16px;
+  display: grid; width: 34px; height: 34px; place-items: center;
+  border: 0; border-radius: 50%;
+  background: #f2f0ec; color: #0c0c0c; cursor: pointer;
+  transition: background .2s ease;
+}
+.lead-modal-x:hover { background: #e6e3dd; }
+.lead-modal-x svg { width: 16px; height: 16px; }
+
+.lead-modal-kicker {
+  margin: 0 0 8px;
+  color: #8a8a88; font-size: 11px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.lead-modal-title {
+  margin: 0 0 10px;
+  color: #0c0c0c;
+  font-size: 26px; font-weight: 600; line-height: 1.08; letter-spacing: -.02em;
+}
+.lead-modal-lead {
+  margin: 0 0 22px;
+  color: #60605e; font-size: 14px; line-height: 1.45;
+}
+
+.lead-modal-field { display: block; margin-bottom: 18px; }
+.lead-modal-field span {
+  display: block; margin-bottom: 7px;
+  font-size: 13px; font-weight: 500; color: #3d3d3b;
+}
+.lead-modal-field input {
+  width: 100%; box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #dcdad5; border-radius: 12px;
+  background: #fafaf8; color: #0c0c0c;
+  font-size: 16px; font-family: inherit;
+  transition: border-color .18s ease, background .18s ease;
+}
+.lead-modal-field input:focus {
+  outline: none; border-color: #0c0c0c; background: #fff;
+}
+
+.lead-modal-consent { display: grid; gap: 11px; margin-bottom: 14px; }
+.lead-modal-consent label {
+  display: grid; grid-template-columns: auto 1fr; gap: 10px;
+  align-items: start; cursor: pointer;
+}
+.lead-modal-consent input {
+  width: 17px; height: 17px; margin: 1px 0 0; flex-shrink: 0;
+  accent-color: #0c0c0c; cursor: pointer;
+}
+.lead-modal-consent span {
+  color: #6c6c6a; font-size: 11.5px; line-height: 1.38;
+}
+
+.lead-modal-consent a {
+  color: #0c0c0c; text-decoration: underline; text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.lead-modal-consent a:hover { color: #c82525; }
+
+.lead-modal-links {
+  display: flex; flex-wrap: wrap; gap: 4px 14px;
+  margin-bottom: 20px;
+}
+.lead-modal-links a {
+  color: #9a9a97; font-size: 10.5px; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lead-modal-links a:hover { color: #0c0c0c; }
+
+.lead-modal-submit {
+  width: 100%; padding: 15px;
+  border: 0; border-radius: 12px;
+  background: #0c0c0c; color: #fff;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  cursor: pointer;
+  transition: background .2s ease, opacity .2s ease;
+}
+.lead-modal-submit:hover:not(:disabled) { background: #c82525; }
+.lead-modal-submit:disabled { opacity: .4; cursor: not-allowed; }
+
+.lead-modal-status {
+  margin: 12px 0 0; min-height: 18px;
+  font-size: 13px; line-height: 1.4; text-align: center;
+}
+.lead-modal-status.is-error { color: #c82525; }
+.lead-modal-status.is-ok { color: #2f6b4a; }
+
+@media (max-width: 480px) {
+  .lead-modal-box { padding: 28px 22px 24px; border-radius: 20px; }
+  .lead-modal-title { font-size: 23px; }
+}
