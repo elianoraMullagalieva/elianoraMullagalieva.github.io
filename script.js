@@ -1509,6 +1509,21 @@ document.querySelectorAll('[data-review-more]').forEach((button) => {
   // Метка соцсети (короткие ссылки /ig, /tg, /yt… → ?utm_source=ig) и ник Telegram
   // уходят в ссылку оплаты: Prodamus вернёт их в уведомлении, CRM запишет, откуда оплата.
   let lastTg = '';
+  // Заявка на почту через Web3Forms: ключ не секретный, он и рассчитан на то, чтобы стоять на сайте
+  const LEAD_KEY = '5026a0a0-bd33-4eb4-a89a-349adacf5a7b';
+  const LEAD_URL = 'https://api.web3forms.com/submit';
+  const leadForm = (tg, tariff, ref) => {
+    const fd = new FormData();
+    fd.append('access_key', LEAD_KEY);
+    fd.append('subject', 'Новая заявка с сайта: ' + tariff + ' · ' + tg);
+    fd.append('from_name', 'Сайт Нейро-практикума');
+    fd.append('Тариф', tariff);
+    fd.append('Telegram', tg);
+    fd.append('Источник', ref || '—');
+    fd.append('Время', new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }) + ' МСК');
+    return fd;
+  };
+
   const goPay = () => {
     if (!payUrl) return;
     let url = payUrl;
@@ -1549,6 +1564,8 @@ document.querySelectorAll('[data-review-more]').forEach((button) => {
         beaconOk = navigator.sendBeacon('lead.php', new Blob([payload], { type: 'application/json' }));
       }
     } catch (_) { beaconOk = false; }
+    // Пока сайт на GitHub (Бегет лёг 03.11.2026), lead.php нет — заявка уходит письмом через Web3Forms
+    try { if (LEAD_KEY && navigator.sendBeacon) navigator.sendBeacon(LEAD_URL, leadForm(tg, tariffName, ref)); } catch (_) {}
 
     // Если beacon недоступен — ждём обычный fetch и только потом ведём
     // на оплату, чтобы заявка точно ушла.
