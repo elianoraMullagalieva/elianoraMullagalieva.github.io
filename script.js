@@ -1517,10 +1517,10 @@ document.querySelectorAll('[data-review-more]').forEach((button) => {
     fd.append('access_key', LEAD_KEY);
     fd.append('subject', 'Новая заявка с сайта: ' + tariff + ' · ' + tg);
     fd.append('from_name', 'Сайт Нейро-практикума');
-    fd.append('Тариф', tariff);
-    fd.append('Telegram', tg);
-    fd.append('Источник', ref || '—');
-    fd.append('Время', new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }) + ' МСК');
+    fd.append('tariff', tariff);
+    fd.append('telegram', tg);
+    fd.append('source', ref || '—');
+    fd.append('time', new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }) + ' МСК');
     return fd;
   };
 
